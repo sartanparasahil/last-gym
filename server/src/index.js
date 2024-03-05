@@ -38,5 +38,6 @@ app.get("/", async (req, res) => {
 
 app.listen(PORT, async () => {
   await connect();
+  console.log("DataBase Connected.....");
   console.log("listen on 8080");
 });
