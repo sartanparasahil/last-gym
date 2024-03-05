@@ -91,21 +91,21 @@ console.log("login......")
           expiresIn: "28 days",
         }
       );
-      const mailOptions = {
-        from: process.env.EMAIL,
-        to: email,
-        subject: `Login Successfull`,
-        html: `<h1>your ACcount Login Successfull  </h1>`,
-      };
+      // const mailOptions = {
+      //   from: process.env.EMAIL,
+      //   to: email,
+      //   subject: `Login Successfull`,
+      //   html: `<h1>your ACcount Login Successfull  </h1>`,
+      // };
 
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          console.log("ERROR", err);
-        } else {
-          console.log("EMAIL SEND" + info.response);
-          return res.status(201).send(`${role} created successfully`);
-        }
-      });
+      // transporter.sendMail(mailOptions, (err, info) => {
+      //   if (err) {
+      //     console.log("ERROR", err);
+      //   } else {
+      //     console.log("EMAIL SEND" + info.response);
+      //     return res.status(201).send(`${role} created successfully`);
+      //   }
+      // });
       return res
         .status(200)
         .send({ message: "Login success", token, refresh_token, email });
@@ -113,7 +113,8 @@ console.log("login......")
       return res.status(201).send({ message: "Password not match" });
       // console.log("unauth")
     }
-  } catch {
+  } catch(err) {
+    console.log("catch run",err)
     return res.status(401).send({ message: "Authentication Failed tushal" });
   }
 });
