@@ -129,7 +129,6 @@ const Plans = () => {
   return (
     <>
 
-
       <Navbar />
       <Box
         bgGradient="linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(64,64,64,1) 93%)"
