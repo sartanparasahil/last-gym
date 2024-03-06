@@ -16,11 +16,12 @@ app.get("/get-razorpay-key", async (req, res) => {
 });
 
 app.post("/create-order", async (req, res) => {
+  
   try {
     console.log("ceate-orders");
     const instance = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET,
+      key_id: process.env.RAZORPAY_API_KEY,
+      key_secret: process.env.RAZORPAY_API_SECRET,
     });
     const options = {
       amount: req.body.amount,
