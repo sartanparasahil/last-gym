@@ -43,8 +43,6 @@ const ProductPage = () => {
   //console.log(product.data, "from selector");
 
 
-
-
   const DeleteProduct = (id) => {
     dispatch(ACTION_DELETE_PRODUCT(id))
       .then((res) => {
@@ -272,7 +270,7 @@ const ProductPage = () => {
                               // }}
                               bg="#f45f02;"
                             >
-                              View
+                              View 
                             </chakra.button>  </Link>
                       }
 

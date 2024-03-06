@@ -112,8 +112,6 @@ const Navbar = () => {
     }, 3000);
    }, [AdminIsAuth]);
 
-
-
   //console.log(cartData.length);
 
   const { colorMode, toggleColorMode } = useColorMode();

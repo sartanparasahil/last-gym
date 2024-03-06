@@ -223,18 +223,9 @@ const SingleProductPage = () => {
             </Text>
           </VStack>
           <VStack
-            spacing={5}
-            w="80%"
-            textAlign={{
-              base: "left",
-              md: "left",
-              sm: "left",
-              lg: "left",
-            }}
           >
             <Text fontSize="md" fontWeight={"medium"} color={"gray"} lineHeight={"170%"}>
               {SingleData.desc}
-
             </Text>
           </VStack>
           <Box>
