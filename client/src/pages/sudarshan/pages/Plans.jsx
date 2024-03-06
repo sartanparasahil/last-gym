@@ -125,7 +125,6 @@ const Plans = () => {
   }, [])
   // console.log("plan data",data);
 
-
   return (
     <>
 

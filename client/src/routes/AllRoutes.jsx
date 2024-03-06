@@ -19,6 +19,7 @@ import Products from "../pages/sufiyan/pages/nestedPages/Products";
 import Dashborad from "../pages/sufiyan/pages/nestedPages/Dashborad";
 import AdminPrivateAuth from "./AdminPrivateRoute";
 import PrivateRoute from "./PrivateRoute";
+import AdminPlans from "../pages/sufiyan/pages/nestedPages/AdminPlans";
 
 const AllRoutes = () => {
   return (
@@ -119,6 +120,15 @@ const AllRoutes = () => {
             element={
               <AdminPrivateAuth>
                 <Products />{" "}
+              </AdminPrivateAuth>
+            }
+          />
+           <Route
+            exact
+            path="plans"
+            element={
+              <AdminPrivateAuth>
+                <AdminPlans />{" "}
               </AdminPrivateAuth>
             }
           />
