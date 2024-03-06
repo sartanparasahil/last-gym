@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const connect = require("./config/db");
 
+const contactrouter = require("./features/contact/contact.router");
 const productRouter = require("./features/products/product.router");
 const cartRouter = require("./features/cart/cart.router");
 const userRouter = require("./features/user/user.router");
@@ -25,15 +26,15 @@ app.use("/products", productRouter);
 app.use("/cart", cartRouter);
 app.use("/user", userRouter);
 app.use("/plan", planRouter);
-
 app.use("/payment", paymentRouter);
+app.use(contactrouter);
 
 
 
 
 
 app.get("/", async (req, res) => {
-  res.status(200).send("BASE PAGE");
+  res.status(200).send("WelCome To My DataBase.....");
 });
 
 app.listen(PORT, async () => {
