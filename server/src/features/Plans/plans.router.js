@@ -1,7 +1,7 @@
 const express = require("express");
 const planModel = require("./plans.model");
 const app = express.Router();
-const plan = require("./plan.control");
+const {plan,DeletePlan} = require("./plan.control");
 
 app.get("/", async (req, res) => {
   try {
@@ -13,5 +13,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/addplan",plan);
+
+app.delete("/remove/:id",DeletePlan)
 
 module.exports = app;
