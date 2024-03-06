@@ -52,7 +52,7 @@ const AddProduct = () => {
       axios.post("http://localhost:8080/products",data)
       .then((r)=>{
        if (r.status == 200){
-        setData({pname:"",desc:"",imgurl:"",price:""})
+        setData({name:"",desc:"",imgurl:"",price:""})
         
         toast({
           title:r.data,
@@ -89,7 +89,7 @@ const AddProduct = () => {
           gap="1.2rem"
         >
           <Text fontSize="1.5rem" fontWeight="bold" color="#f45f02">
-            Choose Category
+            Choose Category Product
           </Text>
         </Flex>
         <VStack alignItems="flex-start" spacing="1rem">

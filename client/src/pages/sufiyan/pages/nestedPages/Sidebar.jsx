@@ -1,15 +1,16 @@
 import "./Sidebar.css";
 import { motion } from "framer-motion";
-import {AiOutlineAppstoreAdd, AiOutlineBars} from "react-icons/ai";
+import { AiOutlineAppstoreAdd, AiOutlineBars } from "react-icons/ai";
 
-import { MdDashboard 
+import {
+  MdDashboard
 } from "react-icons/md"
 
 
-import { AiFillEdit} from "react-icons/ai"
+import { AiFillEdit } from "react-icons/ai"
 
-import {   GiReceiveMoney } from "react-icons/gi"
-import {   FaUsers } from "react-icons/fa"
+import { GiReceiveMoney } from "react-icons/gi"
+import { FaUsers } from "react-icons/fa"
 
 import { useState } from "react";
 import Item from "../../components/item";
@@ -17,7 +18,7 @@ import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 function SideBarLeft() {
 
-  
+
   const [open, setOpen] = useState(true);
 
   // for collpsing sidebar
@@ -30,7 +31,7 @@ function SideBarLeft() {
       width: "20rem"
     },
     false: {
-      
+
       transition: {
         delay: 0.6
       }
@@ -124,8 +125,8 @@ function SideBarLeft() {
               >
                 ANALYTICS
               </motion.h3>
-             <Link to="/admin/dashboard"> <Item icon={<MdDashboard />} name="Dashboard" /> </Link> 
-             
+              <Link to="/admin/dashboard"> <Item icon={<MdDashboard />} name="Dashboard" /> </Link>
+
             </div>
           </div>
           {/* group 2 */}
@@ -136,9 +137,9 @@ function SideBarLeft() {
               Content
             </motion.h3>
             <Link to="/admin/products"> <Item icon={<AiOutlineAppstoreAdd />} name="Products" /></Link>
-            <Link to="/admin/plans"> <Item icon={<AiOutlineAppstoreAdd />} name="Plan" /></Link>
+            <Link to="/admin/plans" style={{ marginTop: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Plan" /></Link>
 
-            <Link to="/admin/all-users">  <Item icon={<FaUsers />} name="Customers" /></Link>
+            <Link to="/admin/all-users" style={{ marginTop: "7px" }}>  <Item icon={<FaUsers />} name="Customers" /></Link>
           </div>
           {/* group 3 */}
           <div className="group">
@@ -147,8 +148,9 @@ function SideBarLeft() {
             >
               CUSTOMIZATION
             </motion.h3>
-            <Link to="/admin/add-product">   <Item icon={<AiFillEdit />} name="Add Products" /> </Link>
-            
+            <Link to="/admin/add-product" >   <Item icon={<AiFillEdit />} name="Add Products" /> </Link>
+            <Link to="/admin/add-plan" style={{ marginTop: "7px" }}>   <Item icon={<AiFillEdit />} name="Add Plan" /> </Link>
+
           </div>
         </motion.div>
       </motion.div>

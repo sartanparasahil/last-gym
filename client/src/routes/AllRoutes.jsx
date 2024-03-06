@@ -14,12 +14,14 @@ import SinglePlanPage from "../pages/sudarshan/pages/SinglePlanPage";
 import AboutUS from "../pages/monu/pages/About";
 import AdminDashbord from "../pages/sufiyan/pages/AdminDashbord";
 import AddProduct from "../pages/sufiyan/pages/nestedPages/AddProduct";
+import AddPlan from "../pages/sufiyan/pages/nestedPages/AddPlan";
 import AllUsers from "../pages/sufiyan/pages/nestedPages/AllUsers";
 import Products from "../pages/sufiyan/pages/nestedPages/Products";
 import Dashborad from "../pages/sufiyan/pages/nestedPages/Dashborad";
 import AdminPrivateAuth from "./AdminPrivateRoute";
 import PrivateRoute from "./PrivateRoute";
 import AdminPlans from "../pages/sufiyan/pages/nestedPages/AdminPlans";
+import Contect from "../pages/nayan/pages/Contect";
 
 const AllRoutes = () => {
   return (
@@ -71,6 +73,7 @@ const AllRoutes = () => {
         <Route path="/user-profile" element={<UserDashboard />} />
 
         <Route path="/about" element={<AboutUS />} />
+        <Route path="/contact" element={<Contect />} />
 
         {/*////////////////////////////////////////////////////*/}
 
@@ -107,6 +110,15 @@ const AllRoutes = () => {
           />
           <Route
             exact
+            path="add-plan"
+            element={
+              <AdminPrivateAuth>
+                <AddPlan />{" "}
+              </AdminPrivateAuth>
+            }
+          />
+          <Route
+            exact
             path="all-users"
             element={
               <AdminPrivateAuth>
@@ -114,7 +126,7 @@ const AllRoutes = () => {
               </AdminPrivateAuth>
             }
           />
-           <Route
+          <Route
             exact
             path="products"
             element={
@@ -123,7 +135,7 @@ const AllRoutes = () => {
               </AdminPrivateAuth>
             }
           />
-           <Route
+          <Route
             exact
             path="plans"
             element={

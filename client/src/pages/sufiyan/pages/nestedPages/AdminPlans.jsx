@@ -35,7 +35,7 @@ const AdminPlans = () => {
 
     const handleDelete = (id) => {
 
-        axios.delete(`http://localhost:8080/plan/${id}`)
+        axios.delete(`http://localhost:8080/plan/remove/${id}`)
             .then((r) => {
                 toast({
                     status: "success",
@@ -55,18 +55,14 @@ const AdminPlans = () => {
 
             <HStack
                 p={5}
-
                 w="100%"
                 justifyContent={"space-around"}
                 alignContent={"flex-start"}
                 alignItems={"flex-start"}
             >
-
-
                 <VStack p={5} position="relative" top="-100px" >
                     <HStack
                         p={5}
-
                         w="100%"
                         bg="#f45f02"
                         color="whiteAlpha.900"
@@ -74,7 +70,7 @@ const AdminPlans = () => {
                         justifyContent={"space-between"}
                     >
                         <Text textAlign="center" w="34%">Plan name</Text>
-                        <Text textAlign="center" w="34%">PlanImage</Text>
+                        <Text textAlign="center" w="34%">Image</Text>
                         <Text textAlign="center" w="15%">duration</Text>
                         <Text textAlign="center" w="17%">Remove</Text>
 
