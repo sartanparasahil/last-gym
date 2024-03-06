@@ -136,6 +136,7 @@ function SideBarLeft() {
               Content
             </motion.h3>
             <Link to="/admin/products"> <Item icon={<AiOutlineAppstoreAdd />} name="Products" /></Link>
+            <Link to="/admin/plans"> <Item icon={<AiOutlineAppstoreAdd />} name="Plan" /></Link>
 
             <Link to="/admin/all-users">  <Item icon={<FaUsers />} name="Customers" /></Link>
           </div>
