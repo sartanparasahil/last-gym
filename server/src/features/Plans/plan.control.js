@@ -22,7 +22,7 @@ const DeletePlan = async (req, res) => {
         console.log(id);
 
         const isvalidPlan = await planModel.findById(id)
-        
+
         if (isvalidPlan) {
             await planModel.findByIdAndDelete(id)
             return res.status(200).json({ message: "Plan Deleted SuccessFully....." });
@@ -35,8 +35,6 @@ const DeletePlan = async (req, res) => {
         console.log(error.message);
         return res.status(500).json({ message: "Server failed" })
     }
-
-
 
 }
 

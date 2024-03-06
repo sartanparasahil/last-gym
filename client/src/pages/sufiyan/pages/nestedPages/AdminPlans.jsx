@@ -37,13 +37,17 @@ const AdminPlans = () => {
 
         axios.delete(`http://localhost:8080/plan/remove/${id}`)
             .then((r) => {
-                toast({
-                    status: "success",
-                    title: r.data,
-                    duration: 1500,
-                    isClosable: true
-                })
                 setReload(!reload)
+                // console.log(r.data)
+                if (r.status == 200) {
+                    toast({
+                        title: r.data?.message,
+                        status: "success",
+                        duration: 3000,
+                        isClosable: true,
+                    })
+                }
+
             })
     }
     return (

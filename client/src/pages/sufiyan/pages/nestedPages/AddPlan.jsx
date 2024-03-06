@@ -71,7 +71,6 @@ const AddProduct = () => {
                 console.log(r.data)
             })
             .catch((err) => { console.log("plan error", err) })
-
     };
 
     return (

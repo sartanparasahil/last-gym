@@ -7,23 +7,23 @@ app.get("/", async (req, res) => {
   if (!req.body.email) {
     try {
       let data = await CartModel.find();
-     return res.status(200).send(data);
+      return res.status(200).send(data);
     } catch (e) {
-     return res.status(401).send(e.massage);
+      return res.status(401).send(e.massage);
     }
   }
 
   try {
-    
+
     let data = await CartModel.findOne({ email: req.body.email });
 
-    if(!data){
-     return res.status(403).send("no cart data");
+    if (!data) {
+      return res.status(403).send("no cart data");
     }
 
-   return res.status(201).send(data);
+    return res.status(201).send(data);
 
-    
+
 
   } catch (e) {
     res.status(404).send(e.massage);
@@ -34,12 +34,12 @@ app.get("/:email", async (req, res) => {
 
   console.log(req.params.email)
 
-  if(req.params.email ){
-    let data = await cartModel.findOne({email:req.params.email});
-   
-    if(!data){
+  if (req.params.email) {
+    let data = await cartModel.findOne({ email: req.params.email });
+
+    if (!data) {
       return res.status(403).send("no cart data");
-     }
+    }
 
     return res.status(200).send(data);
   }
@@ -61,7 +61,7 @@ app.post("/", async (req, res) => {
             return res.status(201).send("Product already in Cart");
           }
         }
-        
+
       });
       if (flag) {
         return res.status(201).send("Product already in Cart");
@@ -77,7 +77,7 @@ app.post("/", async (req, res) => {
 
       let newData = { email: req.body.email, cart: req.body.data };
       let data = await CartModel.create(newData);
-    //  console.log(564);
+      //  console.log(564);
       return res.status(200).send(data);
     }
   } catch (e) {
@@ -87,8 +87,8 @@ app.post("/", async (req, res) => {
 
 app.patch("/", async (req, res) => {
 
- // console.log(req)
- // console.log(req.body)
+  // console.log(req)
+  // console.log(req.body)
   //console.log(req.body, req.body.data, "SDS")
   try {
     let data = await cartModel.updateOne(
@@ -123,7 +123,7 @@ app.post("/wishlist", async (req, res) => {
             return res.status(201).send("Product already in Cart");
           }
         }
-        
+
       });
       if (flag) {
         return res.status(201).send("Product already in Cart");
@@ -139,7 +139,7 @@ app.post("/wishlist", async (req, res) => {
 
       let newData = { email: req.body.email, wishlist: req.body.data };
       let data = await CartModel.create(newData);
-    //  console.log(564);
+      //  console.log(564);
       return res.status(200).send(data);
     }
   } catch (e) {
@@ -150,49 +150,56 @@ app.post("/wishlist", async (req, res) => {
 
 // wishlist to cart 
 app.patch("/move", async (req, res) => {
-  
-  const { email , id } = req.body
- // console.log(req)
-   try {
 
-    let user = await cartModel.findOne({email: email})
-  
-    let product = user.wishlist.find((el)=> el._id == id)
-    console.log(product)
-     await cartModel.findOneAndUpdate(
-       {email:email},
-       {$pull: {wishlist: {_id:id}}, $push: {cart: product  }  },
-       {new :true}
-       )
+  const { email, id } = req.body
+  // console.log(req)
+  try {
 
-     return res.status(200).send("SUCCESS");
-   } catch (e) {
-     return res.status(404).send(e.massage);
-   }
- });
+    let user = await cartModel.findOne({ email: email })
+
+    let newproduct = user.cart.find((el) => el._id == id)
+    let product = user.wishlist.find((el) => el._id == id)
+
+
+    // console.log(product)
+    if (newproduct) {
+      return res.status(404).json({ message: "Product Already Exists !" })
+    }
+
+    await cartModel.findOneAndUpdate(
+      { email: email },
+      { $pull: { wishlist: { _id: id } }, $push: { cart: product } },
+      { new: true }
+    )
+
+    return res.status(200).send("SUCCESS");
+  } catch (e) {
+    return res.status(404).send(e.massage);
+  }
+});
 
 
 
 app.patch("/purchase", async (req, res) => {
-  
+
   const { email } = req.body
   console.log(email)
-   try {
+  try {
 
-    let user = await cartModel.findOne({email: email})
-   console.log(user.cart)
- 
-     await cartModel.findOneAndUpdate(
-       {email:email},
-       {$set: {purchase: [...user.purchase,...user.cart]} , cart: [] },
-       {new :true}
-       )
+    let user = await cartModel.findOne({ email: email })
+    console.log(user.cart)
 
-     return res.status(200).send("SUCCESS");
-   } catch (e) {
-     return res.status(404).send(e.massage);
-   }
- });
+    await cartModel.findOneAndUpdate(
+      { email: email },
+      { $set: { purchase: [...user.purchase, ...user.cart] }, cart: [] },
+      { new: true }
+    )
+
+    return res.status(200).send("SUCCESS");
+  } catch (e) {
+    return res.status(404).send(e.massage);
+  }
+});
 
 module.exports = app;
 

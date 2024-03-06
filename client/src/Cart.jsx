@@ -121,7 +121,7 @@ const Cart = () => {
             flex="2"
           >
             <Heading color={"white"} fontSize="2xl" >
-              Total Product in Cart {userData.cart.length}
+              Total Product in Cart {userData.cart?.length}
             </Heading>
 
             <Stack spacing="6">
@@ -215,7 +215,7 @@ const Cart = () => {
                   <Flex w="full" bg={"whiteAlpha.200"} p={3}>
                     <Text color={"white"} fontWeight="medium" > {el.productName} {"   "}</Text>
                     <Spacer />
-                    <Text color={"white"} fontWeight="medium" >{"   "} $ {el.price}</Text>
+                    <Text color={"white"} fontWeight="medium" >{"   "} ₹ {el.price}</Text>
                   </Flex>
                 ))
               }
@@ -227,8 +227,6 @@ const Cart = () => {
               p={5}
               bg={"#f45f02"} color="white"
               fontSize={"2xl"} fontWeight="semibold" > Total : {totalPurchase.toFixed(2)} </Text>
-
-
           </VStack>
 
         </Stack>

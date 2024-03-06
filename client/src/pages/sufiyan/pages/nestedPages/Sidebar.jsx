@@ -136,10 +136,10 @@ function SideBarLeft() {
             >
               Content
             </motion.h3>
-            <Link to="/admin/products"> <Item icon={<AiOutlineAppstoreAdd />} name="Products" /></Link>
-            <Link to="/admin/plans" style={{ marginTop: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Plan" /></Link>
-
-            <Link to="/admin/all-users" style={{ marginTop: "7px" }}>  <Item icon={<FaUsers />} name="Customers" /></Link>
+            <Link to="/admin/all-users" style={{ marginBottom: "7px" }}>  <Item icon={<FaUsers />} name="Customers" /></Link>
+            <Link to="/admin/plans" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Plan" /></Link>
+            <Link to="/admin/products" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Products" /></Link>
+            <Link to="/admin/contact"> <Item icon={<AiOutlineAppstoreAdd />} name="Contact" /></Link>
           </div>
           {/* group 3 */}
           <div className="group">

@@ -1,7 +1,9 @@
 import {
+  ADD_ITEM_TOCART_FROM_WISHLIST_ERROR,
   ADD_ITEM_TO_CART_ERROR,
   ADD_ITEM_TO_CART_LOADING,
   ADD_ITEM_TO_CART_SUCCESS,
+  ADD_ITEM_TO_WISHLIST_ERROR,
   GET_CART_ITEMS_ERROR,
   GET_CART_ITEMS_LOADING,
   GET_CART_ITEMS_SUCCESS,
@@ -27,6 +29,12 @@ const cartInitalState = {
   removeCartItem: {
     loading: false,
     error: false,
+  },
+  wishlistItem: {
+    error: false,
+    loading: false,
+
+
   },
   data: [],
 };
@@ -86,27 +94,36 @@ export const cartReducer = (state = cartInitalState, { type, payload }) => {
     }
 
 
-    case PURCHASE_LOADING : {
+    case PURCHASE_LOADING: {
       return {
         ...state,
         updateCartItem: { loading: true, error: false },
       };
     }
 
-    case PURCHASE_ERROR : {
+    case PURCHASE_ERROR: {
       return {
         ...state,
         updateCartItem: { loading: false, error: true },
       };
     }
 
-    case PURCHASE_SUCCESS : {
+    case PURCHASE_SUCCESS: {
       return {
         ...state,
         updateCartItem: { loading: false, error: false },
         data: [],
       };
     }
+
+    case ADD_ITEM_TOCART_FROM_WISHLIST_ERROR: {
+      return {
+        ...state,
+        wishlistItem: { loading: false, error: true },
+
+      };
+    }
+
     /////////////////REMOVE//////////////////
 
     default: {

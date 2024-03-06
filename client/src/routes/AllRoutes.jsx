@@ -22,6 +22,7 @@ import AdminPrivateAuth from "./AdminPrivateRoute";
 import PrivateRoute from "./PrivateRoute";
 import AdminPlans from "../pages/sufiyan/pages/nestedPages/AdminPlans";
 import Contect from "../pages/nayan/pages/Contect";
+import ContactList from "../pages/sufiyan/pages/nestedPages/ContactList";
 
 const AllRoutes = () => {
   return (
@@ -132,6 +133,15 @@ const AllRoutes = () => {
             element={
               <AdminPrivateAuth>
                 <Products />{" "}
+              </AdminPrivateAuth>
+            }
+          />
+          <Route
+            exact
+            path="contact"
+            element={
+              <AdminPrivateAuth>
+                <ContactList />{" "}
               </AdminPrivateAuth>
             }
           />

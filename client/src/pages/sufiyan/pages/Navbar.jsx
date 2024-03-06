@@ -91,7 +91,7 @@ const Navbar = () => {
 
   let userName = userData && userData?.details?.username
 
-  console.log(userData)
+  // console.log("nav run")
 
   useEffect(() => {
     dispatch(ACTION_GET_PRODUCTS());
@@ -386,6 +386,7 @@ const Navbar = () => {
                       <Text
                         w={"100%"}
                         fontSize="20px"
+                        cursor="pointer"
                         className={({ isActive }) =>
                           isActive ? "SmallactiveS" : "SmalldefaultS"
                         }

@@ -13,13 +13,13 @@ import {
   REMOVE_CART_ITEMS_SUCCESS,
   PURCHASE_LOADING,
   PURCHASE_SUCCESS,
-PURCHASE_ERROR,
-ADD_ITEM_TO_WISHLIST_LOADING,
-ADD_ITEM_TO_WISHLIST_SUCCESS,
-ADD_ITEM_TO_WISHLIST_ERROR,
-ADD_ITEM_TOCART_FROM_WISHLIST_LOADING,
-ADD_ITEM_TOCART_FROM_WISHLIST_SUCCESS,
-ADD_ITEM_TOCART_FROM_WISHLIST_ERROR,
+  PURCHASE_ERROR,
+  ADD_ITEM_TO_WISHLIST_LOADING,
+  ADD_ITEM_TO_WISHLIST_SUCCESS,
+  ADD_ITEM_TO_WISHLIST_ERROR,
+  ADD_ITEM_TOCART_FROM_WISHLIST_LOADING,
+  ADD_ITEM_TOCART_FROM_WISHLIST_SUCCESS,
+  ADD_ITEM_TOCART_FROM_WISHLIST_ERROR,
 } from "./cart.types";
 
 // redux doesnt handle asynchronous REQUEST
@@ -43,107 +43,103 @@ export const ACTION_GET_CART = (token) => async (dispatch) => {
 
 export const ACTION_ADD_ITEM_TO_CART =
   (payload = {}) =>
-  async (dispatch) => {
-    dispatch({ type: ADD_ITEM_TO_CART_LOADING });
+    async (dispatch) => {
+      dispatch({ type: ADD_ITEM_TO_CART_LOADING });
 
-    try {
-      await axios.post("http://localhost:8080/cart", payload)
-     .then((res)=> console.log(res.message))
-     .catch((err)=> console.log(err.message))
-     
-    
+      try {
+        await axios.post("http://localhost:8080/cart", payload)
+          .then((res) => console.log(res.message))
+          .catch((err) => console.log(err.message))
 
-      return dispatch({
-        type: ADD_ITEM_TO_CART_SUCCESS,
-        payload: payload.data,
-      });
+        return dispatch({
+          type: ADD_ITEM_TO_CART_SUCCESS,
+          payload: payload.data,
+        });
 
-    } catch (err) {
-      console.log(err)
-      dispatch({ type: ADD_ITEM_TO_CART_ERROR, payload: err.message });
-    }
-  };
+      } catch (err) {
+        console.log(err)
+        dispatch({ type: ADD_ITEM_TO_CART_ERROR, payload: err.message });
+      }
+    };
 
-  export const ACTION_REMOVE_ITEM_CART = (payload=1)=> async (dispatch)=>{
-    dispatch({ type: REMOVE_CART_ITEMS_LOADING})
-   
+export const ACTION_REMOVE_ITEM_CART = (payload = 1) => async (dispatch) => {
+  dispatch({ type: REMOVE_CART_ITEMS_LOADING })
+
   //  console.log(payload)
-    try{
-      await axios.patch(`http://localhost:8080/cart`, payload)
+  try {
+    await axios.patch(`http://localhost:8080/cart`, payload)
 
-      return dispatch({ type : REMOVE_CART_ITEMS_SUCCESS })
-         
-    }catch(err){
-        dispatch({ type : REMOVE_CART_ITEMS_ERROR , payload : err.message })
-    }
+    return dispatch({ type: REMOVE_CART_ITEMS_SUCCESS })
+
+  } catch (err) {
+    dispatch({ type: REMOVE_CART_ITEMS_ERROR, payload: err.message })
+  }
 
 }
 
 
-export const ACTION_PURCHASE = (payload={})=> async (dispatch)=>{
+export const ACTION_PURCHASE = (payload = {}) => async (dispatch) => {
 
-    dispatch({type: PURCHASE_LOADING})
+  dispatch({ type: PURCHASE_LOADING })
 
   console.log(payload)
 
-    try{
-      await axios.patch(`http://localhost:8080/cart/purchase`, {email: payload})
+  try {
+    await axios.patch(`http://localhost:8080/cart/purchase`, { email: payload })
 
-      return dispatch({ type : PURCHASE_SUCCESS })
-         
-    }catch(err){
-        dispatch({ type : PURCHASE_ERROR , payload : err.message })
-    }
- 
+    return dispatch({ type: PURCHASE_SUCCESS })
+
+  } catch (err) {
+    dispatch({ type: PURCHASE_ERROR, payload: err.message })
+  }
+
 }
-
-
 
 export const ACTION_ADD_ITEM_TO_WISHLIST =
   (payload = {}) =>
-  async (dispatch) => {
-    dispatch({ type: ADD_ITEM_TO_WISHLIST_LOADING });
+    async (dispatch) => {
+      dispatch({ type: ADD_ITEM_TO_WISHLIST_LOADING });
 
-    try {
-      await axios.post("http://localhost:8080/cart/wishlist", payload)
-     .then((res)=> console.log(res.message))
-     .catch((err)=> console.log(err.message))
-     
-    
+      try {
+        await axios.post("http://localhost:8080/cart/wishlist", payload)
+          .then((res) =>
 
-      return dispatch({
-        type: ADD_ITEM_TO_WISHLIST_SUCCESS,
-        payload: payload.data,
-      });
+            console.log("tushal", res.data))
+          .catch((err) => console.log(err.message))
 
-    } catch (err) {
-      console.log(err)
-      dispatch({ type: ADD_ITEM_TO_WISHLIST_ERROR, payload: err.message });
-    }
-  };
+        return dispatch({
+          type: ADD_ITEM_TO_WISHLIST_SUCCESS,
+          payload: payload.data,
 
-  export const MOVE_FROM_WISHLIST_TO_CART =
+        });
+
+      } catch (err) {
+
+        dispatch({ type: ADD_ITEM_TO_WISHLIST_ERROR, payload: err.message });
+      }
+    };
+
+export const MOVE_FROM_WISHLIST_TO_CART =
   (payload = {}) =>
-  async (dispatch) => {
-    dispatch({ type: ADD_ITEM_TOCART_FROM_WISHLIST_LOADING });
+    async (dispatch) => {
+      dispatch({ type: ADD_ITEM_TOCART_FROM_WISHLIST_LOADING });
 
-    try {
-      await axios.patch("http://localhost:8080/cart/move", payload)
-     .then((res)=> console.log(res.message))
-     .catch((err)=> console.log(err.message))
-     
-    
+      axios.patch("http://localhost:8080/cart/move", payload)
+        .then((res) => console.log(res.data))
+        .catch((err) =>
+          dispatch({ type: ADD_ITEM_TOCART_FROM_WISHLIST_ERROR, payload: err.message })
+
+        )
 
       return dispatch({
         type: ADD_ITEM_TOCART_FROM_WISHLIST_SUCCESS,
         payload: payload.data,
       });
 
-    } catch (err) {
-      console.log(err)
-      dispatch({ type: ADD_ITEM_TOCART_FROM_WISHLIST_ERROR, payload: err.message });
-    }
-  };
+
+      console.log("meet", err)
+
+    };
 
 
 
@@ -171,13 +167,13 @@ export const ACTION_ADD_ITEM_TO_WISHLIST =
 //const deleteMethod = {
 //  method: 'DELETE', // Method itself
 //  headers: {
-//   'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+//   'Content-type': 'application/json; charset=UTF-8' // Indicates the content
 //  },
 //  body: JSON.stringify(payload)
 //  // No need to have body, because we don't send nothing to the server.
 // }
 // // Make the HTTP Delete call using fetch api
-// fetch(`http://localhost:8080/cart`, deleteMethod) 
+// fetch(`http://localhost:8080/cart`, deleteMethod)
 // .then(response => response.json())
 // .then(data => console.log(data)) // Manipulate the data retrieved back, if we want to do something with it
 // .catch(err

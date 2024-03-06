@@ -28,9 +28,9 @@ const OrderSummaryItem = (props) => {
 export const CartOrderSummary = () => {
   const [qty, setQty] = React.useState(1)
   const [tax, setTax] = React.useState(50)
-  
+
   React.useEffect(() => {
-    const updateqty = userData.cart[0].qty
+    const updateqty = userData?.cart[0]?.qty
     let newqty
     {
       updateqty ? newqty = updateqty : newqty = 1
@@ -39,9 +39,8 @@ export const CartOrderSummary = () => {
   }, [qty])
 
   const { userData, token, isAuth } = useSelector((store) => store.auth);
+  console.log(userData.cart)
   const total = userData.cart.reduce((a, b) => a + +b.price, 0);
-
-
 
   const PaymentKaro = () => {
 
@@ -54,10 +53,8 @@ export const CartOrderSummary = () => {
       <Stack spacing="6">
         {/* <OrderSummaryItem label="Subtotal" value={formatPrice(total*2)} /> */}
         <OrderSummaryItem label="Subtotal" value={formatPrice(qty ? total * qty : total)} />
-        <OrderSummaryItem label="Shipping + Tax">
-          <Text color="white" letterSpacing="1px">
-            ₹{tax}
-          </Text>
+        <OrderSummaryItem label="Shipping + Tax" color="white" letterSpacing="1px" value={userData?.cart?.length == 0 ? formatPrice(0) : formatPrice(tax)}>
+          {/* formatPrice(qty && qty ? tax : 0) */}
         </OrderSummaryItem>
         <Flex justify="space-between">
           <Text fontSize="lg" color={"white"} fontWeight="semibold">
@@ -65,7 +62,7 @@ export const CartOrderSummary = () => {
           </Text>
           <Text color={"white"} fontSize="xl" fontWeight="extrabold">
             {/* $ {qty ? total * qty : total}.00 */}
-            {formatPrice(qty ? total * qty + tax : total)}
+            {userData?.cart?.length == 0 ? formatPrice(0) : formatPrice(qty ? total * qty + tax : total)}
           </Text>
         </Flex>
       </Stack>

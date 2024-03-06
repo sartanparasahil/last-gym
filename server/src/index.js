@@ -20,8 +20,6 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 
-
-
 // Routes
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
@@ -30,9 +28,6 @@ app.use("/plan", planRouter);
 app.use("/payment", paymentRouter);
 app.use(contactrouter);
 app.use(trainerrouter);
-
-
-
 
 
 app.get("/", async (req, res) => {
