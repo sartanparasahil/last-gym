@@ -10,6 +10,7 @@ const cartRouter = require("./features/cart/cart.router");
 const userRouter = require("./features/user/user.router");
 const planRouter = require("./features/Plans/plans.router");
 const paymentRouter = require("./features/payment/payment.router");
+const trainerrouter = require("./features/coach/coach.router");
 
 const PORT = 8080;
 
@@ -28,6 +29,7 @@ app.use("/user", userRouter);
 app.use("/plan", planRouter);
 app.use("/payment", paymentRouter);
 app.use(contactrouter);
+app.use(trainerrouter);
 
 
 
