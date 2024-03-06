@@ -78,7 +78,7 @@ return (
             <div className="lisa">
               <img src={Trainer2} alt='monu'/>
               <Box className="overlay2">
-              <Heading color="#fff" mb="-4" fontSize={["19","19","20","20","25"]}>Athart Rachel</Heading>
+              <Heading color="#fff" mb="-4" fontSize={["19","19","20","20","25"]}>Iron Rachel</Heading>
                  <Text color="#666" fontWeight={"500"}>GYM TRAINER</Text>
                 </Box>
                 <Box className="social">
@@ -146,7 +146,7 @@ return (
             <div className="lisa">
               <img src={Trainer5} alt='monu'/>
               <Box className="overlay2" >
-                  <Heading color="#fff" mb="-4" fontSize={["19","19","20","20","25"]}>Lana Rhoades</Heading>
+                  <Heading color="#fff" mb="-4" fontSize={["19","19","20","20","25"]}>Elite Edge</Heading>
                  <Text color="#666" fontWeight={"500"}>GYM TRAINER</Text>
               </Box>
               <Box className="social">
@@ -182,7 +182,7 @@ return (
             <div className="lisa">
               <img src={Trainer10} alt='monu'/>
               <Box className="overlay2" >
-                  <Heading color="#fff" mb="-4"fontSize={["19","19","20","20","25"]} >Eva Elfie</Heading>
+                  <Heading color="#fff" mb="-4"fontSize={["19","19","20","20","25"]} >Evolve Elite</Heading>
                  <Text color="#666" fontWeight={"500"}>GYM TRAINER</Text>
               </Box>
               <Box className="social">

@@ -31,7 +31,7 @@ const Plans = () => {
     {
       name: "BLUEPRINT TO SIZE",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-blueprint-to-size.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:"Where personalized plans sculpt your strength journey, forging endurance, muscle, and transformation through tailored fitness blueprints",
       type:"Transform",
       gender: "Female, Male",
       duration:"4 weeks",
@@ -40,7 +40,7 @@ const Plans = () => {
     {
       name: "3 WEEKS 2 SIZE",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-3weeks2size.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:" Transform your physique in a short span. Intense workouts, tailored plans, and expert guidance for rapid results.",
       type:"Build Muscle",
       gender: "Female, Male",
       duration:"3 weeks",
@@ -49,7 +49,7 @@ const Plans = () => {
     {
       name: "SHORTCUT TO SHRED",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-shortcuttoshred.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:" Unleash your potential with intense workouts, expert guidance, and cutting-edge techniques for maximum results and transformation.",
       type:"Transform",
       gender: "Female, Male",
       duration:"3 weeks",
@@ -58,7 +58,7 @@ const Plans = () => {
     {
       name: "ULTIMATE 30-DAY FITNESS",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-ultimate-30day-fitness.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:"Transform your body and mind with personalized training, nutrition plans, and group motivation. Unleash your potential today!.",
       type:"Build Muscle",
       gender: "Female, Male",
       duration:"3 weeks",
@@ -67,7 +67,7 @@ const Plans = () => {
     {
       name: "IRON EVERY DAY",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-ironeveryday.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:" Where dedication meets strength. Your daily destination for relentless workouts, forging resilience, and sculpting steel-like physiques",
       type:"Build Muscle",
       gender: "Male",
       duration:"4 weeks",
@@ -76,7 +76,7 @@ const Plans = () => {
     {
       name: "STRONGER THAN YESTERDAY",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-stronger-than-yesterday-2.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:" A fitness haven empowering individuals to surpass yesterday's limits, thrive, and conquer their fitness journey with determination",
       type:"Lose Fat ",
       gender: "Male",
       duration:"5 weeks",
@@ -85,7 +85,7 @@ const Plans = () => {
     {
       name: "POWER BODYBUILDING",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-power-bodybuilding.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:" your strength potential. Elite training, cutting-edge equipment, and expert coaching for muscle growth and performance excellence",
       type:"Build Muscle",
       gender: "Female, Male",
       duration:"3 weeks",
@@ -94,7 +94,7 @@ const Plans = () => {
     {
       name: "START HERE YOUR NEW YEAR",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-start-here-your-new-year.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:"Where fresh beginnings meet fitness goals. Expert coaching, state-of-the-art facilities, and a vibrant community await you",
       type:"Lose Fat",
       gender: "Female",
       duration:"1 weeks",
@@ -103,18 +103,9 @@ const Plans = () => {
     {
       name: "LEAN BODY",
       image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-leanbody.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
+      desc:"Sculpt your physique with precision. Tailored workouts, expert guidance, and results-driven training for your leanest, strongest self.",
       type:"Lose Fat",
       gender: "Female",
-      duration:"4 weeks",
-     
-    },
-    {
-      name: "IRON EVERY DAY",
-      image: "https://themes.oitentaecinco.com/winner/wp-content/uploads/2017/12/workoutplan-thumbnail-ironeveryday.jpg",
-      desc:"Lorem ipsum porttitor posuere. Praesent id metus massa, ut blrandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim ex ea commodo consequat.",
-      type:"Build Muscle",
-      gender: "Male",
       duration:"4 weeks",
      
     },
@@ -243,7 +234,7 @@ const Plans = () => {
                   boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
                   borderRadius="10px"
                   pb={5}
-                  maxW="xs"
+                  maxW="sm"
                   mx="auto"
                   bg="whiteAlpha.300"
                   // _dark={{
@@ -253,7 +244,7 @@ const Plans = () => {
                   rounded="lg"
                   z-index={-1}
                 >
-                  <Box w="100%" h="200px" m="auto">
+                  <Box w="100%" h="250px" m="auto">
                     <Image
                       h="100%"
                       w="100%"
@@ -265,7 +256,7 @@ const Plans = () => {
                       alt="NIKE AIR"
                     />
                   </Box>
-                  <Box width={"90%"} margin={"auto"} textAlign={"center"} px={0} py={-50}>
+                  <Box width={"90%"} margin={"auto"} textAlign={"center"} px={0} py={3}>
                     <chakra.h1
                       color="white"
                       _dark={{
@@ -274,6 +265,7 @@ const Plans = () => {
                       fontWeight="bold"
                       fontSize="14.56px"
                       textTransform="uppercase"
+                      marginBottom="7px"
                     >
                       {item.name}
                     </chakra.h1>
@@ -296,6 +288,8 @@ const Plans = () => {
                       mb={2}
                       fontSize="12.35"
                       color="white"
+                      letterSpacing={.5}
+                      lineHeight={5}
                       _dark={{
                         color: "gray.400",
                       }}
@@ -331,6 +325,7 @@ const Plans = () => {
                      
                       px={4}
                       py={3}
+                      mt={2}
                       // bg="white"
                       fontSize="xs"
                       color="white"
