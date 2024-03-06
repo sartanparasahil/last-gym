@@ -1,6 +1,7 @@
 const express = require("express");
 const planModel = require("./plans.model");
 const app = express.Router();
+const plan = require("./plan.control");
 
 app.get("/", async (req, res) => {
   try {
@@ -10,5 +11,7 @@ app.get("/", async (req, res) => {
     return res.status(404).send(er.message);
   }
 });
+
+app.post("/addplan",plan);
 
 module.exports = app;
