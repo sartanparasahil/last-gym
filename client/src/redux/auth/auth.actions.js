@@ -20,7 +20,8 @@ export const login = (creds) => async (dispatch) => {
     //console.log(res.data)
     return res.data;
   } catch (error) {
-    dispatch({ type: LOGIN_ERROR, payload: error.message });
+    console.log("meet c",error.response.data.message)
+    dispatch({ type: LOGIN_ERROR, payload: error.response.data.message });
   }
 };
 

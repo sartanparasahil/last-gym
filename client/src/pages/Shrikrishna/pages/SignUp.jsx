@@ -66,7 +66,7 @@ export default function Signup() {
             status: "error",
             duration: 1000,
           });
-         
+
         }
         break;
       case "lastName":
@@ -85,7 +85,7 @@ export default function Signup() {
             status: "error",
             duration: 1000,
           });
-         
+
         }
         break;
       // case "age":
@@ -104,17 +104,17 @@ export default function Signup() {
             status: "error",
             duration: 1000,
           });
-         
+
         }
         break;
       default:
-          break;
+        break;
     }
   };
   // let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
   let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   const handleClick = () => {
-     if (
+    if (
       !user.firstName ||
       !user.lastName ||
       !user.email ||
@@ -132,7 +132,7 @@ export default function Signup() {
         duration: 1000,
         isClosable: true,
       });
-{
+      {
         toast({
           title: "Enter Valid Email",
           description: "Please fill all the details",
@@ -140,11 +140,11 @@ export default function Signup() {
           duration: 500,
           isClosable: true,
         });
-  
+
       }
     }
-    
-     else {
+
+    else {
       dispatch(registerUser(user));
       setUser(defaultValues);
       toast({
@@ -167,11 +167,11 @@ export default function Signup() {
       bgGradient="linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(64,64,64,1) 93%)"
     >
       <Stack zIndex={2} spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-      <Stack align={"center"}>
-            <Heading color={"white"} fontSize={"4xl"}>
-              Register Form
-            </Heading>
-          </Stack>
+        <Stack align={"center"}>
+          <Heading color={"white"} fontSize={"4xl"}>
+            Register Form
+          </Heading>
+        </Stack>
         <Box
           rounded={"lg"}
           bg={useColorModeValue("whiteAlpha.200", "gray.700")}
@@ -211,14 +211,14 @@ export default function Signup() {
                 <FormControl id="age" isRequired>
                   <FormLabel>Age</FormLabel>
                   <Input
-                  // maxLength={2}
-                  onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
-                  
+                    // maxLength={2}
+                    onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
+
                     value={user.age}
                     onChange={handleChange}
                     type="number"
                     name="age"
-                    
+
                   />
                 </FormControl>
               </Box>
@@ -245,7 +245,7 @@ export default function Signup() {
                 <FormControl id="weight">
                   <FormLabel>Weight</FormLabel>
                   <Input
-                   onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
+                    onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
                     value={user.weight}
                     onChange={handleChange}
                     type="number"
@@ -258,7 +258,7 @@ export default function Signup() {
                 <FormControl id="height">
                   <FormLabel>Height</FormLabel>
                   <Input
-                   onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
+                    onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
                     value={user.height}
                     onChange={handleChange}
                     type="number"
@@ -282,7 +282,7 @@ export default function Signup() {
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input
-                maxLength={8}
+                  maxLength={8}
                   onChange={handleChange}
                   type={showPassword ? "text" : "password"}
                   name="password"
@@ -318,9 +318,9 @@ export default function Signup() {
               <Text align={"center"}>
                 Already a user?{" "}
                 <Link to="/login" >
-                <Button
-                   
-                   _hover={{backgroundColor:"white", color:"orange.500"}}
+                  <Button
+
+                    _hover={{ backgroundColor: "white", color: "orange.500" }}
                     color="white"
                     variant="outline"
                     fontWeight="semibold"
@@ -328,7 +328,7 @@ export default function Signup() {
                     Login
                   </Button>
                 </Link>
-              {/* <Link to="/login">
+                {/* <Link to="/login">
                   <Button
                   bg="transparent"
                   _hover={{color:"#f45f02"}}

@@ -9,7 +9,13 @@ import axios from "axios";
 const Dashborad = () => {
   const [mydata, setMydata] = useState()
   const [myproduct, setMyproduct] = useState()
-  console.log(myproduct)
+  const [myitem, setMyitem] = useState([])
+
+  const { userData, token, isAuth, AdminIsAuth } = useSelector((store) => store.auth);
+  // const { details } = userData
+  console.log("dashboard", userData)
+
+
   useEffect(() => {
     axios.get("http://localhost:8080/user")
       .then((r) => {
@@ -22,6 +28,18 @@ const Dashborad = () => {
         setMyproduct(r.data)
       })
   }, [])
+  useEffect(() => {
+    axios.get("http://localhost:8080/payment/list-order")
+      .then((r) => {
+        setMyitem(r.data)
+      })
+  }, [])
+
+
+
+  // useEffect(() => {
+  //   setMyitem(userData.purchase)
+  // }, [])
   const { data, loading, error } = useSelector((store) => store.product);
 
   const { data: adminData } = useSelector((store) => store.admin);
@@ -45,18 +63,24 @@ const Dashborad = () => {
 
   // const allProducts = Array.isArray(data) && data.length
 
-  const { userData, token, isAuth, AdminIsAuth } = useSelector((store) => store.auth);
-  // const { details } = userData
-  console.log("purchase",userData)
 
 
-  let PendingPurchase = 0;
-  adminData.carts.map((el) => PendingPurchase += +el.cart.length)
 
-  let TotalNumberOfSales = 0;
-  adminData.carts.map((el) => TotalNumberOfSales += +el.purchase.length)
+  // console.log("purchase",userData.purchase)
 
-  console.log(PendingPurchase, TotalNumberOfSales);
+
+  // let PendingPurchase = 0;
+  // adminData.carts.map((el) => PendingPurchase += +el.cart.length)
+
+  // let TotalNumberOfSales = 0;
+  // adminData.carts.map((el) => TotalNumberOfSales += +el.purchase.length)
+
+  // console.log(PendingPurchase, TotalNumberOfSales);
+
+  // const totalsale = myitem.reduce((acc, ele) => {
+  //   let { amount } = ele
+  //   console.log(amount)
+  // }, 0)
 
   return (
     <HStack zIndex={50} maxW="1200px" >
@@ -99,7 +123,7 @@ const Dashborad = () => {
             <div className="card_inner">
               <p className="text-primary-p">Number of Purchase</p>
               <span className="font-bold text-title">
-                
+                {myitem ? myitem.length : 0}
               </span>
             </div>
           </div>
@@ -108,7 +132,7 @@ const Dashborad = () => {
 
             <div className="card_inner">
               <p className="text-primary-p"> Total Sales </p>
-              <span className="font-bold text-title">{TotalNumberOfSales}</span>
+              <span className="font-bold text-title">0</span>
             </div>
           </div>
         </div>
@@ -155,7 +179,7 @@ const Dashborad = () => {
 
               <div className="card4">
                 <h1>Orders</h1>
-                <p> {TotalNumberOfSales}</p>
+                <p> 0</p>
               </div>
             </div>
           </div>

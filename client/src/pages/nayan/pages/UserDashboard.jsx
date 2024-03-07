@@ -6,8 +6,8 @@ import Vid from "./Vid";
 const UserDashboard = () => {
 
   const { userData, token, isAuth, AdminIsAuth } = useSelector((store) => store.auth);
-
   const { details } = userData
+  // console.log("dashboard",userData.purchase.length)
 
   return (
     <>
@@ -92,7 +92,7 @@ const UserDashboard = () => {
                   <Flex w="full" bg={"whiteAlpha.200"} p={3}>
                     <Text color={"white"} fontWeight="medium" > {el.productName} {"   "}</Text>
                     <Spacer />
-                    <Text color={"white"} fontWeight="medium" >{"   "} $ {el.price}</Text>
+                    <Text color={"white"} fontWeight="medium" >{"   "} ₹{el.price}</Text>
                   </Flex>
                 ))
               }

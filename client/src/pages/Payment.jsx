@@ -11,37 +11,39 @@ import { getUserData } from "../redux/auth/auth.actions";
 
 function RazorPay() {
 
-    const {userData, token, isAuth } = useSelector((store) => store.auth);
-      
+  const { userData, token, isAuth } = useSelector((store) => store.auth);
+  const { cart } = userData;
+  
+
   const navigate = useNavigate()
   const toast = useToast()
-   const dispatch = useDispatch()
- 
+  const dispatch = useDispatch()
+
   const [loading, setLoading] = useState(false);
-  let total = userData.cart.reduce((a, b) => a + +b.price, 0).toFixed(0); 
+  let total = userData.cart.reduce((a, b) => a + +b.price, 0).toFixed(0);
 
 
   const fetchOrder = async () => {
     try {
       const data = await axios.get("http://localhost:8080/payment/list-order")
-      .then((res)=> {
-        dispatch(ACTION_PURCHASE(token.email))
-        .then((res)=> {
-            dispatch(getUserData(token.email))
-            
+        .then((res) => {
+          dispatch(ACTION_PURCHASE(token.email))
+            .then((res) => {
+              dispatch(getUserData(token.email))
+
               toast({
                 title: 'Payment Successfull.',
                 description: "Thank You For Shopping.",
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
-            })
-      
-            navigate("/OrderSuccessfull")
-        })
-      })
+              })
 
-     
+              navigate("/OrderSuccessfull")
+            })
+        })
+
+
 
       console.log(data);
     } catch (er) {
@@ -51,13 +53,13 @@ function RazorPay() {
 
 
 
- // useEffect(() => {
- //   fetchOrder()
- //     .then((res) => {
- //       console.log(res);
- //     })
- //     .catch((er) => console.log(er.message));
- // }, []);
+  // useEffect(() => {
+  //   fetchOrder()
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((er) => console.log(er.message));
+  // }, []);
 
 
 
@@ -69,11 +71,11 @@ function RazorPay() {
       alert("RazorPay SDK failed to load");
     };
     script.onload = async () => {
-     
-        try {
+
+      try {
         setLoading(true);
         const result = await axios.post("http://localhost:8080/payment/create-order", {
-          amount: total + "00"
+          amount: total
         });
 
         const { amount, id: orderId, currency } = result.data.order;
@@ -98,7 +100,7 @@ function RazorPay() {
               razorpay0rderId: response.razorpay_order_id,
               razorpaysighature: response.razorpay_signature,
             });
-            
+
             fetchOrder();
           },
           prefill: {
@@ -111,7 +113,7 @@ function RazorPay() {
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
       } catch (er) {
-        alert(er);
+        // alert("YOur order ");
         setLoading(false);
       }
     };
@@ -119,10 +121,10 @@ function RazorPay() {
   };
   return (
     <Stack zIndex={500}>
-     
-        <Button colorScheme={"orange"} onClick={handlePay}>PAY</Button>{" "}
-        {loading && <h3>...Loading please wait</h3>}
-  
+
+      <Button colorScheme={"orange"} onClick={handlePay} disabled={cart.length == 0}>PAY</Button>{" "}
+      {loading && <h3>...Loading please wait</h3>}
+
     </Stack>
   );
 }

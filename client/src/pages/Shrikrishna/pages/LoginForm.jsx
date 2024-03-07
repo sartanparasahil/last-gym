@@ -35,8 +35,16 @@ export default function LoginForm({ handleForgot }) {
   };
 
   const handleClick = () => {
-    
-    if (!user.email || !user.password) {
+    console.log("Pratik", errorMessage)
+    if(errorMessage){
+      toast({
+        title: errorMessage,
+        description: "",
+        status: "error",
+        duration: 2000,
+      })
+    }
+     if (!user.email || !user.password) {
       toast({
         title: "All fields are mandatory",
         description: "Please fill all the details",
@@ -46,17 +54,17 @@ export default function LoginForm({ handleForgot }) {
       });
     } else {
       dispatch(login(user))
-      
-      
+
+
     }
 
-   
+
   };
 
 
 
-  if(loading ){
-    return <Loading/>
+  if (loading) {
+    return <Loading />
   }
 
   if (isAuth) {
@@ -67,14 +75,14 @@ export default function LoginForm({ handleForgot }) {
       duration: 2000,
       isClosable: true,
     });
-  
+
     let token = JSON.parse(localStorage.getItem("token"))
-    
+
     dispatch(getUserData(token.email))
- //console.log(token.email)
+    //console.log(token.email)
     return <Navigate to="/" />;
   }
- 
+
 
 
   return (
@@ -153,26 +161,26 @@ export default function LoginForm({ handleForgot }) {
                   </Button>
 
                   <button>
-                  <NavLink to="/register">
-                  <Button
-                   bg="transparent"
-                  _hover={{color:"#f45f02"}}
-                  color={"blue.400"}
-                    //  bg="#f45f02"
-                    //  color="white"
-                    //  variant="solid"
-                    //  fontWeight="semibold"
-                  >
-                    New User?
-                  </Button>
-                </NavLink>
-                  
+                    <NavLink to="/register">
+                      <Button
+                        bg="transparent"
+                        _hover={{ color: "#f45f02" }}
+                        color={"blue.400"}
+                      //  bg="#f45f02"
+                      //  color="white"
+                      //  variant="solid"
+                      //  fontWeight="semibold"
+                      >
+                        New User?
+                      </Button>
+                    </NavLink>
+
                   </button>
-                  
+
 
                 </Stack>
                 <Button
-                onClick={handleClick}
+                  onClick={handleClick}
                   bg={"#f45f02"}
                   color={"white"}
                   _hover={{

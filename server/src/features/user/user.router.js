@@ -33,7 +33,7 @@ app.get("/", async (req, res) => {
 
 app.get("/:email", async (req, res) => {
 
-  console.log(req.params.email)
+  // console.log(req.params.email)
 
   if(req.params.email ){
     let data = await UserModel.findOne({email:req.params.email});
@@ -48,10 +48,10 @@ app.get("/:email", async (req, res) => {
 
 // Login Route
 app.post("/login", async (req, res) => {
-console.log("login......")
+// console.log("login......")
   const { email, password } = req.body;
 
- console.log("lOGIN"+email,password)
+//  console.log("lOGIN"+email,password)
 
   if (!email || !password) {
     return res.status(403).send("Enter Credianteials");
@@ -62,7 +62,7 @@ console.log("login......")
 
   try {
     const match = bcrypt.compareSync(password, User.password);
-   console.log(match)
+  //  console.log(match)
     if (match) {
       //login
       const token = jwt.sign(
@@ -110,7 +110,7 @@ console.log("login......")
         .status(200)
         .send({ message: "Login success", token, refresh_token, email });
     } else {
-      return res.status(201).send({ message: "Password not match" });
+      return res.status(401).send({ message: "Password not match" });
       // console.log("unauth")
     }
   } catch(err) {
@@ -133,7 +133,7 @@ app.post("/signup", async (req, res) => {
     bodyType,
   } = req.body;
 
-  console.log(req.body)
+  // console.log(req.body)
   
   let username = firstName + " "+ lastName
 
