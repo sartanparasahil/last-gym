@@ -12,7 +12,7 @@ const contact = async (req, res) => {
             else {
                 const newcontact = await new contactmodel({ username, email, description });
                 newcontact.save();
-                return res.status(200).json({ message: "Your Data Send SuccessFully....", data: newcontact });
+                return res.status(200).json({ message: "Your Data Send SuccessFully.....", data: newcontact });
             }
         }
         else {

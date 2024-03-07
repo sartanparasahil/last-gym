@@ -10,6 +10,6 @@ const file = {
   },
 };
 
-const orderScheam = new mongoose.Schema(file);
+const orderScheam = new mongoose.Schema(file,{ timestamps:true });
 const orderModel = mongoose.model("order", orderScheam);
 module.exports = orderModel;

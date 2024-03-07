@@ -137,7 +137,7 @@ export const MOVE_FROM_WISHLIST_TO_CART =
       });
 
 
-      console.log("meet", err)
+   
 
     };
 

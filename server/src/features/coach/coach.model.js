@@ -19,7 +19,7 @@ const trainerSchema = mongoose.Schema({
     //     enum:["male","female","other"]
     // }
 },
-{timestamp:true})
+{ timestamps:true })
 
 const trainermodel = mongoose.model("trainer",trainerSchema);
 
