@@ -19,10 +19,12 @@ import { ACTION_ADD_PRODUCT } from "../../../../redux/admin/admin.actions";
 import axios from "axios";
 //import { ACTION_ADD_PRODUCT } from "../../redux/admin/admin.actions";
 
-const AddProduct = () => {
+const AddTrainer = () => {
     const [resize, setResize] = React.useState("horizontal");
 
-    let [data, setData] = useState({ name: "", desc: "", image: "", duration: "" })
+    let [data, setData] = useState({ name: "", email: "", image: "" })
+
+
     const dispatch = useDispatch();
 
     const toast = useToast()
@@ -47,29 +49,28 @@ const AddProduct = () => {
     //   //setarea("");
     // };
     const AddToDatabase = () => {
-        axios.post("http://localhost:8080/plan/addplan", data)
+        axios.post("http://localhost:8080/addtrainer", data)
             .then((r) => {
-
                 if (r.status == 200) {
-                    setData({ name: "", desc: "", image: "", duration: "" })
+                    setData({ name: "", email: "", image: "" })
+
                     toast({
-                        title: "Data added Successfull",
+                        title: "Trainer Added Successfull",
                         status: "success",
-                        duration: 2000,
+                        duration: 3000,
                         isClosable: true,
                     })
                 }
-                // else {
-                //     toast({
-                //         title: r.data,
-                //         status: "error",
-                //         duration: 3000,
-                //         isClosable: true,
-                //     })
-                // }
-                console.log(r.data)
+                else {
+                    toast({
+                        title: r.data,
+                        status: "error",
+                        duration: 3000,
+                        isClosable: true,
+                    })
+                }
             })
-            .catch((err) => { console.log("plan error", err) })
+
     };
 
     return (
@@ -88,13 +89,13 @@ const AddProduct = () => {
                     gap="1.2rem"
                 >
                     <Text fontSize="1.5rem" fontWeight="bold" color="#f45f02">
-                        Choose Category Plan
+                        Choose Category Trainer
                     </Text>
                 </Flex>
                 <VStack alignItems="flex-start" spacing="1rem">
                     <VStack>
                         <Textarea
-                            placeholder="Plan Name"
+                            placeholder="Trainer Name"
                             height={"110px"}
                             width="650px"
                             color="white"
@@ -107,12 +108,12 @@ const AddProduct = () => {
 
                     <VStack>
                         <Textarea
-                            placeholder="Plan Description"
+                            placeholder="Trainer Description"
                             height={"110px"}
                             width="650px"
-                            value={data.desc}
+                            value={data.email}
                             color="white"
-                            name="desc"
+                            name="email"
                             onChange={handleChange}
                             resize={resize}
                         />
@@ -130,19 +131,7 @@ const AddProduct = () => {
                             resize={resize}
                         />
                     </VStack>
-                    <VStack>
-                        <Input
-                            type="text"
-                            placeholder="Enter Duration"
-                            // height={"200px"}
-                            width="650px"
-                            value={data.duration}
-                            color="white"
-                            name="duration"
-                            onChange={handleChange}
-                            resize={resize}
-                        />
-                    </VStack>
+
                     <RadioGroup color="white" colorScheme='orange' >
                         {/* <HStack spacing="24px" align="left">
               <Radio value="products">Products</Radio>
@@ -155,6 +144,7 @@ const AddProduct = () => {
 
                         <Button
                             height="50px"
+                            type="submit"
                             width="200px"
                             fontSize="1.3rem"
                             color="white"
@@ -162,7 +152,7 @@ const AddProduct = () => {
                             marginTop="1rem"
                             onClick={AddToDatabase}
                         >
-                            ADD PLAN
+                            ADD TRAINER
                         </Button>
                     </RadioGroup>
                 </VStack>
@@ -171,4 +161,4 @@ const AddProduct = () => {
     );
 };
 
-export default AddProduct;
+export default AddTrainer;

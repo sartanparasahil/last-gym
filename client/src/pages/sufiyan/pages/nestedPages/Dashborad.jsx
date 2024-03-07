@@ -45,6 +45,10 @@ const Dashborad = () => {
 
   // const allProducts = Array.isArray(data) && data.length
 
+  const { userData, token, isAuth, AdminIsAuth } = useSelector((store) => store.auth);
+  // const { details } = userData
+  console.log("purchase",userData)
+
 
   let PendingPurchase = 0;
   adminData.carts.map((el) => PendingPurchase += +el.cart.length)
@@ -93,9 +97,9 @@ const Dashborad = () => {
           <div className="card">
 
             <div className="card_inner">
-              <p className="text-primary-p">Pending Purchase</p>
+              <p className="text-primary-p">Number of Purchase</p>
               <span className="font-bold text-title">
-                {PendingPurchase}
+                
               </span>
             </div>
           </div>

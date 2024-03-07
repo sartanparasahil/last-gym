@@ -13,11 +13,11 @@ const trainerSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    gender:{
-        type:String,
-        required:true,
-        enum:["male","female","other"]
-    }
+    // gender:{
+    //     type:String,
+    //     required:true,
+    //     enum:["male","female","other"]
+    // }
 },
 {timestamp:true})
 
