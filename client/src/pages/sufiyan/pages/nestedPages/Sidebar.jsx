@@ -139,6 +139,7 @@ function SideBarLeft() {
             <Link to="/admin/all-users" style={{ marginBottom: "7px" }}>  <Item icon={<FaUsers />} name="Customers" /></Link>
             <Link to="/admin/plans" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Plan" /></Link>
             <Link to="/admin/products" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Products" /></Link>
+            <Link to="/admin/trainer" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Trainer" /></Link>
             <Link to="/admin/contact"> <Item icon={<AiOutlineAppstoreAdd />} name="Contact" /></Link>
           </div>
           {/* group 3 */}
@@ -150,6 +151,7 @@ function SideBarLeft() {
             </motion.h3>
             <Link to="/admin/add-product" >   <Item icon={<AiFillEdit />} name="Add Products" /> </Link>
             <Link to="/admin/add-plan" style={{ marginTop: "7px" }}>   <Item icon={<AiFillEdit />} name="Add Plan" /> </Link>
+            <Link to="/admin/add-trainer" style={{ marginTop: "7px" }}>   <Item icon={<AiFillEdit />} name="Add Trainer" /> </Link>
 
           </div>
         </motion.div>

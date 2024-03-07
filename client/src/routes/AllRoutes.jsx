@@ -23,6 +23,8 @@ import PrivateRoute from "./PrivateRoute";
 import AdminPlans from "../pages/sufiyan/pages/nestedPages/AdminPlans";
 import Contect from "../pages/nayan/pages/Contect";
 import ContactList from "../pages/sufiyan/pages/nestedPages/ContactList";
+import AddTrainer from "../pages/sufiyan/pages/nestedPages/AddTrainer";
+import TrainerList from "../pages/sufiyan/pages/nestedPages/TrainerList";
 
 const AllRoutes = () => {
   return (
@@ -120,6 +122,15 @@ const AllRoutes = () => {
           />
           <Route
             exact
+            path="add-trainer"
+            element={
+              <AdminPrivateAuth>
+                <AddTrainer />{" "}
+              </AdminPrivateAuth> 
+            }
+          />
+          <Route
+            exact
             path="all-users"
             element={
               <AdminPrivateAuth>
@@ -142,6 +153,15 @@ const AllRoutes = () => {
             element={
               <AdminPrivateAuth>
                 <ContactList />{" "}
+              </AdminPrivateAuth>
+            }
+          />
+          <Route
+            exact
+            path="trainer"
+            element={
+              <AdminPrivateAuth>
+                <TrainerList />{" "}
               </AdminPrivateAuth>
             }
           />
