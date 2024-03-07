@@ -6,6 +6,6 @@ const file = {
   duration: String,
   
 };
-const planSchema = new mongoose.Schema(file, { versionKey: false });
+const planSchema = new mongoose.Schema(file, { timestamps:true });
 const planModel = mongoose.model("plan", planSchema);
 module.exports = planModel;

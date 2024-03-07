@@ -35,8 +35,8 @@ app.get("/:email", async (req, res) => {
 
   console.log(req.params.email)
 
-  if(req.params.email ){
-    let data = await UserModel.findOne({email:req.params.email});
+  if (req.params.email) {
+    let data = await UserModel.findOne({ email: req.params.email });
     return res.status(200).send(data);
   }
 
@@ -48,21 +48,21 @@ app.get("/:email", async (req, res) => {
 
 // Login Route
 app.post("/login", async (req, res) => {
-console.log("login......")
+  console.log("login......")
   const { email, password } = req.body;
 
- console.log("lOGIN"+email,password)
+  console.log("lOGIN" + email, password)
 
   if (!email || !password) {
     return res.status(403).send("Enter Credianteials");
   }
   const User = await UserModel.findOne({ email });
- // console.log(User)
- if (!User) return res.status(404).send("User Not Found");
+  // console.log(User)
+  if (!User) return res.status(404).send("User Not Found");
 
   try {
     const match = bcrypt.compareSync(password, User.password);
-   console.log(match)
+    console.log(match)
     if (match) {
       //login
       const token = jwt.sign(
@@ -70,7 +70,7 @@ console.log("login......")
           _id: User.id,
           name: User.username,
           role: User.role,
-          email:User.email,
+          email: User.email,
           password: User.password,
         },
         SECRET_TOKEN,
@@ -83,7 +83,7 @@ console.log("login......")
           _id: User.id,
           name: User.username,
           role: User.role,
-          email:User.email,
+          email: User.email,
           password: User.password,
         },
         SECRET_REFRESH_TOKEN,
@@ -113,8 +113,8 @@ console.log("login......")
       return res.status(201).send({ message: "Password not match" });
       // console.log("unauth")
     }
-  } catch(err) {
-    console.log("catch run",err)
+  } catch (err) {
+    console.log("catch run", err)
     return res.status(401).send({ message: "Authentication Failed tushal" });
   }
 });
@@ -134,8 +134,8 @@ app.post("/signup", async (req, res) => {
   } = req.body;
 
   console.log(req.body)
-  
-  let username = firstName + " "+ lastName
+
+  let username = firstName + " " + lastName
 
   if (!email || !password || !username) {
     return res.status(403).send("Enter Credentails");
@@ -165,26 +165,28 @@ app.post("/signup", async (req, res) => {
       });
 
       const X = await CartModel.create(
-        { email: email, cart: [], purchase:[] }
+        { email: email, cart: [], purchase: [] }
       )
       await user.save();
-      
-    
-      const mailOptions = {
-        from: process.env.EMAIL,
-        to: email,
-        subject: `Sign Up Successfull`,
-        html: `<h1>${username} Account Sign Up Successfull  </h1>`,
-      };
 
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          console.log("ERROR", err);
-        } else {
-          console.log("EMAIL SEND" + info.response);
-          return res.status(201).send(`user created successfully,${username}`);
-        }
-      });
+
+      // const mailOptions = {
+      //   from: process.env.EMAIL,
+      //   to: email,
+      //   subject: `Sign Up Successfull`,
+      //   html: `<h1>${username} Account Sign Up Successfull  </h1>`,
+      // };
+
+      // transporter.sendMail(mailOptions, (err, info) => {
+      //   if (err) {
+      //     console.log("ERROR", err);
+      //   } else {
+      //     console.log("EMAIL SEND" + info.response);
+      //   }
+      // });
+
+
+      return res.status(201).send(`user created successfully,${username}`);
     });
   } catch (er) {
     return res.status(404).send(er.message);
@@ -196,7 +198,7 @@ let flag = false;
 
 app.post("/reset-password/getOtp", async (req, res) => {
   const { email } = req.body;
- console.log(req.body)
+  console.log(req.body)
   if (!email) {
     return res.status(403).send("Enter Valid Email");
   }
@@ -370,7 +372,7 @@ app.post("/verify", async (req, res) => {
 app.delete("/:id", async (req, res) => {
 
   const id = req.params.id
-  await UserModel.findByIdAndDelete({_id:id})
+  await UserModel.findByIdAndDelete({ _id: id })
   res.status(200).send("Deleted succesfully")
   // try {
   //   let exists = await productModel.findOneAndDeslete({

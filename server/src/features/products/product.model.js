@@ -6,6 +6,6 @@ const file = {
   desc:{type:String},
   qty: { type: Number },
 };
-const productSchema = new mongoose.Schema(file, { versionKey: false });
+const productSchema = new mongoose.Schema(file, { timestamps:true });
 const productModel = mongoose.model("products", productSchema);
 module.exports = productModel;
