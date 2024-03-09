@@ -9,6 +9,7 @@ import { ACTION_GET_PRODUCTS } from "../../../redux/products/product.actions";
 import Loading from "../../Loading";
 
 import { AiOutlineHeart } from "react-icons/ai"
+import Path from "../../sufiyan/components/Path";
 
 //bgGradient="linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(64,64,64,1) 93%)"
 // backgroundColor="#312e2e"
@@ -175,6 +176,9 @@ const SingleProductPage = () => {
 
   return (
     <Box bgGradient="linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(64,64,64,1) 93%)" minH="100vh">
+
+      <Path name="/products" />
+
       <Box
         display={{ base: "grid", md: "grid", sm: "grid", lg: "flex" }}
         w={{ base: "100%", md: "100%", sm: "100%", lg: "90%" }}

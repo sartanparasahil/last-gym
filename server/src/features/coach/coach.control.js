@@ -5,7 +5,7 @@ const trainer = async (req, res) => {
         const { name, email, image, gender } = req.body;
         const emailchk = await trainermodel.findOne({ email });
 
-        if (!(name && email && image )) {
+        if (!(name && email && image)) {
             return res.status(400).json({ message: "All Fileds Are Required" });
         }
         if (emailchk) {
@@ -24,14 +24,14 @@ const GetTrainer = async (req, res) => {
         const Data = await trainermodel.find();
         return res.status(200).send(Data);
     } catch (error) {
-        return res.status(500).json({message:"Server Failed!"});
+        return res.status(500).json({ message: "Server Failed!" });
     }
 }
 
 const DeleteTrainer = async (req, res) => {
     const id = req.params.id;
     try {
-        const isvalidtrainer = await trainermodel.findOne({ id });
+        const isvalidtrainer = await trainermodel.findById( id );
         if (!isvalidtrainer) {
             return res.status(400).json({ message: "Id Is Not Found" });
 

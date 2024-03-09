@@ -114,6 +114,7 @@ function SideBarLeft() {
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQjsjmJd241ONF1n75orvMBxHffqxuoyVeDtCDfgysAoB44Mnp5XInwuxg0GUojKQqPB0&usqp=CAU"
               alt="profile_img"
+      
             />
           </motion.div>
           {/* groups */}

@@ -17,7 +17,7 @@ import {
   useToast,
   Image,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
@@ -27,10 +27,12 @@ import { Toast } from "@chakra-ui/react";
 import gymbro from "../assets/gymBro.gif";
 import { calcLength } from "framer-motion";
 
+
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch();
+  const navigate=useNavigate();
 
   const defaultValues = {
     firstName: "",
@@ -154,6 +156,7 @@ export default function Signup() {
         duration: 2000,
         isClosable: true,
       });
+      navigate('/login');
     }
   };
 

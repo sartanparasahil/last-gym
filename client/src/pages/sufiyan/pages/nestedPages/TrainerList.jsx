@@ -34,12 +34,12 @@ const TrainerList = () => {
     }, [reload])
 
     const handleDelete = (id) => {
-        console.log("id", id)
+        // console.log("id", id)
         axios.delete(`http://localhost:8080/remove/${id}`)
             .then((r) => {
                 toast({
                     status: "success",
-                    title: r.data,
+                    title: "Trainer deleted successfully",
                     duration: 1500,
                     isClosable: true
                 })
@@ -88,6 +88,7 @@ const TrainerList = () => {
                                     bg="#eee"
                                     borderRadius={5}
                                     justifyContent={"space-between"}
+                                    key={el.id}
                                 >
                                     <Text textAlign="center" w="30%" >
                                         {el.name}

@@ -21,6 +21,7 @@ import { CartOrderSummary } from "./pages/sudarshan/pages/CartComponents/CartOrd
 import { cartData } from "./pages/sudarshan/pages/CartComponents/_data"
 import CartCard from "./pages/sufiyan/pages/nestedPages/Card";
 import { Link } from "react-router-dom";
+import Path from "./pages/sufiyan/components/Path";
 
 const Cart = () => {
   const { userData, token, isAuth } = useSelector((store) => store.auth);
@@ -80,6 +81,9 @@ const Cart = () => {
       minH={"80vh"}
       bgGradient="linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(64,64,64,1) 93%)"
       w="100%">
+
+      <Path      name="/cart" />
+
       <Box borderBottom={"4px solid #f45f02"}
         bgGradient="linear-gradient(180deg, rgba(0,0,0,1) 20%, rgba(64,64,64,1) 93%)"
         w="100%"

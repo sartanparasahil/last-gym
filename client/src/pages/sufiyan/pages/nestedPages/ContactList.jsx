@@ -80,9 +80,9 @@ const ContactList = () => {
                         justifyContent={"space-between"}
                     >
                         <Text textAlign="center" w="24%">name </Text>
-                        <Text textAlign="center" w="25%">Email</Text>
+                        <Text textAlign="center" w="28%">Email</Text>
                         <Text textAlign="center" w="34%">Description</Text>
-                        <Text textAlign="center" w="17%">Remove</Text>
+                        <Text textAlign="center" w="14%">Remove</Text>
 
                     </HStack>
                     <Scrollbars style={{ width: 800, height: "65vh" }}>
@@ -102,13 +102,13 @@ const ContactList = () => {
                                             {el.username}
 
                                         </Text>
-                                        <Text textAlign="center" w="25%">{el.email}</Text>
+                                        <Text textAlign="center" w="28%">{el.email}</Text>
                                         <Text textAlign="center" w="34%">{el.description}</Text>
                                         {/* <Text>{e1.qty}</Text> */}
 
                                         <IconButton
                                             fontSize="25px"
-                                            textAlign="center" w="17%"
+                                            textAlign="center" w="13%"
                                             borderRadius={50}
                                             variant="link"
                                             onClick={() => handleDelete(el._id)}

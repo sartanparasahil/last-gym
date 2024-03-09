@@ -10,6 +10,8 @@ const Dashborad = () => {
   const [mydata, setMydata] = useState()
   const [myproduct, setMyproduct] = useState()
   const [myitem, setMyitem] = useState([])
+  const [totalsales, setTotalsales] = useState()
+  console.log("totalsales is", totalsales)
 
   const { userData, token, isAuth, AdminIsAuth } = useSelector((store) => store.auth);
   // const { details } = userData
@@ -76,11 +78,18 @@ const Dashborad = () => {
   // adminData.carts.map((el) => TotalNumberOfSales += +el.purchase.length)
 
   // console.log(PendingPurchase, TotalNumberOfSales);
+  // console.log(myitem)
 
-  // const totalsale = myitem.reduce((acc, ele) => {
-  //   let { amount } = ele
-  //   console.log(amount)
-  // }, 0)
+  useEffect(() => {
+    const totalsale = myitem.reduce((acc, ele) => {
+      if (ele.isPaid) {
+        let { amount } = ele
+        return acc = acc + Number(ele.amount);
+      }
+    }, 0)
+    setTotalsales(totalsale)
+  }, [myitem])
+
 
   return (
     <HStack zIndex={50} maxW="1200px" >
@@ -132,7 +141,7 @@ const Dashborad = () => {
 
             <div className="card_inner">
               <p className="text-primary-p"> Total Sales </p>
-              <span className="font-bold text-title">0</span>
+              <span className="font-bold text-title " style={{ fontSize: '20px' }}>₹{totalsales ? totalsales : 0}</span>
             </div>
           </div>
         </div>

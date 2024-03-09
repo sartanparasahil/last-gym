@@ -15,7 +15,6 @@ function Contect() {
 
     const AddData = (e) => {
         e.preventDefault();
-        console.log("clicked")
         axios.post("http://localhost:8080/sendcontact", data)
             .then((r) => {
                 setData({ name: "", email: "", description: "" })
@@ -48,7 +47,7 @@ function Contect() {
                                 placeholder="username"
                                 name="username"
                                 required
-                                value={data.name}
+                                value={data.username}
                                 onChange={handleChange}
                                 autoComplete="off"
                                 style={{ outline: 'none', border: '1px solid #ccc', padding: '8px', transition: 'all', borderRadius: '6px', boxShadow: '0px 0px 5px rgba(0,0,0,0.4)' }}
