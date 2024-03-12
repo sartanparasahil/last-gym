@@ -474,7 +474,7 @@ const Navbar = () => {
         h={{ base: "20px", md: "54px" }}
       >
         <Box display={{ base: "none", md: "block", lg: "block" }}>
-          <HStack w={"fit-content"} gap={{ base: 10, md: "5px", lg: 50 }}>
+          <HStack w={"fit-content"} gap={{ base: 10, md: "5px", lg: 10 }}>
             {Links.map((el) => (
               <NavLink
                 key={el.path}

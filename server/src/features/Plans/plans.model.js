@@ -1,9 +1,21 @@
 const mongoose = require("mongoose");
 const file = {
-  name: String,
-  image: String,
-  desc: String,
-  duration: String,
+  name: {
+    type : String,
+    require : true
+  },
+  image: {
+    type : String , 
+    require : true
+  },
+  desc: {
+    type : String ,
+    require : true
+  },
+  duration: { 
+    type : String,
+    require : true
+  },
   
 };
 const planSchema = new mongoose.Schema(file, { timestamps:true });

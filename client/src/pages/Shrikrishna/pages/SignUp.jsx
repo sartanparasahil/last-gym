@@ -32,7 +32,7 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
   const dispatch = useDispatch();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const defaultValues = {
     firstName: "",
@@ -216,12 +216,10 @@ export default function Signup() {
                   <Input
                     // maxLength={2}
                     onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
-
                     value={user.age}
                     onChange={handleChange}
                     type="number"
                     name="age"
-
                   />
                 </FormControl>
               </Box>

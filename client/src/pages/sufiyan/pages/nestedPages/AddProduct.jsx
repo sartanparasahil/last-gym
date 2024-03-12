@@ -22,7 +22,7 @@ import axios from "axios";
 const AddProduct = () => {
   const [resize, setResize] = React.useState("horizontal");
 
-  let [data, setData] = useState({pname:"",desc:"",imgurl:"",price:""})
+  let [data, setData] = useState({ pname: "", desc: "", imgurl: "", price: "" })
 
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const AddProduct = () => {
     setData({ ...data, [name]: value });
   }
 
-  
+
   // const AddToDatabase = () => {
   //   dispatch(ACTION_ADD_PRODUCT(area))
   //     .then((res) => {
@@ -49,28 +49,28 @@ const AddProduct = () => {
   //   //setarea("");
   // };
   const AddToDatabase = () => {
-      axios.post("http://localhost:8080/products",data)
-      .then((r)=>{
-       if (r.status == 200){
-        setData({name:"",desc:"",imgurl:"",price:""})
-        
-        toast({
-          title:r.data,
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        })
-       }
-       else{
+    axios.post("http://localhost:8080/products", data)
+      .then((r) => {
+        if (r.status == 200) {
+          setData({ name: "", desc: "", imgurl: "", price: "" })
+
           toast({
-            title:r.data,
+            title: r.data,
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          })
+        }
+        else {
+          toast({
+            title: r.data,
             status: "error",
             duration: 3000,
             isClosable: true,
           })
         }
       })
-     
+
   };
 
   return (
@@ -105,7 +105,6 @@ const AddProduct = () => {
               resize={resize}
             />
           </VStack>
-
           <VStack>
             <Textarea
               placeholder="Product Description"
@@ -133,11 +132,12 @@ const AddProduct = () => {
           </VStack>
           <VStack>
             <Input
-              type="text"
+              type="number"
+              onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
               placeholder="Enter Price"
               // height={"200px"}
               width="650px"
-        value={data.price}
+              value={data.price}
               color="white"
               name="price"
               onChange={handleChange}
@@ -151,7 +151,6 @@ const AddProduct = () => {
               <Radio value="plans">Plans</Radio>
 
             </HStack> */}
-
             <Spacer />
 
             <Button

@@ -2,11 +2,23 @@ const {Schema,model} = require('mongoose')
 
 const UserSchema = new Schema({
 username:String,
-email:{type:String, unique:true},
-password:{ type:String, required:true },
-weight:{ type:Number },
-height:{ type:Number },
-age:{ type:Number },
+email:{
+  type:String,
+   unique:true
+  },
+password:{
+   type:String,
+    required:true 
+  },
+weight:{
+   type:Number
+   },
+height:{ 
+  type:Number
+ },
+age:{
+   type:Number
+   },
 gender: { 
     type: String ,
     enum:["Male","Female","Others"]

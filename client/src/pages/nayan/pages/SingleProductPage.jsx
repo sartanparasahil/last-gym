@@ -186,6 +186,7 @@ const SingleProductPage = () => {
         maxW="1400px"
         alignContent="center"
         color={"white"}
+        paddingBlock="40px"
 
       >
         <VStack

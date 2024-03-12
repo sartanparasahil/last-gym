@@ -1,16 +1,16 @@
 
 // import { Container, Vstack } from '@chakra-ui/react';
-import Trainer1 from "../assets/Trainer1.jpg"
-import Trainer2 from "../assets/Trainer2.jpg"
-import Trainer3 from "../assets/Trainer3.jpg"
-import Trainer4 from "../assets/Trainer4.jpg"
-import Trainer5 from "../assets/Trainer5.jpg"
-import Trainer6 from "../assets/Trainer6.jpg"
-import Trainer7 from "../assets/Trainer7.jpg"
-import Trainer8 from "../assets/Trainer8.jpg"
-import Trainer9 from "../assets/Trainer9.jpg"
-import Trainer10 from "../assets/Trainer10.jpg"
-import Trainer11 from "../assets/Trainer11.jpg"
+// import Trainer1 from "../assets/Trainer1.jpg"
+// import Trainer2 from "../assets/Trainer2.jpg"
+// import Trainer3 from "../assets/Trainer3.jpg"
+// import Trainer4 from "../assets/Trainer4.jpg"
+// import Trainer5 from "../assets/Trainer5.jpg"
+// import Trainer6 from "../assets/Trainer6.jpg"
+// import Trainer7 from "../assets/Trainer7.jpg"
+// import Trainer8 from "../assets/Trainer8.jpg"
+// import Trainer9 from "../assets/Trainer9.jpg"
+// import Trainer10 from "../assets/Trainer10.jpg"
+// import Trainer11 from "../assets/Trainer11.jpg"
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

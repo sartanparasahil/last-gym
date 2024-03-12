@@ -31,7 +31,6 @@ function SideBarLeft() {
       width: "20rem"
     },
     false: {
-
       transition: {
         delay: 0.6
       }
