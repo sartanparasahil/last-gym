@@ -2,6 +2,7 @@ const express = require("express");
 const productModel = require("./product.model");
 const app = express.Router();
 const jwt = require("jsonwebtoken");
+const { upload } = require("../coach/coach.router");
 
 // app.post("/", async (req, res) => {
 //   //check if admin is adding to products [ROLE BASED ACEESS]
@@ -26,15 +27,18 @@ const jwt = require("jsonwebtoken");
 //   }
 // });
 
-app.post("/",async(req,res)=>{
-  const {pname,desc,imgurl,price} = req.body;
-  if (pname && desc && imgurl && price){
+app.post("/",upload.single('image'),async(req,res)=>{
+  const {pname,desc,price} = req.body;
+  if (!req.file) {
+    return res.status(400).json({ message: "Please Upload Image" });
+}
+  if (pname && desc  && price){
       const prod = await productModel.findOne({productName:pname})
       if (prod){
         res.status(202).send("Product Already Exist ")
       }
       else{
-        const doc = new productModel({productName:pname,image:imgurl,desc:desc,price:price,qty:1})
+        const doc = new productModel({productName:pname,image: req.file.filename,desc:desc,price:price,qty:1})
         doc.save()
         res.status(200).send("Added succesfully")
       }

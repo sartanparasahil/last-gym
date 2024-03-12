@@ -22,8 +22,13 @@ import axios from "axios";
 const AddProduct = () => {
   const [resize, setResize] = React.useState("horizontal");
 
-  let [data, setData] = useState({ pname: "", desc: "", imgurl: "", price: "" })
+  let [data, setData] = useState({ pname: "", desc: "", price: "" })
 
+  let [file, setFile] = useState()
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0])
+  }
 
   const dispatch = useDispatch();
 
@@ -48,11 +53,20 @@ const AddProduct = () => {
 
   //   //setarea("");
   // };
-  const AddToDatabase = () => {
-    axios.post("http://localhost:8080/products", data)
+  const AddToDatabase = (e) => {
+
+    e.preventDefault();
+    console.log("RUN")
+    let formData = new FormData();
+    formData.append('pname', data.pname);
+    formData.append('desc', data.desc);
+    formData.append('image', file);
+    formData.append('price', data.price);
+    // console.log(formData)
+    axios.post("http://localhost:8080/products", formData)
       .then((r) => {
         if (r.status == 200) {
-          setData({ name: "", desc: "", imgurl: "", price: "" })
+          setData({ pname: "", desc: "", imgurl: "", price: "" })
 
           toast({
             title: r.data,
@@ -119,21 +133,21 @@ const AddProduct = () => {
           </VStack>
           <VStack>
             <Input
-              type="text"
+              type="file"
               placeholder="Enter Img URL"
               // height={"200px"}
               width="650px"
-              value={data.imgurl}
+              // value={data.image}
               color="white"
-              name="imgurl"
-              onChange={handleChange}
+              name="image"
+              onChange={handleFileChange}
               resize={resize}
             />
           </VStack>
           <VStack>
             <Input
               type="number"
-              onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
+              onInput={(e) => e.target.value = e.target.value.slice(0, 4)}
               placeholder="Enter Price"
               // height={"200px"}
               width="650px"
@@ -154,13 +168,14 @@ const AddProduct = () => {
             <Spacer />
 
             <Button
+              type="submit"
               height="50px"
               width="200px"
               fontSize="1.3rem"
               color="white"
               bg="#f45f02"
               marginTop="1rem"
-              onClick={() => AddToDatabase()}
+              onClick={AddToDatabase}
             >
               ADD PRODUCTS
             </Button>

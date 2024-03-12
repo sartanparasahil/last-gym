@@ -180,7 +180,7 @@ const ProductPage = () => {
                           h="300px"
                           borderRadius="5px"
                           fit="cover"
-                          src={item.image}
+                          src={`http://localhost:8080/${item.image}`}
                           alt="NIKE AIR"
                         />
                       </Link>

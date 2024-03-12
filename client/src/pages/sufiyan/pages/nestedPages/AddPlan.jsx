@@ -22,7 +22,9 @@ import axios from "axios";
 const AddProduct = () => {
     const [resize, setResize] = React.useState("horizontal");
 
-    let [data, setData] = useState({ name: "", desc: "", image: "", duration: "" })
+    let [data, setData] = useState({ name: "", desc: "", duration: "" })
+
+    let [file, setFile] = useState()
     const dispatch = useDispatch();
 
     const toast = useToast()
@@ -32,6 +34,9 @@ const AddProduct = () => {
         setData({ ...data, [name]: value });
     }
 
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0])
+    }
 
     // const AddToDatabase = () => {
     //   dispatch(ACTION_ADD_PRODUCT(area))
@@ -46,8 +51,17 @@ const AddProduct = () => {
 
     //   //setarea("");
     // };
-    const AddToDatabase = () => {
-        axios.post("http://localhost:8080/plan/addplan", data)
+    const AddToDatabase = (e) => {
+        e.preventDefault();
+
+        let formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('desc', data.desc);
+        formData.append('image', file);
+        formData.append('duration', data.duration);
+
+
+        axios.post("http://localhost:8080/plan/addplan", formData)
             .then((r) => {
 
                 if (r.status == 200) {
@@ -119,14 +133,14 @@ const AddProduct = () => {
                     </VStack>
                     <VStack>
                         <Input
-                            type="text"
+                            type="file"
                             placeholder="Enter Img URL"
                             // height={"200px"}
                             width="650px"
-                            value={data.image}
+                            // value={data.image}
                             color="white"
                             name="image"
-                            onChange={handleChange}
+                            onChange={handleFileChange}
                             resize={resize}
                         />
                     </VStack>

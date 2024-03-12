@@ -24,7 +24,7 @@ const SearchBar = () => {
         return (
           <HStack>
           
-            <Image boxSize={100} src={item.image} />
+            <Image boxSize={100}  src={`http://localhost:8080/${item.image}`} />
             <Text>{item.name}</Text>
           </HStack>
         )

@@ -3,15 +3,18 @@ const { param } = require("./plans.router");
 
 const plan = async (req, res) => {
     try {
-        const { name, image, desc, type, gender, duration, qty, price } = req.body;
+        const { name, desc, duration, } = req.body;
+        if (!req.file) {
+            return res.status(400).json({ message: "Please Upload Image" });
+        }
         const namechk = await planModel.findOne({ name });
-        if (!(name && image && desc && type && gender && duration && qty && price)) {
+        if (!(name  && desc  && duration )) {
             return res.status(400).json({ message: "All Fileds Are Required" });
         }
         if (namechk) {
             return res.status(400).json({ message: "PlanName Already Exists" });
         }
-        const newplan = await new planModel({ name, image, desc, type, gender, duration, qty, price });
+        const newplan = await new planModel({ name, image: req.file.filename, desc, duration });
         newplan.save();
         return res.status(200).json({ message: "Plan Added SuccessFully.....", data: newplan });
     } catch (error) {

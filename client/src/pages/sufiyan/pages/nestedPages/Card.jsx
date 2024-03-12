@@ -37,7 +37,7 @@ const CartCard = ({ image, productName, price, _id }) => {
 
   return (
     <VStack borderRadius={5} p={2} bg={"whiteAlpha.200"}>
-      <Image width={"100%"} height={"150px"} src={image} />
+      <Image width={"100%"} height={"150px"}  src={`http://localhost:8080/${image}`} /> 
 
       <Text color={"white"} fontWeight="semibold" >{productName}</Text>
 

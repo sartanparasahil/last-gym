@@ -20,7 +20,7 @@ import {
           width="120px"
           height="120px"
           fit="cover"
-          src={image}
+          src={`http://localhost:8080/${image}`}
           alt={name}
           draggable="false"
           loading="lazy"

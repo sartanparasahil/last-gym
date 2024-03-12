@@ -3,14 +3,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const connect = require("./config/db");
-
+const multer = require("multer");
 const contactrouter = require("./features/contact/contact.router");
 const productRouter = require("./features/products/product.router");
 const cartRouter = require("./features/cart/cart.router");
 const userRouter = require("./features/user/user.router");
 const planRouter = require("./features/Plans/plans.router");
 const paymentRouter = require("./features/payment/payment.router");
-const trainerrouter = require("./features/coach/coach.router");
+const {trainerrouter} = require("./features/coach/coach.router");
 
 const PORT = 8080;
 
@@ -18,6 +18,8 @@ const PORT = 8080;
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'))
+
 
 
 // Routes

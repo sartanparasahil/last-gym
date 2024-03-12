@@ -201,7 +201,7 @@ const SingleProductPage = () => {
             // src="https://i.ibb.co/xqGSNGC/product-10.png"
             alignItems="center"
             // src="https://i.ibb.co/RQfmgyQ/product-7.png"
-            src={SingleData.image}
+            src={`http://localhost:8080/${SingleData.image}`}
             alt="singleProduct"
           />
         </VStack>

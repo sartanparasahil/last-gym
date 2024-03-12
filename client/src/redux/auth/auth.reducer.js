@@ -10,10 +10,12 @@ import {
 } from "./auth.types";
 
 let LocalToken = JSON.parse(localStorage.getItem("token"));
+console.log("Admin",LocalToken)
+
 const check = (LocalToken!=undefined)
 
 
-  let checkAdminAuth = LocalToken?.email ==="admin@gmail.com"
+  let checkAdminAuth = LocalToken?.email ==="tushal123@gmail.com"
 
  
 

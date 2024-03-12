@@ -2,6 +2,7 @@ const express = require("express");
 const planModel = require("./plans.model");
 const app = express.Router();
 const {plan,DeletePlan} = require("./plan.control");
+const { upload } = require("../coach/coach.router");
 
 app.get("/", async (req, res) => {
   try {
@@ -12,7 +13,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.post("/addplan",plan);
+app.post("/addplan",upload.single("image"),plan);
 
 app.delete("/remove/:id",DeletePlan)
 

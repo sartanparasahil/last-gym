@@ -22,8 +22,8 @@ import axios from "axios";
 const AddTrainer = () => {
     const [resize, setResize] = React.useState("horizontal");
 
-    let [data, setData] = useState({ name: "", email: "", image: "" })
-
+    let [data, setData] = useState({name:'',email:''})
+    let [file, setFile] = useState(null)
 
     const dispatch = useDispatch();
 
@@ -35,25 +35,33 @@ const AddTrainer = () => {
     }
 
 
-    // const AddToDatabase = () => {
-    //   dispatch(ACTION_ADD_PRODUCT(area))
-    //     .then((res) => {
-    //       toast({
-    //         title: "Product Added Successfull",
-    //         status: "success",
-    //         duration: 4000,
-    //         isClosable: true,
-    //       })
-    //     })
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0])
+    }
 
-    //   //setarea("");
-    // };
-    const AddToDatabase = () => {
-        axios.post("http://localhost:8080/addtrainer", data)
+   
+    const AddToDatabase = (e) => {
+       
+        e.preventDefault();
+        
+        let formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('email', data.email);
+        formData.append('image', file);
+        
+        // Log the entries of the FormData object
+       
+    
+
+ 
+
+
+        console.log("Data", file)
+        axios.post("http://localhost:8080/addtrainer",formData )
             .then((r) => {
                 if (r.status == 200) {
                     setData({ name: "", email: "", image: "" })
-
+                    setFile(null)
                     toast({
                         title: "Trainer Added Successfull",
                         status: "success",
@@ -120,14 +128,13 @@ const AddTrainer = () => {
                     </VStack>
                     <VStack>
                         <Input
-                            type="text"
+                            type="file"
                             placeholder="Enter Img URL"
                             // height={"200px"}
                             width="650px"
-                            value={data.image}
                             color="white"
                             name="image"
-                            onChange={handleChange}
+                            onChange={handleFileChange}
                             resize={resize}
                         />
                     </VStack>
