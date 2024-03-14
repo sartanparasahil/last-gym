@@ -53,10 +53,6 @@ const AddTrainer = () => {
         // Log the entries of the FormData object
 
 
-
-
-
-
         console.log("Data", file)
         axios.post("http://localhost:8080/addtrainer", formData)
             .then((r) => {

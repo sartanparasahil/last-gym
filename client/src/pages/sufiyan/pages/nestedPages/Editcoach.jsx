@@ -25,7 +25,7 @@ function Editcoach() {
 
     const { id } = useParams()
     const [data, setData] = useState({
-        name: "", email: ""
+        name: "", experiance: ""
     })
 
     let [file, setFile] = useState()
@@ -61,7 +61,7 @@ function Editcoach() {
 
         let formData = new FormData();
         formData.append('name', data.name);
-        formData.append('email', data.email);
+        formData.append('experiance', data.experiance);
         formData.append('image', file);
 
         // Log the entries of the FormData object
@@ -75,9 +75,7 @@ function Editcoach() {
                     duration: 9000,
                     isClosable: true,
                 })
-
             })
-
 
     }
     console.log("Data: " + data)
@@ -117,12 +115,12 @@ function Editcoach() {
                     <VStack>
                         <Input
                             type="email"
-                            placeholder="Trainer Email"
+                            placeholder="Trainer experiance"
                             height={"60px"}
                             width="650px"
                             color="white"
-                            name="email"
-                            value={data?.email}
+                            name="experiance"
+                            value={data?.experiance}
                             onChange={handleChange}
                         // resize={resize}
                         />

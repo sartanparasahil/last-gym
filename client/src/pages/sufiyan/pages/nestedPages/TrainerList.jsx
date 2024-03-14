@@ -77,7 +77,8 @@ const TrainerList = () => {
                     // justifyContent={"space-between"}
                     >
                         <Text textAlign="center" w="30%">TrainerName </Text>
-                        <Text textAlign="center" w="50%">Email</Text>
+                        <Text textAlign="center" w="35%">Email</Text>
+                        <Text textAlign="center" w="15%">Experiance</Text>
                         <Text textAlign="center" w="20%">Action</Text>
 
                     </HStack>
@@ -98,7 +99,8 @@ const TrainerList = () => {
                                         {el.name}
 
                                     </Text>
-                                    <Text textAlign="center" w="50%">{el.email}</Text>
+                                    <Text textAlign="center" w="35%">{el.email}</Text>
+                                    <Text textAlign="center" w="15%">{el.experiance}</Text>
                                     {/* <Text>{el.password.substring(0,20)}....</Text> */}
 
                                     <HStack textAlign="center" display="flex" justifyContent="center" w="17%">
