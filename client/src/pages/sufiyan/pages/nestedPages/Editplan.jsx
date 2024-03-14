@@ -136,6 +136,7 @@ function Editplan() {
                     </VStack>
                     <VStack>
                         <Input
+                        paddingTop={"7px"}
                             type="file"
                             placeholder="Enter Img URL"
                             // height={"200px"}

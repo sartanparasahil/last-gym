@@ -19,6 +19,7 @@ import axios from "axios";
 import { TfiArrowUp } from "react-icons/tfi";
 
 import { EditIcon } from '@chakra-ui/icons'
+import { useNavigate } from "react-router-dom";
 
 //import {ImageD} from "../../../public/preview";
 
@@ -26,6 +27,8 @@ const Products = () => {
   const toast = useToast()
   const [data, setData] = useState()
   const [reload, setReload] = useState(true)
+  const navigate = useNavigate()
+
   useEffect(() => {
     axios.get("http://localhost:8080/products")
       .then((r) => {
@@ -116,6 +119,7 @@ const Products = () => {
                       borderRadius={50}
                       variant="link"
                       icon={<EditIcon />}
+                      onClick={() => navigate(`/admin/edit-product/${el._id}`)}
                     />
                   </HStack>
 

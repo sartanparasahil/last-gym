@@ -22,7 +22,7 @@ import axios from "axios";
 const AddTrainer = () => {
     const [resize, setResize] = React.useState("horizontal");
 
-    let [data, setData] = useState({name:'',email:''})
+    let [data, setData] = useState({ name: '', email: '', experiance: '' })
     let [file, setFile] = useState(null)
 
     const dispatch = useDispatch();
@@ -39,28 +39,29 @@ const AddTrainer = () => {
         setFile(e.target.files[0])
     }
 
-   
+
     const AddToDatabase = (e) => {
-       
+
         e.preventDefault();
-        
+
         let formData = new FormData();
         formData.append('name', data.name);
         formData.append('email', data.email);
+        formData.append('experiance', data.experiance);
         formData.append('image', file);
-        
-        // Log the entries of the FormData object
-       
-    
 
- 
+        // Log the entries of the FormData object
+
+
+
+
 
 
         console.log("Data", file)
-        axios.post("http://localhost:8080/addtrainer",formData )
+        axios.post("http://localhost:8080/addtrainer", formData)
             .then((r) => {
                 if (r.status == 200) {
-                    setData({ name: "", email: "", image: "" })
+                    setData({ name: "", email: "", image: "", experiance: "" })
                     setFile(null)
                     toast({
                         title: "Trainer Added Successfull",
@@ -116,12 +117,25 @@ const AddTrainer = () => {
 
                     <VStack>
                         <Textarea
-                            placeholder="Trainer Description"
+                            placeholder="Trainer Email"
+                            type="email"
                             height={"110px"}
                             width="650px"
                             value={data.email}
                             color="white"
                             name="email"
+                            onChange={handleChange}
+                            resize={resize}
+                        />
+                    </VStack>
+                    <VStack>
+                        <Textarea
+                            placeholder="Trainer Experience"
+                            height={"110px"}
+                            width="650px"
+                            value={data.experiance}
+                            color="white"
+                            name="experiance"
                             onChange={handleChange}
                             resize={resize}
                         />
@@ -139,7 +153,6 @@ const AddTrainer = () => {
                             resize={resize}
                         />
                     </VStack>
-
                     <RadioGroup color="white" colorScheme='orange' >
                         {/* <HStack spacing="24px" align="left">
               <Radio value="products">Products</Radio>

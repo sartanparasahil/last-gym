@@ -13,21 +13,33 @@ const storage = multer.diskStorage({
       cb(null, Date.now() + path.extname(file.originalname)) // Rename file with original name and timestamp
     }
   });
+  const upload = multer({ storage: storage });
 
-  app.put('/:id',upload.single('image'), async (req, res) => {
-    const {name, email} = req.body;
-    const id =  req.params.id;
-    await trainermodel.findByIdAndUpdate(id,{name, email,image:req.file.filename});
-  
-    return res.status(200).json({ message: "Trainer Updated SuccessFully.....",success: true });
+  const trainerrouter = express.Router();
   
   
+
+    trainerrouter.get('/trainer/:id', async (req, res) => {
+
+      try {
+        let data = await trainermodel.findById(req.params.id);
+        console.log(data);
+        return res.status(200).json({ success: true, data: data }); 
+      } catch (er) {
+        return res.status(404).send(er.message);
+      }
     });
 
-  const upload = multer({ storage: storage });
-  
+    trainerrouter.put('/trainer/:id',upload.single('image'), async (req, res) => {
+      const {name, experiance} = req.body;
+      const id = req.params.id;
+      await trainermodel.findByIdAndUpdate(id,{name, experiance,image:req.file.filename});
+    
+      return res.status(200).json({ message: "Trainer Updated SuccessFully.....",success: true });
+    
+    
+      });
 
-const trainerrouter = express.Router();
 trainerrouter.get("/trainer", GetTrainer);
 trainerrouter.post("/addtrainer",upload.single('image'), trainer);
 trainerrouter.delete("/remove/:id", DeleteTrainer);

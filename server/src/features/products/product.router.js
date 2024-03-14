@@ -60,10 +60,21 @@ app.get("/", async (req, res) => {
   }
 });
 
+app.get('/:id', async (req, res) => {
+
+  try {
+    let data = await productModel.findById(req.params.id);
+    console.log(data);
+    return res.status(200).json({ success: true, data: data }); 
+  } catch (er) {
+    return res.status(404).send(er.message);
+  }
+});
+
 app.put('/:id',upload.single('image'), async (req, res) => {
-  const {pname,desc,price} = req.body;
+  const {productName,desc,price} = req.body;
   const id =  req.params.id;
-  await productModel.findByIdAndUpdate(id,{pname,desc,price,image:req.file.filename});
+  await productModel.findByIdAndUpdate(id,{productName,desc,image:req.file.filename,price});
 
   return res.status(200).json({ message: "Product Updated SuccessFully.....",success: true });
 

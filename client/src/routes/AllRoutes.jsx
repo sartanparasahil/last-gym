@@ -26,6 +26,8 @@ import ContactList from "../pages/sufiyan/pages/nestedPages/ContactList";
 import AddTrainer from "../pages/sufiyan/pages/nestedPages/AddTrainer";
 import TrainerList from "../pages/sufiyan/pages/nestedPages/TrainerList";
 import Editplan from "../pages/sufiyan/pages/nestedPages/Editplan";
+import Editproduct from "../pages/sufiyan/pages/nestedPages/Editproduct";
+import Editcoach from "../pages/sufiyan/pages/nestedPages/Editcoach";
 
 const AllRoutes = () => {
   return (
@@ -137,6 +139,24 @@ const AllRoutes = () => {
             element={
               <AdminPrivateAuth>
                 <Editplan />{" "}
+              </AdminPrivateAuth> 
+            }
+          />
+          <Route
+            exact
+            path="edit-product/:id"
+            element={
+              <AdminPrivateAuth>
+                <Editproduct />{" "}
+              </AdminPrivateAuth> 
+            }
+          />
+          <Route
+            exact
+            path="edit-trainer/:id"
+            element={
+              <AdminPrivateAuth>
+                <Editcoach />{" "}
               </AdminPrivateAuth> 
             }
           />

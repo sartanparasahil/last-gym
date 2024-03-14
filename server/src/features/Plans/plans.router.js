@@ -22,7 +22,7 @@ app.get('/:id', async (req, res) => {
   } catch (er) {
     return res.status(404).send(er.message);
   }
-})
+});
 
 
 app.put('/:id',upload.single('image'), async (req, res) => {

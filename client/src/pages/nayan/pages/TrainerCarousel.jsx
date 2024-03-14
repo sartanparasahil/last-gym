@@ -80,7 +80,7 @@ export default function ProductCarousel() {
                   <img src={`http://localhost:8080/${item.image}`} alt='trainer img' />
                   <Box className="overlay2" >
                     <Heading color="#fff" mb="-4" fontSize={["19", "19", "20", "20", "25"]}>{item.name}</Heading>
-                    <Text color="#666" fontWeight={"500"}>GYM TRAINER</Text>
+                    <Heading color="#666" fontWeight={"500"} fontSize={["17", "17", "18", "18", "22"]}>{item.email}</Heading>
                   </Box>
                   <Box className="social">
                     <HStack spacing={"7"}>

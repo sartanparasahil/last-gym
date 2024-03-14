@@ -19,19 +19,19 @@ import { ACTION_ADD_PRODUCT } from "../../../../redux/admin/admin.actions";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
-function Editproduct() {
+function Editcoach() {
 
     const toast = useToast()
 
     const { id } = useParams()
     const [data, setData] = useState({
-        productName: "", desc: "",price: ""
+        name: "", email: ""
     })
 
     let [file, setFile] = useState()
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/products/${id}`)
+        axios.get(`http://localhost:8080/trainer/${id}`)
             .then((r) => {
                 setData(r.data.data)
                 // setNew(r.data.data)
@@ -60,14 +60,13 @@ function Editproduct() {
         e.preventDefault()
 
         let formData = new FormData();
-        formData.append('productName', data.productName);
-        formData.append('desc', data.desc);
-        formData.append('price', data.price);
+        formData.append('name', data.name);
+        formData.append('email', data.email);
         formData.append('image', file);
 
         // Log the entries of the FormData object
-        console.log("data is",formData)
-        axios.put(`http://localhost:8080/products/${id}`, formData)
+        console.log("data is", formData)
+        axios.put(`http://localhost:8080/trainer/${id}`, formData)
             .then((response) => {
                 console.log(response.data)
                 toast({
@@ -98,31 +97,32 @@ function Editproduct() {
                     gap="1.2rem"
                 >
                     <Text fontSize="1.5rem" fontWeight="bold" color="#f45f02">
-                        Edit Product
+                        Edit Trainer
                     </Text>
                 </Flex>
                 <VStack alignItems="flex-start" spacing="1rem">
                     <VStack>
                         <Textarea
-                            placeholder="Product Name"
+                            placeholder="Trainer Name"
                             height={"110px"}
                             width="650px"
                             color="white"
-                            name="productName"
-                            value={data?.productName}
+                            name="name"
+                            value={data?.name}
                             onChange={handleChange}
                         // resize={resize}
                         />
                     </VStack>
 
                     <VStack>
-                        <Textarea
-                            placeholder="Product Description"
-                            height={"110px"}
+                        <Input
+                            type="email"
+                            placeholder="Trainer Email"
+                            height={"60px"}
                             width="650px"
                             color="white"
-                            name="desc"
-                            value={data?.desc}
+                            name="email"
+                            value={data?.email}
                             onChange={handleChange}
                         // resize={resize}
                         />
@@ -130,27 +130,14 @@ function Editproduct() {
                     <VStack>
                         <Input
                             type="file"
-                            placeholder="Enter Img URL"
                             paddingTop={"7px"}
+                            placeholder="Enter Img URL"
                             // height={"200px"}
                             width="650px"
                             // value={data.image}
                             color="white"
                             name="image"
                             onChange={handleFileChange}
-                        // resize={resize}
-                        />
-                    </VStack>
-                    <VStack>
-                        <Input
-                            type="text"
-                            placeholder="Price"
-                            // height={"200px"}
-                            width="650px"
-                            color="white"
-                            name="price"
-                            value={data?.price}
-                            onChange={handleChange}
                         // resize={resize}
                         />
                     </VStack>
@@ -176,4 +163,4 @@ function Editproduct() {
     );
 }
 
-export default Editproduct
+export default Editcoach

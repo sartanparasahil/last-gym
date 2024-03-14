@@ -17,6 +17,7 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import img1 from "../../assets/img1.png"
 import axios from "axios";
 import { EditIcon } from '@chakra-ui/icons'
+import { useNavigate } from "react-router-dom";
 
 //import {ImageD} from "../../../public/preview";
 
@@ -26,6 +27,8 @@ const TrainerList = () => {
     const [data, setData] = useState()
     const [reload, setReload] = useState(true)
     const toast = useToast()
+    const navigate=useNavigate()
+
     useEffect(() => {
         axios.get("http://localhost:8080/trainer")
             .then((r) => {
@@ -113,6 +116,7 @@ const TrainerList = () => {
                                             borderRadius={50}
                                             variant="link"
                                             icon={<EditIcon />}
+                                            onClick={() => navigate(`/admin/edit-trainer/${el._id}`)}
                                         />
                                     </HStack>
                                 </HStack>
