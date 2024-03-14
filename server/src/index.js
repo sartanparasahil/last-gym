@@ -11,6 +11,7 @@ const userRouter = require("./features/user/user.router");
 const planRouter = require("./features/Plans/plans.router");
 const paymentRouter = require("./features/payment/payment.router");
 const {trainerrouter} = require("./features/coach/coach.router");
+const adminrouter = require("./features/Admin/admin.router");
 
 const PORT = 8080;
 
@@ -28,6 +29,7 @@ app.use("/cart", cartRouter);
 app.use("/user", userRouter);
 app.use("/plan", planRouter);
 app.use("/payment", paymentRouter);
+app.use("/admin",adminrouter);
 app.use(contactrouter);
 app.use(trainerrouter);
 
