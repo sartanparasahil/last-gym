@@ -18,6 +18,8 @@ import img1 from "../../assets/img1.png"
 import axios from "axios";
 import { TfiArrowUp } from "react-icons/tfi";
 
+import { EditIcon } from '@chakra-ui/icons'
+
 //import {ImageD} from "../../../public/preview";
 
 const Products = () => {
@@ -74,8 +76,8 @@ const Products = () => {
           >
             <Text textAlign="center" w="34%">Product name </Text>
             <Text textAlign="center" w="25%" >Price</Text>
-            <Text textAlign="center" w="34%">Quantity</Text>
-            <Text textAlign="center" w="7%">Remove</Text>
+            <Text textAlign="center" w="24%">Quantity</Text>
+            <Text textAlign="center" w="17%">Action</Text>
 
           </HStack>
           <Scrollbars style={{ width: 800, height: "65vh" }}>
@@ -90,22 +92,33 @@ const Products = () => {
                   borderRadius={5}
                   justifyContent={"space-between"}
                 >
-                  <Text textAlign="center" w="35%">
+                  <Text textAlign="center" w="34%">
                     {el.productName}
 
                   </Text>
-                  <Text textAlign="center" w="28%">{el.price}</Text>
-                  <Text textAlign="center" w="30%">{el.qty}</Text>
-                  <Text textAlign="center" w="7%">{el.remove}</Text>
+                  <Text textAlign="center" w="25%">{el.price}</Text>
+                  <Text textAlign="center" w="24%">{el.qty}</Text>
+                  {/* <Text textAlign="center" w="7%">{el.remove}</Text> */}
                   {/* <Text>{e1.qty}</Text> */}
 
-                  <IconButton
-                    fontSize="25px"
-                    borderRadius={50}
-                    variant="link"
-                    onClick={() => handleDelete(el._id)}
-                    icon={<IoTrashBinSharp />}
-                  />
+                  <HStack textAlign="center" display="flex" justifyContent="center" w="17%">
+
+                    <IconButton
+                      fontSize="25px"
+                      borderRadius={50}
+                      variant="link"
+                      onClick={() => handleDelete(el._id)}
+                      icon={<IoTrashBinSharp />}
+
+                    />
+                    <IconButton
+                      fontSize="25px"
+                      borderRadius={50}
+                      variant="link"
+                      icon={<EditIcon />}
+                    />
+                  </HStack>
+
                 </HStack>
               ))}
             </VStack> </Scrollbars>

@@ -18,6 +18,8 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import img1 from "../../assets/img1.png"
 import axios from "axios";
 import { TfiArrowUp } from "react-icons/tfi";
+import { EditIcon } from '@chakra-ui/icons'
+import { Link, useNavigate } from "react-router-dom";
 
 //import {ImageD} from "../../../public/preview";
 
@@ -25,6 +27,7 @@ const AdminPlans = () => {
     const toast = useToast()
     const [data, setData] = useState()
     const [reload, setReload] = useState(true)
+    const navigate = useNavigate()
     useEffect(() => {
         axios.get("http://localhost:8080/plan")
             .then((r) => {
@@ -50,6 +53,7 @@ const AdminPlans = () => {
 
             })
     }
+
     return (
         <VStack p={5} maxW="1200px">
 
@@ -76,7 +80,7 @@ const AdminPlans = () => {
                         <Text textAlign="center" w="34%">Plan name</Text>
                         <Text textAlign="center" w="34%">Image</Text>
                         <Text textAlign="center" w="15%">duration</Text>
-                        <Text textAlign="center" w="17%">Remove</Text>
+                        <Text textAlign="center" w="17%">Action</Text>
 
                     </HStack>
                     <Scrollbars style={{ width: 800, height: "65vh" }}>
@@ -112,14 +116,24 @@ const AdminPlans = () => {
                                     <Text textAlign="center" w="15%">{el.duration}</Text>
                                     {/* <Text textAlign="center" w="17%">{el.remove}</Text> */}
                                     {/* <Text>{e1.qty}</Text> */}
-                                    <IconButton
-                                        fontSize="25px"
-                                        textAlign="center" w="17%"
-                                        borderRadius={50}
-                                        variant="link"
-                                        onClick={() => handleDelete(el._id)}
-                                        icon={<IoTrashBinSharp />}
-                                    />
+                                    <HStack textAlign="center" display="flex" justifyContent="center" w="17%">
+
+                                        <IconButton
+                                            fontSize="25apx"
+                                            borderRadius={50}
+                                            variant="link"
+                                            onClick={() => handleDelete(el._id)}
+                                            icon={<IoTrashBinSharp />}
+
+                                        /><IconButton
+                                            fontSize="25px"
+                                            borderRadius={50}
+                                            variant="link"
+                                            icon={<EditIcon />}
+                                            onClick={() => navigate(`/admin/edit-plan/${el._id}`)}
+                                        />
+                                    </HStack>
+
                                 </HStack>
                             ))}
                         </VStack> </Scrollbars>

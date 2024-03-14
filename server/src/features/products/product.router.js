@@ -60,6 +60,15 @@ app.get("/", async (req, res) => {
   }
 });
 
+app.put('/:id',upload.single('image'), async (req, res) => {
+  const {pname,desc,price} = req.body;
+  const id =  req.params.id;
+  await productModel.findByIdAndUpdate(id,{pname,desc,price,image:req.file.filename});
+
+  return res.status(200).json({ message: "Product Updated SuccessFully.....",success: true });
+
+  });
+
 app.delete("/:id", async (req, res) => {
 console.log("delete tun")
   const id = req.params.id
