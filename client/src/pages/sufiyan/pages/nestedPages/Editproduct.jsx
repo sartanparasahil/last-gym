@@ -25,7 +25,7 @@ function Editproduct() {
 
     const { id } = useParams()
     const [data, setData] = useState({
-        productName: "", desc: "",price: ""
+        productName: "", desc: "", price: ""
     })
 
     let [file, setFile] = useState()
@@ -66,7 +66,7 @@ function Editproduct() {
         formData.append('image', file);
 
         // Log the entries of the FormData object
-        console.log("data is",formData)
+        console.log("data is", formData)
         axios.put(`http://localhost:8080/products/${id}`, formData)
             .then((response) => {
                 console.log(response.data)
@@ -78,8 +78,6 @@ function Editproduct() {
                 })
 
             })
-
-
     }
     console.log("Data: " + data)
     return (
@@ -101,6 +99,7 @@ function Editproduct() {
                         Edit Product
                     </Text>
                 </Flex>
+
                 <VStack alignItems="flex-start" spacing="1rem">
                     <VStack>
                         <Textarea
