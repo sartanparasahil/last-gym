@@ -14,7 +14,7 @@ const plan = async (req, res) => {
         if (namechk) {
             return res.status(400).json({ message: "PlanName Already Exists" });
         }
-        const newplan = await new planModel({ name, image: req.file.filename, desc, duration });
+        const newplan = await new planModel({ name,duration });
         newplan.save();
         return res.status(200).json({ message: "Plan Added SuccessFully.....", data: newplan });
     } catch (error) {

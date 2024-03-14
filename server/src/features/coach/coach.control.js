@@ -18,7 +18,7 @@ const trainer = async (req, res) => {
         if (emailchk) {
             return res.status(400).json({ message: "Email Is Already Exists" });
         }
-        const newtrainer = new trainermodel({ name, email, experiance , image: req.file.filename });
+        const newtrainer = new trainermodel({ name, email, experiance });
         await newtrainer.save();
         return res.status(200).json({ message: "Trainer Added SuccessFully.....", data: newtrainer });
     } catch (error) {

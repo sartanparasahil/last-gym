@@ -30,10 +30,10 @@ const storage = multer.diskStorage({
       }
     });
 
-    trainerrouter.put('/trainer/:id',upload.single('image'), async (req, res) => {
+    trainerrouter.put('/trainer/:id', async (req, res) => {
       const {name, experiance} = req.body;
       const id = req.params.id;
-      await trainermodel.findByIdAndUpdate(id,{name, experiance,image:req.file.filename});
+      await trainermodel.findByIdAndUpdate(id,{name, experiance});
     
       return res.status(200).json({ message: "Trainer Updated SuccessFully.....",success: true });
     

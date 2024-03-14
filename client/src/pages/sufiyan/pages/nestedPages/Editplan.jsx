@@ -22,7 +22,7 @@ import { Link, useParams } from "react-router-dom";
 function Editplan() {
 
     const toast = useToast()
-    
+
     const { id } = useParams()
     const [data, setData] = useState({
         name: "",
@@ -30,7 +30,7 @@ function Editplan() {
         duration: ""
     })
 
- 
+
     let [file, setFile] = useState()
 
     useEffect(() => {
@@ -55,40 +55,46 @@ function Editplan() {
         });
     }
 
-   
 
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0])
-    }
+
+    // const handleFileChange = (e) => {
+    //     setFile(e.target.files[0])
+    // }
 
 
     const AddToDatabase = (e) => {
         e.preventDefault()
 
-        let formData = new FormData();
-        formData.append('name', data.name);
-        formData.append('desc', data.desc);
-        formData.append('duration', data.duration);
-        formData.append('image', file);
+        // let formData = new FormData();
+        // formData.append('name', data.name);
+        // formData.append('desc', data.desc);
+        // formData.append('duration', data.duration);
+        // formData.append('image', file);
 
         // Log the entries of the FormData object
-        console.log(formData)
-        axios.put(`http://localhost:8080/plan/${id}`, formData)
-        .then((response)=>{
-            console.log(response.data)
-            toast({
-                title: "Data updated Successfull",
-                status: "success",
-                duration: 9000,
-                isClosable: true,
-            })
+        // console.log(formData)
+        axios.put(`http://localhost:8080/plan/${id}`, data)
+            .then((response) => {
+                if (response.status == 200) {
+                    setData({
+                        name: "",
+                        desc: "",
+                        duration: ""
+                    })
+                    toast({
+                        title: "Data updated Successfull",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
+                }
 
-        })
+            })
 
 
     }
-    console.log("Data: " + data)
+    // console.log("Data: " + data)
     return (
         <Flex gap="10rem" justifyContent="center" alignItems="center">
             <Flex
@@ -134,9 +140,9 @@ function Editplan() {
                         // resize={resize}
                         />
                     </VStack>
-                    <VStack>
+                    {/* <VStack>
                         <Input
-                        paddingTop={"7px"}
+                            paddingTop={"7px"}
                             type="file"
                             placeholder="Enter Img URL"
                             // height={"200px"}
@@ -147,7 +153,7 @@ function Editplan() {
                             onChange={handleFileChange}
                         // resize={resize}
                         />
-                    </VStack>
+                    </VStack> */}
                     <VStack>
                         <Input
                             type="text"

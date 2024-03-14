@@ -27,7 +27,7 @@ const { upload } = require("../coach/coach.router");
 //   }
 // });
 
-app.post("/",upload.single('image'),async(req,res)=>{
+app.post("/",async(req,res)=>{
   const {pname,desc,price} = req.body;
   if (!req.file) {
     return res.status(400).json({ message: "Please Upload Image" });
@@ -38,7 +38,7 @@ app.post("/",upload.single('image'),async(req,res)=>{
         res.status(202).send("Product Already Exist ")
       }
       else{
-        const doc = new productModel({productName:pname,image: req.file.filename,desc:desc,price:price,qty:1})
+        const doc = new productModel({productName:pname,desc:desc,price:price,qty:1})
         doc.save()
         res.status(200).send("Added succesfully")
       }
@@ -71,10 +71,10 @@ app.get('/:id', async (req, res) => {
   }
 });
 
-app.put('/:id',upload.single('image'), async (req, res) => {
+app.put('/:id', async (req, res) => {
   const {productName,desc,price} = req.body;
   const id =  req.params.id;
-  await productModel.findByIdAndUpdate(id,{productName,desc,image:req.file.filename,price});
+  await productModel.findByIdAndUpdate(id,{productName,desc,price});
 
   return res.status(200).json({ message: "Product Updated SuccessFully.....",success: true });
 

@@ -51,34 +51,38 @@ function Editcoach() {
     }
 
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0])
-    }
+    // const handleFileChange = (e) => {
+    //     setFile(e.target.files[0])
+    // }
 
 
     const AddToDatabase = (e) => {
         e.preventDefault()
 
-        let formData = new FormData();
-        formData.append('name', data.name);
-        formData.append('experiance', data.experiance);
-        formData.append('image', file);
+        // let formData = new FormData();
+        // formData.append('name', data.name);
+        // formData.append('experiance', data.experiance);
+        // formData.append('image', file);
 
         // Log the entries of the FormData object
-        console.log("data is", formData)
-        axios.put(`http://localhost:8080/trainer/${id}`, formData)
+        // console.log("data is", formData)
+        axios.put(`http://localhost:8080/trainer/${id}`, data)
             .then((response) => {
-                console.log(response.data)
-                toast({
-                    title: "Data updated Successfull",
-                    status: "success",
-                    duration: 9000,
-                    isClosable: true,
-                })
+                if (response.status == 200) {
+                    setData({
+                        name: "", experiance: ""
+                    })
+                    toast({
+                        title: "Data updated Successfull",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
+                }
             })
 
     }
-    console.log("Data: " + data)
+    // console.log("Data: " + data)
     return (
         <Flex gap="10rem" justifyContent="center" alignItems="center">
             <Flex
@@ -125,7 +129,7 @@ function Editcoach() {
                         // resize={resize}
                         />
                     </VStack>
-                    <VStack>
+                    {/* <VStack>
                         <Input
                             type="file"
                             paddingTop={"7px"}
@@ -138,7 +142,7 @@ function Editcoach() {
                             onChange={handleFileChange}
                         // resize={resize}
                         />
-                    </VStack>
+                    </VStack> */}
                     <RadioGroup color="white" colorScheme='orange' >
 
                         <Spacer />
