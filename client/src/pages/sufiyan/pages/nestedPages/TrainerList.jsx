@@ -16,6 +16,7 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 
 import img1 from "../../assets/img1.png"
 import axios from "axios";
+import { EditIcon } from '@chakra-ui/icons'
 
 //import {ImageD} from "../../../public/preview";
 
@@ -74,7 +75,7 @@ const TrainerList = () => {
                     >
                         <Text textAlign="center" w="30%">TrainerName </Text>
                         <Text textAlign="center" w="50%">Email</Text>
-                        <Text textAlign="center" w="20%">Remove</Text>
+                        <Text textAlign="center" w="20%">Action</Text>
 
                     </HStack>
                     <Scrollbars style={{ width: 800, height: "65vh" }}>
@@ -97,15 +98,23 @@ const TrainerList = () => {
                                     <Text textAlign="center" w="50%">{el.email}</Text>
                                     {/* <Text>{el.password.substring(0,20)}....</Text> */}
 
-                                    <IconButton
-                                        fontSize="25px"
-                                        borderRadius={50}
-                                        variant="link"
-                                        textAlign="center" w="20%"
-                                        //onClick={toggleColorMode}
-                                        onClick={() => handleDelete(el._id)}
-                                        icon={<IoTrashBinSharp />}
-                                    />
+                                    <HStack textAlign="center" display="flex" justifyContent="center" w="17%">
+
+                                        <IconButton
+                                            fontSize="25px"
+                                            borderRadius={50}
+                                            variant="link"
+                                            onClick={() => handleDelete(el._id)}
+                                            icon={<IoTrashBinSharp />}
+
+                                        />
+                                        <IconButton
+                                            fontSize="25px"
+                                            borderRadius={50}
+                                            variant="link"
+                                            icon={<EditIcon />}
+                                        />
+                                    </HStack>
                                 </HStack>
                             ))}
                         </VStack> </Scrollbars>

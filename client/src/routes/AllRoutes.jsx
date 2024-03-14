@@ -25,6 +25,7 @@ import Contect from "../pages/nayan/pages/Contect";
 import ContactList from "../pages/sufiyan/pages/nestedPages/ContactList";
 import AddTrainer from "../pages/sufiyan/pages/nestedPages/AddTrainer";
 import TrainerList from "../pages/sufiyan/pages/nestedPages/TrainerList";
+import Editplan from "../pages/sufiyan/pages/nestedPages/Editplan";
 
 const AllRoutes = () => {
   return (
@@ -129,6 +130,17 @@ const AllRoutes = () => {
               </AdminPrivateAuth> 
             }
           />
+          {/* edit */}
+          <Route
+            exact
+            path="edit-plan/:id"
+            element={
+              <AdminPrivateAuth>
+                <Editplan />{" "}
+              </AdminPrivateAuth> 
+            }
+          />
+
           <Route
             exact
             path="all-users"
