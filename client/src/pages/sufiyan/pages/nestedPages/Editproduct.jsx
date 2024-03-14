@@ -70,7 +70,7 @@ function Editproduct() {
         axios.put(`http://localhost:8080/products/${id}`, data)
             .then((response) => {
                 if(response.status == 200){
-                    setData({productName: "", desc: "", price: ""})
+                    setData({productName: "", desc: "", price: "",qty:""})
                     toast({
                         title: "Data updated Successfull",
                         status: "success",

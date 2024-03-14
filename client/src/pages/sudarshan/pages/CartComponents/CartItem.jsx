@@ -38,7 +38,7 @@ export const CartItem = (props) => {
     isGiftWrapping,
     productName,
     description,
-    quantity,
+    qty,
     image,
     currency,
     price,
@@ -49,16 +49,16 @@ export const CartItem = (props) => {
   const {userData, isAuth, token } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const toast = useToast()
-  const [qty,setQty] = React.useState(1)
+  // const [qty,setQty] = React.useState(1)
 
-  React.useEffect(()=>{
-    const updateqty = userData.cart[0].qty
-    let newqty
-   {
-    updateqty ? newqty = updateqty: newqty = 1
-   }
-   setQty(newqty)
-  },[qty])
+  // React.useEffect(()=>{
+  //   const updateqty = userData.cart[0].qty
+  //   let newqty
+  //  {
+  //   updateqty ? newqty = updateqty: newqty = 1
+  //  }
+  //  setQty(newqty)
+  // },[qty])
 
   const itemDelete = () => {
 
@@ -97,6 +97,7 @@ export const CartItem = (props) => {
         name={productName}
         description={description}
         image={image}
+
         isGiftWrapping={isGiftWrapping}
       />
 

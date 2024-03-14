@@ -54,11 +54,11 @@ app.post("/login", async (req, res) => {
 //  console.log("lOGIN"+email,password)
 
   if (!email || !password) {
-    return res.status(403).send("Enter Credianteials");
+    return res.status(403).send({message:'Enter Credianteials'});
   }
   const User = await UserModel.findOne({ email });
   // console.log(User)
-  if (!User) return res.status(404).send("User Not Found");
+  if (!User) return res.status(404).send({message:"User Not Found"});
 
   try {
     const match = bcrypt.compareSync(password, User.password);

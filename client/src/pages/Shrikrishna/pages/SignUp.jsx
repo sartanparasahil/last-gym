@@ -48,7 +48,7 @@ export default function Signup() {
   const [user, setUser] = useState(defaultValues);
 
   // console.log(user);
-
+  let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -89,6 +89,7 @@ export default function Signup() {
           });
 
         }
+       
         break;
       // case "age":
       //   if (value.length >= 2) {
@@ -114,7 +115,7 @@ export default function Signup() {
     }
   };
   // let regex = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
-  let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
   const handleClick = () => {
     if (
       !user.firstName ||
@@ -134,16 +135,17 @@ export default function Signup() {
         duration: 1000,
         isClosable: true,
       });
-      {
-        toast({
-          title: "Enter Valid Email",
-          description: "Please fill all the details",
-          status: "error",
-          duration: 500,
-          isClosable: true,
-        });
-
-      }
+     
+      
+    }
+    else if(!user.email.match(regex)){
+      toast({
+        title: "Enter Valid Email",
+        description: "Please fill all the details",
+        status: "error",
+        duration: 500,
+        isClosable: true,
+      });
     }
 
     else {
@@ -275,6 +277,7 @@ export default function Signup() {
                 value={user.email}
                 onChange={handleChange}
                 type="email"
+
                 name="email"
               />
             </FormControl>

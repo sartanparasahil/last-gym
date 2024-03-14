@@ -27,25 +27,25 @@ const { upload } = require("../coach/coach.router");
 //   }
 // });
 
-app.post("/",async(req,res)=>{
-  const {pname,desc,price,qty} = req.body;
+app.post("/", async (req, res) => {
+  const { pname, desc, price, qty } = req.body;
   if (!req.file) {
     return res.status(400).json({ message: "Please Upload Image" });
-}
-  if (pname && desc  && price && qty) {
-      const prod = await productModel.findOne({productName:pname})
-      if (prod){
-        res.status(202).send("Product Already Exist ")
-      }
-      else{
-        const doc = new productModel({productName:pname,desc:desc,price:price,qty:qty})
-        doc.save()
-        res.status(200).send("Added succesfully")
-      }
-  
+  }
+  if (pname && desc && price && qty) {
+    const prod = await productModel.findOne({ productName: pname })
+    if (prod) {
+      res.status(202).send("Product Already Exist ")
+    }
+    else {
+      const doc = new productModel({ productName: pname, desc: desc, price: price, qty: qty })
+      doc.save()
+      res.status(200).send("Added succesfully")
+    }
+
 
   }
-  else{
+  else {
     res.status(202).send("All Fields are required")
   }
 
@@ -65,27 +65,27 @@ app.get('/:id', async (req, res) => {
   try {
     let data = await productModel.findById(req.params.id);
     console.log(data);
-    return res.status(200).json({ success: true, data: data }); 
+    return res.status(200).json({ success: true, data: data });
   } catch (er) {
     return res.status(404).send(er.message);
   }
 });
 
 app.put('/:id', async (req, res) => {
-  const {productName,desc,price} = req.body;
-  const id =  req.params.id;
-  await productModel.findByIdAndUpdate(id,{productName,desc,price});
+  const { productName, desc, price, qty } = req.body;
+  const id = req.params.id;
+  await productModel.findByIdAndUpdate(id, { productName, desc, price, qty });
 
-  return res.status(200).json({ message: "Product Updated SuccessFully.....",success: true });
+  return res.status(200).json({ message: "Product Updated SuccessFully.....", success: true });
 
-  });
+});
 
 app.delete("/:id", async (req, res) => {
-console.log("delete tun")
+  console.log("delete tun")
   const id = req.params.id
   console.log(id)
-  await productModel.findByIdAndDelete({_id:id})
- 
+  await productModel.findByIdAndDelete({ _id: id })
+
   res.status(200).send("Deleted succesfully")
   // try {
   //   let exists = await productModel.findOneAndDelete({

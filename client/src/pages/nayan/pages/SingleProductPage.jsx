@@ -17,22 +17,22 @@ import Path from "../../sufiyan/components/Path";
 
 const SingleProductPage = () => {
 
-  const [quant, setQuant] = useState(1);
+  // const [quant, setQuant] = useState(1);
   const toast = useToast()
 
 
   const dispatch = useDispatch();
   const { data } = useSelector((store) => store.product);
+
   const { userData, isAuth } = useSelector((store) => store.auth);
   //console.log(data, "frontend single route");
-
   //const { token } = useSelector((store) => store.auth);
 
   const [LoadingT, setLoading] = useState(true);
+  const [mydis, setDis] = useState(false);
 
   const [SingleData, setSingle] = useState({});
-
-
+  const [myqty, setQty] = useState(1)
 
   const { id } = useParams();
   const NavigatKaro = useNavigate()
@@ -46,6 +46,7 @@ const SingleProductPage = () => {
         .then((res) => res.json())
         .then((res) => {
           setSingle(res.data)
+          // setQuant(res.data.qty)
           setLoading(false)
         })
 
@@ -57,7 +58,6 @@ const SingleProductPage = () => {
     }
 
   }, [id]);
-  // console.log(SingleData)
 
   const handleCart = () => {
 
@@ -94,7 +94,7 @@ const SingleProductPage = () => {
 
       let Product = {
         email: token.email,
-        data: { ...SingleData, qty: quant }
+        data: { ...SingleData, qty: myqty }
       }
 
 
@@ -146,7 +146,7 @@ const SingleProductPage = () => {
 
       let Product = {
         email: token.email,
-        data: { ...SingleData, qty: quant }
+        data: { ...SingleData, qty: myqty }
       }
 
 
@@ -171,7 +171,22 @@ const SingleProductPage = () => {
   if (LoadingT) {
     return <Loading />
   }
+  const handleminus = () => {
+    setQty((prev) => prev === 1 ? 1 : prev - 1)
+  }
 
+  const handleplus = () => {
+console.log("QTY",SingleData.qty)
+    if(myqty < SingleData.qty ){
+      setQty((prev) => prev + 1)
+    }
+    else{
+
+      setDis(true)
+    }
+
+    // setQuant((prev) => prev === quant ? quant : prev + 1)
+  }
 
 
   return (
@@ -253,16 +268,17 @@ const SingleProductPage = () => {
             >
               <Button
                 bg="#f36100"
-                disabled={quant === 1}
-                onClick={() => setQuant((prev) => prev === 1 ? 1 : prev - 1)}
+                disabled={myqty === 1}
+                onClick={handleminus}
               >
                 -
               </Button>
-              <Text>{quant}</Text>
+              <Text>{myqty}</Text>
               <Button
                 bg="#f36100"
-                disabled={quant === 5}
-                onClick={() => setQuant((prev) => prev > 5 ? 5 : prev + 1)}
+                disabled={SingleData.qty == myqty ? true : false}
+                // disabled={quant === quant}
+                onClick={handleplus}
               >
                 +
               </Button>

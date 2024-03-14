@@ -3,7 +3,8 @@ const express = require("express");
 const orderModel = require("./payment.model");
 const app = express.Router();
 
-const Razorpay = require("razorpay")
+const Razorpay = require("razorpay");
+const productModel = require("../products/product.model");
 
 //return res.redirect(301, "https://www.google.co.in/").send();
 
@@ -15,8 +16,10 @@ app.get("/get-razorpay-key", async (req, res) => {
   }
 });
 
+
 app.post("/create-order", async (req, res) => {
-  
+
+  console.log("dd",req.body)
   try {
     console.log("ceate-orders");
     const instance = new Razorpay({
@@ -24,7 +27,7 @@ app.post("/create-order", async (req, res) => {
       key_secret: process.env.RAZORPAY_API_SECRET,
     });
     const options = {
-      amount: req.body.amount,
+      amount: req.body.amount * 100 ,
       currency: "INR",
     };
     const order = await instance.orders.create(options);
@@ -40,8 +43,10 @@ app.post("/create-order", async (req, res) => {
 
 app.post("/pay-order", async (req, res) => {
   try {
-    const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature } =
+    const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature, cart } =
       req.body;
+
+    console.log("CART", cart)
     const newPayment = orderModel({
       isPaid: true,
       amount: amount,
@@ -52,6 +57,13 @@ app.post("/pay-order", async (req, res) => {
       },
     });
     await newPayment.save();
+    const product=await productModel.find()
+
+    cart.map(async(item)=>{
+
+      await productModel.findByIdAndUpdate(item._id,{ $inc: { qty: -Number(item.qty) } })
+    })
+
     return res.status(200).send({ message: "new payment Successfull" });
   } catch (er) {
     console.log(er.message);

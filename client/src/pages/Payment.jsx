@@ -13,7 +13,7 @@ function RazorPay() {
 
   const { userData, token, isAuth } = useSelector((store) => store.auth);
   const { cart } = userData;
-  
+  console.log("userdatasss",cart)
 
   const navigate = useNavigate()
   const toast = useToast()
@@ -21,6 +21,8 @@ function RazorPay() {
 
   const [loading, setLoading] = useState(false);
   let total = userData.cart.reduce((a, b) => a + +b.price, 0).toFixed(0);
+  total = Number(total) + 50
+
 
 
   const fetchOrder = async () => {
@@ -54,11 +56,7 @@ function RazorPay() {
 
 
   // useEffect(() => {
-  //   fetchOrder()
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((er) => console.log(er.message));
+  //   dispatch()
   // }, []);
 
 
@@ -75,7 +73,7 @@ function RazorPay() {
       try {
         setLoading(true);
         const result = await axios.post("http://localhost:8080/payment/create-order", {
-          amount: total
+          amount: Number(total)
         });
 
         const { amount, id: orderId, currency } = result.data.order;
@@ -88,7 +86,7 @@ function RazorPay() {
         console.log(key.key, "second console inside handlepay");
         const options = {
           key: key.key,
-          amount: amount.toString(),
+          amount: amount,
           currency: currency,
           name: "GYM Bro",
           description: "FIRST RAZOR PAY",
@@ -99,6 +97,8 @@ function RazorPay() {
               razorpayPaymentId: response.razorpay_payment_id,
               razorpay0rderId: response.razorpay_order_id,
               razorpaysighature: response.razorpay_signature,
+              cart
+
             });
 
             fetchOrder();

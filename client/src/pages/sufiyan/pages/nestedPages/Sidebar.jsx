@@ -125,7 +125,7 @@ function SideBarLeft() {
               >
                 ANALYTICS
               </motion.h3>
-              <Link to="/admin/dashboard"> <Item icon={<MdDashboard />} name="Dashboard" /> </Link>
+              <Link to="/admins/dashboard"> <Item icon={<MdDashboard />} name="Dashboard" /> </Link>
 
             </div>
           </div>

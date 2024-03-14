@@ -80,15 +80,15 @@ export default function ProductCarousel() {
                   <img src={`http://localhost:8080/${item.image}`} alt='trainer img' />
                   <Box className="overlay2" >
                     <div style={{display:'flex',alignItems:'center',gap:'4px',paddingLeft:'30px'}}>
-                      <Heading color="#fff" fontSize={["17", "17", "18", "18", "20"]}>Name:</Heading>
+                      <Heading color="#fff" fontWeight={"600"} fontSize={["17", "17", "18", "18", "20"]}>Name:</Heading>
                       <Text color="#777" fontWeight={"500"} marginTop={"5px"}>{item.name}</Text>
                     </div>
                     <div style={{display:'flex',alignItems:'center',gap:'4px',paddingLeft:'30px'}}>
-                      <Heading color="#fff" fontSize={["17", "17", "18", "18", "20"]}>Experience:</Heading>
+                      <Heading color="#fff" fontWeight={"600"} fontSize={["17", "17", "18", "18", "20"]}>Experience:</Heading>
                       <Text color="#777" fontWeight={"500"} marginTop={"5px"}>{item.experiance}</Text>
                     </div>
                     <div style={{display:'flex',alignItems:'center',gap:'4px',paddingLeft:'30px'}}>
-                      <Heading color="#fff" fontSize={["17", "17", "18", "18", "20"]}>Email:</Heading>
+                      <Heading color="#fff" fontWeight={"600"} fontSize={["17", "17", "18", "18", "20"]}>Email:</Heading>
                       <Text color="#777" fontWeight={"500"} marginTop={"5px"}>{item.email}</Text>
                     </div>
                    

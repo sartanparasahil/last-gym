@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { getUserData, login } from "../../../redux/auth/auth.actions";
 import Loading from "../../Loading";
 import axios from "axios";
@@ -28,7 +28,7 @@ export default function LoginForm({ handleForgot }) {
 
     const dispatch = useDispatch();
     const toast = useToast();
-
+const navigate = useNavigate()
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
@@ -45,12 +45,29 @@ export default function LoginForm({ handleForgot }) {
                 duration: 2000,
                 isClosable: true,
             });
+
         } else {
             axios.post("http://localhost:8080/admin/login", user)
                 .then((res) => {
                     console.log(res.data)
+                    if(res.status == 200){
+
+                        navigate('/admins')
+                    }
                 })
-                .catch((err) => { console.log(err) })
+                .catch((err) => {
+                    toast({
+                        title: err.response.data.message,
+                        description: "",
+                        status: "error",
+                        duration: 2000,
+                        isClosable: true,
+                    });
+        
+                    
+                }
+                    
+                    )
         }
 
     };
@@ -129,6 +146,7 @@ export default function LoginForm({ handleForgot }) {
                             </FormControl>
                             <Stack spacing={10}>
                                 <Button
+                                type="submit"
                                     onClick={handleClick}
                                     bg={"#f45f02"}
                                     color={"white"}
