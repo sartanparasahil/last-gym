@@ -19,11 +19,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Navigate } from "react-router-dom";
 import { getUserData, login } from "../../../redux/auth/auth.actions";
 import Loading from "../../Loading";
+import axios from "axios";
 
 export default function LoginForm({ handleForgot }) {
 
-    const { isAuth, loading, error, errorMessage } = useSelector(
-        (store) => store.auth)
 
     const [user, setUser] = useState({ email: "", password: "" });
 
@@ -37,15 +36,7 @@ export default function LoginForm({ handleForgot }) {
 
     const handleClick = () => {
 
-        console.log("Pratik", errorMessage)
-        if (errorMessage) {
-            toast({
-                title: errorMessage,
-                description: "",
-                status: "error",
-                duration: 2000,
-            })
-        }
+
         if (!user.email || !user.password) {
             toast({
                 title: "All fields are mandatory",
@@ -55,60 +46,36 @@ export default function LoginForm({ handleForgot }) {
                 isClosable: true,
             });
         } else {
-            dispatch(login(user))
+            axios.post("http://localhost:8080/admin/login", user)
+                .then((res) => {
+                    console.log(res.data)
+                })
+                .catch((err) => { console.log(err) })
         }
-
-        console.log("Padiyo", errorMessage);
-        // if(error){
-        //   console.log("Padiyo",errorMessage);
-        //   toast({
-        //     title: errorMessage,
-        //     description: "Please fill all the details",
-        //     status: "error",
-        //     duration: 2000,
-        //     isClosable: true,
-        //   });
-        // }
-        // if (!user.email || !user.password) {
-        //   toast({
-        //     title: "All fields are mandatory",
-        //     description: "Please fill all the details",
-        //     status: "error",
-        //     duration: 2000,
-        //     isClosable: true,
-        //   });
-        // } 
-        // else {
-        //   dispatch(login(user))
-
-
-        // }
-
-
 
     };
 
 
 
-    if (loading) {
-        return <Loading />
-    }
+    // if (loading) {
+    //     return <Loading />
+    // }
 
-    if (isAuth) {
-        toast({
-            title: "Logged in successfully",
-            description: "Go and get exciting offers...",
-            status: "success",
-            duration: 2000,
-            isClosable: true,
-        });
+    // if (isAuth) {
+    //     toast({
+    //         title: "Logged in successfully",
+    //         description: "Go and get exciting offers...",
+    //         status: "success",
+    //         duration: 2000,
+    //         isClosable: true,
+    //     });
 
-        let token = JSON.parse(localStorage.getItem("token"))
+    //     let token = JSON.parse(localStorage.getItem("token"))
 
-        dispatch(getUserData(token.email))
-        //console.log(token.email)  
-        return <Navigate to="/" />;
-    }
+    //     dispatch(getUserData(token.email))
+    //     //console.log(token.email)  
+    //     return <Navigate to="/" />;
+    // }
 
 
 

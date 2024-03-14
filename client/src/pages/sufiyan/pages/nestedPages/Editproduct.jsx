@@ -156,6 +156,19 @@ function Editproduct() {
                         // resize={resize}
                         />
                     </VStack>
+                    <VStack>
+                        <Input
+                            type="number"
+                            placeholder="Price"
+                            // height={"200px"}
+                            width="650px"
+                            color="white"
+                            name="qty"
+                            value={data?.qty}
+                            onChange={handleChange}
+                        // resize={resize}
+                        />
+                    </VStack>
                     <RadioGroup color="white" colorScheme='orange' >
 
                         <Spacer />

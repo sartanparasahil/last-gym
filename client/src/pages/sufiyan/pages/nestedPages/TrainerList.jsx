@@ -118,7 +118,7 @@ const TrainerList = () => {
                                             borderRadius={50}
                                             variant="link"
                                             icon={<EditIcon />}
-                                            onClick={() => navigate(`/admin/edit-trainer/${el._id}`)}
+                                            onClick={() => navigate(`/admins/edit-trainer/${el._id}`)}
                                         />
                                     </HStack>
                                 </HStack>

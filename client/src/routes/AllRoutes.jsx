@@ -88,9 +88,7 @@ const AllRoutes = () => {
             exact
             path="/admin"
             element={
-              <AdminPrivateAuth>
-                <Adminlogin />{" "}
-              </AdminPrivateAuth>
+                <Adminlogin />
             }
           />
         <Route path="/admins" element={<AdminDashbord />} >

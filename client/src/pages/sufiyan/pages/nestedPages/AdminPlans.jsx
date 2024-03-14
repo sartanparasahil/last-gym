@@ -130,7 +130,7 @@ const AdminPlans = () => {
                                             borderRadius={50}
                                             variant="link"
                                             icon={<EditIcon />}
-                                            onClick={() => navigate(`/admin/edit-plan/${el._id}`)}
+                                            onClick={() => navigate(`/admins/edit-plan/${el._id}`)}
                                         />
                                     </HStack>
 

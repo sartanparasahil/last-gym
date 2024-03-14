@@ -119,7 +119,7 @@ const Products = () => {
                       borderRadius={50}
                       variant="link"
                       icon={<EditIcon />}
-                      onClick={() => navigate(`/admin/edit-product/${el._id}`)}
+                      onClick={() => navigate(`/admins/edit-product/${el._id}`)}
                     />
                   </HStack>
 

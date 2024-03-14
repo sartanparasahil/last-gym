@@ -45,7 +45,7 @@ const SingleProductPage = () => {
       fetch("http://localhost:8080/products/" + id)
         .then((res) => res.json())
         .then((res) => {
-          setSingle(res)
+          setSingle(res.data)
           setLoading(false)
         })
 
@@ -57,6 +57,7 @@ const SingleProductPage = () => {
     }
 
   }, [id]);
+  // console.log(SingleData)
 
   const handleCart = () => {
 
@@ -101,7 +102,6 @@ const SingleProductPage = () => {
         .then((res) => dispatch(getUserData(token.email)))
       toast({
         title: "Product Added to cart",
-
         status: "success",
         duration: 4000,
         isClosable: true,

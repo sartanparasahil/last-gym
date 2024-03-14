@@ -28,17 +28,17 @@ const { upload } = require("../coach/coach.router");
 // });
 
 app.post("/",async(req,res)=>{
-  const {pname,desc,price} = req.body;
+  const {pname,desc,price,qty} = req.body;
   if (!req.file) {
     return res.status(400).json({ message: "Please Upload Image" });
 }
-  if (pname && desc  && price){
+  if (pname && desc  && price && qty) {
       const prod = await productModel.findOne({productName:pname})
       if (prod){
         res.status(202).send("Product Already Exist ")
       }
       else{
-        const doc = new productModel({productName:pname,desc:desc,price:price,qty:1})
+        const doc = new productModel({productName:pname,desc:desc,price:price,qty:qty})
         doc.save()
         res.status(200).send("Added succesfully")
       }

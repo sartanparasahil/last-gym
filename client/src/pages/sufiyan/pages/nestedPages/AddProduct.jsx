@@ -66,7 +66,7 @@ const AddProduct = () => {
     axios.post("http://localhost:8080/products", formData)
       .then((r) => {
         if (r.status == 200) {
-          setData({ pname: "", desc: "", imgurl: "", price: "" })
+          setData({ pname: "", desc: "", imgurl: "", price: "", qty: "" })
 
           toast({
             title: r.data,
@@ -155,6 +155,20 @@ const AddProduct = () => {
               value={data.price}
               color="white"
               name="price"
+              onChange={handleChange}
+              resize={resize}
+            />
+          </VStack>
+          <VStack>
+            <Input
+              type="number"
+              onInput={(e) => e.target.value = e.target.value.slice(0, 4)}
+              placeholder="Enter qty"
+              // height={"200px"}
+              width="650px"
+              value={data.qty}
+              color="white"
+              name="qty"
               onChange={handleChange}
               resize={resize}
             />
