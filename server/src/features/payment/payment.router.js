@@ -31,10 +31,12 @@ app.post("/create-order", async (req, res) => {
       currency: "INR",
     };
     const order = await instance.orders.create(options);
+
+    console.log("MyORder",order)
     if (!order) {
       return res.status(500).send("some error occured");
     }
-    console.log(order, "backend amount passage");
+    // console.log(order, "backend amount passage");
     return res.status(200).send({ message: "reached orders", order });
   } catch (er) {
     return res.status(404).send("query Not found");
@@ -46,15 +48,17 @@ app.post("/pay-order", async (req, res) => {
     const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature, cart } =
       req.body;
 
-    console.log("CART", cart)
+    // console.log("CART", cart)
     const newPayment = orderModel({
       isPaid: true,
       amount: amount,
+      orderItems:cart,
       razorpay: {
         orderId: razorpayOrderId,
         paymentId: razorpayPaymentId,
         signature: razorpaySignature,
       },
+    
     });
     await newPayment.save();
     const product=await productModel.find()

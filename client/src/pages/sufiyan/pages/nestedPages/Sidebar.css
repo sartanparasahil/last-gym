@@ -12,7 +12,7 @@
     width: 5rem
   }
   .sidebar_container {
-    height: 100vh;
+    height: 100%;
     position: sticky;
     top: 0;
     left: "50px";

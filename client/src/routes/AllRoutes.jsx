@@ -29,6 +29,7 @@ import Editplan from "../pages/sufiyan/pages/nestedPages/Editplan";
 import Editproduct from "../pages/sufiyan/pages/nestedPages/Editproduct";
 import Editcoach from "../pages/sufiyan/pages/nestedPages/Editcoach";
 import Adminlogin from "../pages/Shrikrishna/pages/Adminlogin";
+import OrderList from "../pages/sufiyan/pages/nestedPages/OrderList";
 
 const AllRoutes = () => {
   return (
@@ -191,6 +192,15 @@ const AllRoutes = () => {
             element={
               <AdminPrivateAuth>
                 <ContactList />{" "}
+              </AdminPrivateAuth>
+            }
+          />
+          <Route
+            exact
+            path="order"
+            element={
+              <AdminPrivateAuth>
+                <OrderList />{" "}
               </AdminPrivateAuth>
             }
           />

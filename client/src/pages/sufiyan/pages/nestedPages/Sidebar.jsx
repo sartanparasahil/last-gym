@@ -66,6 +66,7 @@ function SideBarLeft() {
         initial={`${open}`}
         animate={`${open}`}
         className="sidebar_container"
+        // style={{overflow:'scroll'}}
       >
         {/* sidebar div */}
         <motion.div
@@ -140,7 +141,8 @@ function SideBarLeft() {
             <Link to="/admins/plans" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Plan" /></Link>
             <Link to="/admins/products" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Products" /></Link>
             <Link to="/admins/trainer" style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Trainer" /></Link>
-            <Link to="/admins/contact"> <Item icon={<AiOutlineAppstoreAdd />} name="Contact" /></Link>
+            <Link to="/admins/contact"  style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Contact" /></Link>
+            <Link to="/admins/order"  style={{ marginBottom: "7px" }}> <Item icon={<AiOutlineAppstoreAdd />} name="Order" /></Link>
           </div>
           {/* group 3 */}
           <div className="group">

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const file = {
   isPaid: Boolean,
   amount: Number,
+  orderItems:Array,
   razorpay: {
     orderId: String,
     paymentId: String,

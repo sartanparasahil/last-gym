@@ -12,6 +12,7 @@ const planRouter = require("./features/Plans/plans.router");
 const paymentRouter = require("./features/payment/payment.router");
 const {trainerrouter} = require("./features/coach/coach.router");
 const adminrouter = require("./features/Admin/admin.router");
+const orderModel = require("./features/payment/payment.model");
 
 const PORT = 8080;
 
@@ -32,6 +33,16 @@ app.use("/payment", paymentRouter);
 app.use("/admin",adminrouter);
 app.use(contactrouter);
 app.use(trainerrouter);
+
+app.get('/orders',async(req,res)=>{
+
+try {
+    const order = await orderModel.find()
+    return res.status(200).json({success:true,data:order})
+} catch (error) {
+  console.log(error.message)
+}
+})
 
 
 app.get("/", async (req, res) => {

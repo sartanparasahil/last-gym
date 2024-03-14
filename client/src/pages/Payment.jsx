@@ -7,8 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { ACTION_PURCHASE } from "../redux/cart/cart.actions";
 import { getUserData } from "../redux/auth/auth.actions";
 
-
-
 function RazorPay() {
 
   const { userData, token, isAuth } = useSelector((store) => store.auth);
@@ -88,12 +86,12 @@ function RazorPay() {
           key: key.key,
           amount: amount,
           currency: currency,
-          name: "GYM Bro",
+          name: "FITNESS GYM",
           description: "FIRST RAZOR PAY",
           order_id: orderId,
           handler: async function (response) {
             const result = await axios.post("http://localhost:8080/payment/pay-order", {
-              amount: amount,
+              amount: amount/100,
               razorpayPaymentId: response.razorpay_payment_id,
               razorpay0rderId: response.razorpay_order_id,
               razorpaysighature: response.razorpay_signature,
