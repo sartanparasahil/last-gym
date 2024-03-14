@@ -51,31 +51,34 @@ function Editproduct() {
     }
 
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0])
-    }
+    // const handleFileChange = (e) => {
+    //     setFile(e.target.files[0])
+    // }
 
 
     const AddToDatabase = (e) => {
         e.preventDefault()
 
-        let formData = new FormData();
-        formData.append('productName', data.productName);
-        formData.append('desc', data.desc);
-        formData.append('price', data.price);
-        formData.append('image', file);
+        // let formData = new FormData();
+        // formData.append('productName', data.productName);
+        // formData.append('desc', data.desc);
+        // formData.append('price', data.price);
+        // formData.append('image', file);
 
         // Log the entries of the FormData object
-        console.log("data is", formData)
-        axios.put(`http://localhost:8080/products/${id}`, formData)
+        // console.log("data is", formData)
+        axios.put(`http://localhost:8080/products/${id}`, data)
             .then((response) => {
-                console.log(response.data)
-                toast({
-                    title: "Data updated Successfull",
-                    status: "success",
-                    duration: 9000,
-                    isClosable: true,
-                })
+                if(response.status == 200){
+                    setData({productName: "", desc: "", price: ""})
+                    toast({
+                        title: "Data updated Successfull",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
+                }
+                
 
             })
     }
@@ -126,7 +129,7 @@ function Editproduct() {
                         // resize={resize}
                         />
                     </VStack>
-                    <VStack>
+                    {/* <VStack>
                         <Input
                             type="file"
                             placeholder="Enter Img URL"
@@ -139,7 +142,7 @@ function Editproduct() {
                             onChange={handleFileChange}
                         // resize={resize}
                         />
-                    </VStack>
+                    </VStack> */}
                     <VStack>
                         <Input
                             type="text"

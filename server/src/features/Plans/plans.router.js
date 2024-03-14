@@ -25,16 +25,16 @@ app.get('/:id', async (req, res) => {
 });
 
 
-app.put('/:id',upload.single('image'), async (req, res) => {
+app.put('/:id', async (req, res) => {
   const {name,desc,duration} = req.body;
   const id =  req.params.id;
-  await planModel.findByIdAndUpdate(id,{name,duration,desc,image:req.file.filename});
+  await planModel.findByIdAndUpdate(id,{name,duration,desc});
 
   return res.status(200).json({ message: "Plan Updated SuccessFully.....",success: true });
 
 
   })
-app.post("/addplan", upload.single("image"), plan);
+app.post("/addplan", plan);
 
 app.delete("/remove/:id", DeletePlan)
 

@@ -28,6 +28,7 @@ import TrainerList from "../pages/sufiyan/pages/nestedPages/TrainerList";
 import Editplan from "../pages/sufiyan/pages/nestedPages/Editplan";
 import Editproduct from "../pages/sufiyan/pages/nestedPages/Editproduct";
 import Editcoach from "../pages/sufiyan/pages/nestedPages/Editcoach";
+import Adminlogin from "../pages/Shrikrishna/pages/Adminlogin";
 
 const AllRoutes = () => {
   return (
@@ -83,9 +84,16 @@ const AllRoutes = () => {
 
         {/*////////////////////////////////////////////////////*/}
 
-
-        <Route path="/admin" element={<AdminDashbord />} >
-
+        <Route
+            exact
+            path="/admin"
+            element={
+              <AdminPrivateAuth>
+                <Adminlogin />{" "}
+              </AdminPrivateAuth>
+            }
+          />
+        <Route path="/admins" element={<AdminDashbord />} >
 
           <Route
             index
