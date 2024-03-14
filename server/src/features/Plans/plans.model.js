@@ -17,7 +17,9 @@ const file = {
     require : true
   },
   
+
+
 };
-const planSchema = new mongoose.Schema(file, { timestamps:true });
+const planSchema = new mongoose.Schema(file, { timestamps: true });
 const planModel = mongoose.model("plan", planSchema);
 module.exports = planModel;

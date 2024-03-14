@@ -137,6 +137,7 @@ const AddProduct = () => {
               placeholder="Enter Img URL"
               // height={"200px"}
               width="650px"
+              paddingTop={"7px"}
               // value={data.image}
               color="white"
               name="image"

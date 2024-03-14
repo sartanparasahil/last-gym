@@ -24,16 +24,16 @@ function AdminPrivateAuth({ children }) {
   const { AdminIsAuth } = useSelector((store) => store.auth);
   console.log("Admin is", AdminIsAuth)
 
-  if (!AdminIsAuth) {
-    return (
-      toast({
-        title: "You are not admin",
-        status: "warning",
-        duration: 2000,
-        isClosable: true,
-      }), (<Navigate to="/" />)
-    );
-  }
+  // if (!AdminIsAuth) {
+  //   return (
+  //     toast({
+  //       title: "You are not admin",
+  //       status: "warning",
+  //       duration: 2000,
+  //       isClosable: true,
+  //     }), (<Navigate to="/" />)
+  //   );
+  // }
 
   return children;
 }

@@ -40,8 +40,6 @@ const Login = () => {
     setLogin(false)
   }
   const handleOtp = async () => {
-
-
     setVerify(true)
     setForget(false)
   }

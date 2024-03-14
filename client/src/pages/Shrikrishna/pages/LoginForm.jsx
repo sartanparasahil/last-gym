@@ -8,6 +8,7 @@ import {
   Stack,
   Link,
   Button,
+  vCBNM,
   Heading,
   Text,
   useColorModeValue,
@@ -35,8 +36,9 @@ export default function LoginForm({ handleForgot }) {
   };
 
   const handleClick = () => {
+
     console.log("Pratik", errorMessage)
-    if(errorMessage){
+    if (errorMessage) {
       toast({
         title: errorMessage,
         description: "",
@@ -44,7 +46,7 @@ export default function LoginForm({ handleForgot }) {
         duration: 2000,
       })
     }
-     if (!user.email || !user.password) {
+    if (!user.email || !user.password) {
       toast({
         title: "All fields are mandatory",
         description: "Please fill all the details",
@@ -54,9 +56,34 @@ export default function LoginForm({ handleForgot }) {
       });
     } else {
       dispatch(login(user))
-
-
     }
+
+    console.log("Padiyo", errorMessage);
+    // if(error){
+    //   console.log("Padiyo",errorMessage);
+    //   toast({
+    //     title: errorMessage,
+    //     description: "Please fill all the details",
+    //     status: "error",
+    //     duration: 2000,
+    //     isClosable: true,
+    //   });
+    // }
+    // if (!user.email || !user.password) {
+    //   toast({
+    //     title: "All fields are mandatory",
+    //     description: "Please fill all the details",
+    //     status: "error",
+    //     duration: 2000,
+    //     isClosable: true,
+    //   });
+    // } 
+    // else {
+    //   dispatch(login(user))
+
+
+    // }
+
 
 
   };
@@ -79,7 +106,7 @@ export default function LoginForm({ handleForgot }) {
     let token = JSON.parse(localStorage.getItem("token"))
 
     dispatch(getUserData(token.email))
-    //console.log(token.email)
+    //console.log(token.email)  
     return <Navigate to="/" />;
   }
 

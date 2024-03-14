@@ -132,6 +132,7 @@ const AddTrainer = () => {
                             placeholder="Enter Img URL"
                             // height={"200px"}
                             width="650px"
+                            paddingTop={"7px"}
                             color="white"
                             name="image"
                             onChange={handleFileChange}

@@ -10,24 +10,24 @@ import img1 from "../assets/img1.png"
 
 const AdminDashbord = () => {
   return (
-    <HStack 
-    position="relative"
-    align={"flex-start"}
-    justifyContent="flex-start"
-    p={5}
-     bgGradient={"linear-gradient(279deg, rgba(64,64,64,1) 31%, rgba(0,0,0,1) 100%)"}>
-     
-   <SideBarLeft />
-    <Outlet />
+    <HStack
+      position="relative"
+      align={"flex-start"}
+      justifyContent="flex-start"
+      p={5}
+      bgGradient={"linear-gradient(279deg, rgba(64,64,64,1) 31%, rgba(0,0,0,1) 100%)"}>
 
-    <Image position="absolute" right="0" transform={"scaleX(-1)"}
-    src={cloud}/>
+      <SideBarLeft />
+      <Outlet />
 
-<Image position="absolute" bottom="200" left="0" //transform={"scaleX(-1)"}
-    src={cloud}/>
+      <Image position="absolute" right="0" transform={"scaleX(-1)"}
+        src={cloud} />
 
-<Image zIndex={2}  bottom="30" transform={"scaleX(-1)"} position={"absolute"} opacity="50%" left="-20" src={img1} />
-  </HStack>
+      <Image position="absolute" bottom="200" left="0" //transform={"scaleX(-1)"}
+        src={cloud} />
+
+      <Image zIndex={2} bottom="30" transform={"scaleX(-1)"} position={"absolute"} opacity="50%" left="-20" src={img1} />
+    </HStack>
   )
 }
 

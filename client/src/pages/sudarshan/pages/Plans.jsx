@@ -314,10 +314,10 @@ const Plans = () => {
                       roundedBottom="lg"
                     >
                       <chakra.h1 color="white" fontSize="sm" >
-                        <i class="fa-solid fa-trophy"> </i> {item.type}
+                        <i class="fa-solid fa-trophy"> </i> {item.type?item.type : "Transform"}
                       </chakra.h1>
                       <chakra.h1 color="white" fontSize="sm">
-                        <i class="fa-solid fa-person-half-dress"> </i> {item.gender}
+                        <i class="fa-solid fa-person-half-dress"> </i> {item.gender?item.gender:"male"}
                       </chakra.h1>
                       <chakra.h1 color="white" fontSize="sm">
                         <i class="fa-regular fa-clock"> </i>  {item.duration}
