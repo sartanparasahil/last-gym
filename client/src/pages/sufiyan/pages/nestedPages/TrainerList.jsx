@@ -18,6 +18,7 @@ import img1 from "../../assets/img1.png"
 import axios from "axios";
 import { EditIcon } from '@chakra-ui/icons'
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../Loading";
 
 //import {ImageD} from "../../../public/preview";
 
@@ -28,19 +29,27 @@ const TrainerList = () => {
     const [reload, setReload] = useState(true)
     const toast = useToast()
     const navigate=useNavigate()
+    
+    const [loadling, setLoading] = useState(false)
 
     useEffect(() => {
         axios.get("http://localhost:8080/trainer")
             .then((r) => {
+                setLoading(false)
                 setData(r.data)
                 console.log(r.data)
             })
     }, [reload])
 
+    if(loadling){
+        return <Loading />
+    } 
+    
     const handleDelete = (id) => {
         // console.log("id", id)
         axios.delete(`http://localhost:8080/remove/${id}`)
             .then((r) => {
+                setLoading(false)
                 toast({
                     status: "success",
                     title: "Trainer deleted successfully",

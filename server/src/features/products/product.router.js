@@ -27,8 +27,9 @@ const { upload } = require("../coach/coach.router");
 //   }
 // });
 
-app.post("/", async (req, res) => {
+app.post("/", upload.single('image') , async (req, res) => {
   const { pname, desc, price, qty } = req.body;
+  console.log(req.body);
   if (!req.file) {
     return res.status(400).json({ message: "Please Upload Image" });
   }
@@ -38,7 +39,7 @@ app.post("/", async (req, res) => {
       res.status(202).send("Product Already Exist ")
     }
     else {
-      const doc = new productModel({ productName: pname, desc: desc, price: price, qty: qty })
+      const doc = new productModel({ productName: pname, desc: desc, price: price, qty: qty , image:req.file.fieldname })
       doc.save()
       res.status(200).send("Added succesfully")
     }

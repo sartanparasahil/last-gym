@@ -34,7 +34,7 @@ app.put('/:id', async (req, res) => {
 
 
   })
-app.post("/addplan", plan);
+app.post("/addplan", upload.single('image') , plan);
 
 app.delete("/remove/:id", DeletePlan)
 

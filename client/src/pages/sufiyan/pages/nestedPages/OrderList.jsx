@@ -17,6 +17,7 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import img1 from "../../assets/img1.png"
 import axios from "axios";
 import { TfiArrowUp } from "react-icons/tfi";
+import Loading from "../../../Loading";
 
 //import {ImageD} from "../../../public/preview";
 
@@ -24,9 +25,12 @@ const OrderList = () => {
     const toast = useToast()
     const [data, setData] = useState()
     const [reload, setReload] = useState(true)
+    const [loadling, setLoading] = useState(false)
+
     useEffect(() => {
         axios.get("http://localhost:8080/orders")
             .then((r) => {
+                setLoading(false)
                 setData(r.data.data)
                 console.log("contact", r.data)
             })
@@ -50,6 +54,10 @@ const OrderList = () => {
     //         console.log(error)
     //     }
     // }
+    if(loadling){
+        return <Loading />
+    }
+
     return (
         <VStack p={5} maxW="1200px">
 

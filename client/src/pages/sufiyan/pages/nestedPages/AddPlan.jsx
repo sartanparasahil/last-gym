@@ -17,12 +17,14 @@ import {
 import { useDispatch } from "react-redux";
 import { ACTION_ADD_PRODUCT } from "../../../../redux/admin/admin.actions";
 import axios from "axios";
+import Loading from "../../../Loading";
 //import { ACTION_ADD_PRODUCT } from "../../redux/admin/admin.actions";
 
 const AddProduct = () => {
     const [resize, setResize] = React.useState("horizontal");
 
     let [data, setData] = useState({ name: "", desc: "", duration: "" })
+    const [loadling, setLoading] = useState(false)
 
     let [file, setFile] = useState()
     const dispatch = useDispatch();
@@ -51,6 +53,10 @@ const AddProduct = () => {
 
     //   //setarea("");
     // };
+    if(loadling){
+        return <Loading />
+    }
+
     const AddToDatabase = (e) => {
         e.preventDefault();
 
@@ -59,13 +65,13 @@ const AddProduct = () => {
         formData.append('desc', data.desc);
         formData.append('image', file);
         formData.append('duration', data.duration);
-
+        setLoading(true)
 
         axios.post("http://localhost:8080/plan/addplan", formData)
             .then((r) => {
-
                 if (r.status == 200) {
                     setData({ name: "", desc: "", image: "", duration: "" })
+                    setLoading(false)
                     toast({
                         title: "Data added Successfull",
                         status: "success",
@@ -83,7 +89,7 @@ const AddProduct = () => {
                 // }
                 console.log(r.data)
             })
-            .catch((err) => { console.log("plan error", err) })
+            .catch((err) => { setLoading(false) })
     };
 
     return (

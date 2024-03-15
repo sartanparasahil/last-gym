@@ -17,12 +17,14 @@ import {
 import { useDispatch } from "react-redux";
 import { ACTION_ADD_PRODUCT } from "../../../../redux/admin/admin.actions";
 import axios from "axios";
+import Loading from "../../../Loading";
 //import { ACTION_ADD_PRODUCT } from "../../redux/admin/admin.actions";
 
 const AddProduct = () => {
   const [resize, setResize] = React.useState("horizontal");
 
-  let [data, setData] = useState({ pname: "", desc: "", price: "" })
+  let [data, setData] = useState({ pname: "", desc: "", price: "",qty:"" })
+  const [loadling, setLoading] = useState(false)
 
   let [file, setFile] = useState()
 
@@ -53,6 +55,11 @@ const AddProduct = () => {
 
   //   //setarea("");
   // };
+  if(loadling){
+    return <Loading />
+}
+
+
   const AddToDatabase = (e) => {
 
     e.preventDefault();
@@ -61,21 +68,24 @@ const AddProduct = () => {
     formData.append('pname', data.pname);
     formData.append('desc', data.desc);
     formData.append('image', file);
+    formData.append('qty', data.qty);
     formData.append('price', data.price);
     // console.log(formData)
     axios.post("http://localhost:8080/products", formData)
       .then((r) => {
         if (r.status == 200) {
           setData({ pname: "", desc: "", imgurl: "", price: "", qty: "" })
-
+          setLoading(false)
           toast({
             title: r.data,
             status: "success",
             duration: 3000,
             isClosable: true,
           })
+          // window.location.reload()
         }
         else {
+          setLoading(false) 
           toast({
             title: r.data,
             status: "error",

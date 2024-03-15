@@ -20,6 +20,7 @@ import { TfiArrowUp } from "react-icons/tfi";
 
 import { EditIcon } from '@chakra-ui/icons'
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../Loading";
 
 //import {ImageD} from "../../../public/preview";
 
@@ -28,10 +29,13 @@ const Products = () => {
   const [data, setData] = useState()
   const [reload, setReload] = useState(true)
   const navigate = useNavigate()
+  const [loadling, setLoading] = useState(false)
+
 
   useEffect(() => {
     axios.get("http://localhost:8080/products")
       .then((r) => {
+        setLoading(false)
         setData(r.data)
         console.log("Products", r.data)
       })
@@ -41,6 +45,7 @@ const Products = () => {
 
     axios.delete(`http://localhost:8080/products/${id}`)
       .then((r) => {
+        setLoading(false)
         toast({
           status: "success",
           title: r.data,
@@ -49,6 +54,9 @@ const Products = () => {
         })
         setReload(!reload)
       })
+  }
+  if (loadling) {
+    return <Loading />
   }
   return (
     <VStack p={5} maxW="1200px">

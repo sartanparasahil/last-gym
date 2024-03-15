@@ -17,13 +17,16 @@ import {
 import { useDispatch } from "react-redux";
 import { ACTION_ADD_PRODUCT } from "../../../../redux/admin/admin.actions";
 import axios from "axios";
+import Loading from "../../../Loading";
 //import { ACTION_ADD_PRODUCT } from "../../redux/admin/admin.actions";
 
 const AddTrainer = () => {
     const [resize, setResize] = React.useState("horizontal");
 
     let [data, setData] = useState({ name: '', email: '', experiance: '' })
-    let [file, setFile] = useState(null)
+
+    const [loadling, setLoading] = useState(false)
+    let [file, setFile] = useState()
 
     const dispatch = useDispatch();
 
@@ -39,6 +42,9 @@ const AddTrainer = () => {
         setFile(e.target.files[0])
     }
 
+    if (loadling) {
+        return <Loading />
+    }
 
     const AddToDatabase = (e) => {
 
@@ -49,7 +55,7 @@ const AddTrainer = () => {
         formData.append('email', data.email);
         formData.append('experiance', data.experiance);
         formData.append('image', file);
-
+        setLoading(true)
         // Log the entries of the FormData object
 
 
@@ -58,7 +64,8 @@ const AddTrainer = () => {
             .then((r) => {
                 if (r.status == 200) {
                     setData({ name: "", email: "", image: "", experiance: "" })
-                    setFile(null)
+                    setLoading(false)
+                    // setFile(null)
                     toast({
                         title: "Trainer Added Successfull",
                         status: "success",
@@ -67,6 +74,7 @@ const AddTrainer = () => {
                     })
                 }
                 else {
+                    setLoading(false)
                     toast({
                         title: r.data,
                         status: "error",

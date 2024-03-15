@@ -20,12 +20,14 @@ import {
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "../../Loading";
 // import axios from "axios";
 // 
 // };
 
 const Plans = () => {
   const [data, setData] = useState([]);
+  const [loadling, setLoading] = useState(true)
   // let data = [
   //   {
   //     name: "BLUEPRINT TO SIZE",
@@ -112,18 +114,24 @@ const Plans = () => {
   // ];
 
   useEffect(() => {
+    // setLoading(true)
     const getplan = async () => {
       try {
         let plandata = await axios.get("http://localhost:8080/plan")
         // console.log("data is here",plandata)
         setData(plandata.data)
+        setLoading(false)
       } catch (error) {
+        setLoading(false)
         console.log(error)
       }
     }
     getplan();
   }, [])
   // console.log("plan data",data);
+  if(loadling){
+    return <Loading />
+}
 
   return (
     <>
