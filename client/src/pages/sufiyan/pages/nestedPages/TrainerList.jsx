@@ -1,4 +1,5 @@
 import {
+    Box,
     HStack,
     IconButton,
     Image,
@@ -28,8 +29,8 @@ const TrainerList = () => {
     const [data, setData] = useState()
     const [reload, setReload] = useState(true)
     const toast = useToast()
-    const navigate=useNavigate()
-    
+    const navigate = useNavigate()
+
     const [loadling, setLoading] = useState(false)
 
     useEffect(() => {
@@ -41,10 +42,10 @@ const TrainerList = () => {
             })
     }, [reload])
 
-    if(loadling){
+    if (loadling) {
         return <Loading />
-    } 
-    
+    }
+
     const handleDelete = (id) => {
         // console.log("id", id)
         axios.delete(`http://localhost:8080/remove/${id}`)
@@ -85,8 +86,9 @@ const TrainerList = () => {
 
                     // justifyContent={"space-between"}
                     >
-                        <Text textAlign="center" w="30%">TrainerName </Text>
+                        <Text textAlign="center" w="10%">TrainerName </Text>
                         <Text textAlign="center" w="35%">Email</Text>
+                        <Text textAlign="center" w="10%">Id Proof</Text>
                         <Text textAlign="center" w="15%">Experiance</Text>
                         <Text textAlign="center" w="20%">Action</Text>
 
@@ -104,15 +106,27 @@ const TrainerList = () => {
                                     justifyContent={"space-between"}
                                     key={el.id}
                                 >
-                                    <Text textAlign="center" w="30%" >
+                                    <Text textAlign="center" w="10%" >
                                         {el.name}
-
                                     </Text>
                                     <Text textAlign="center" w="35%">{el.email}</Text>
+                                    <Box w="10%" h="70px" m="auto" display="flex" justifyContent="center">
+                                        <Image
+                                            h="100%"
+                                            w="100px"
+                                            fit="cover"
+                                            borderRadius="10px"
+                                            textAlign="center"
+                                            mt={0}
+                                            // src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=320&q=80"
+                                            src={`http://localhost:8080/${el.image[1].filename}`}
+                                            alt="Plan Img"
+                                        />
+                                    </Box>
                                     <Text textAlign="center" w="15%">{el.experiance}</Text>
                                     {/* <Text>{el.password.substring(0,20)}....</Text> */}
 
-                                    <HStack textAlign="center" display="flex" justifyContent="center" w="17%">
+                                    <HStack textAlign="center" display="flex" justifyContent="center" w="20%">
 
                                         <IconButton
                                             fontSize="25px"

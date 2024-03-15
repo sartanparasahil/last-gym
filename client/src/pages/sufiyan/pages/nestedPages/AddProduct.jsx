@@ -86,14 +86,17 @@ const AddProduct = () => {
         }
         else {
           setLoading(false) 
-          toast({
-            title: r.data,
-            status: "error",
-            duration: 3000,
-            isClosable: true,
-          })
         }
       })
+      .catch((err) => {
+        setLoading(false)
+        toast({
+            title: err.response.data.message,
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+        })
+    })
 
   };
 

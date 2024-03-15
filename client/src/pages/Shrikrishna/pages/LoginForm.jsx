@@ -37,15 +37,15 @@ export default function LoginForm({ handleForgot }) {
 
   const handleClick = () => {
 
-    console.log("Pratik", errorMessage)
-    if (errorMessage) {
-      toast({
-        title: errorMessage,
-        description: "",
-        status: "error",
-        duration: 2000,
-      })
-    }
+
+    // if (errorMessage) {
+    //   toast({
+    //     title: errorMessage,
+    //     description: "",
+    //     status: "error",
+    //     duration: 2000,
+    //   })
+    // }
     if (!user.email || !user.password) {
       toast({
         title: "All fields are mandatory",
@@ -204,8 +204,8 @@ export default function LoginForm({ handleForgot }) {
 
                   </button>
 
-
                 </Stack>
+                  <Text color='white'>{errorMessage}</Text>
                 <Button
                   onClick={handleClick}
                   bg={"#f45f02"}

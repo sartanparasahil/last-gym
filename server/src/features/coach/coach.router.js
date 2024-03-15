@@ -41,7 +41,7 @@ const storage = multer.diskStorage({
       });
 
 trainerrouter.get("/trainer", GetTrainer);
-trainerrouter.post("/addtrainer",upload.single('image'), trainer);
+trainerrouter.post("/addtrainer",upload.array('image',3), trainer);
 trainerrouter.delete("/remove/:id", DeleteTrainer);
 
 module.exports = { trainerrouter , upload };

@@ -48,21 +48,25 @@ app.get("/:email", async (req, res) => {
 
 // Login Route
 app.post("/login", async (req, res) => {
-// console.log("login......")
+  // console.log("login......")
   const { email, password } = req.body;
 
-//  console.log("lOGIN"+email,password)
+  //  console.log("lOGIN"+email,password)
 
   if (!email || !password) {
-    return res.status(403).send({message:'Enter Credianteials'});
+    return res.status(403).send({ message: 'Enter Credianteials' });
   }
   const User = await UserModel.findOne({ email });
+
+  if(!User.active){
+    return res.status(403).send({ message: "Your Account is blocked by admin" }); 
+  }
   // console.log(User)
-  if (!User) return res.status(404).send({message:"User Not Found"});
+  if (!User) return res.status(404).send({ message: "User Not Found" });
 
   try {
     const match = bcrypt.compareSync(password, User.password);
-  //  console.log(match)
+    //  console.log(match)
     if (match) {
       //login
       const token = jwt.sign(
@@ -369,22 +373,21 @@ app.post("/verify", async (req, res) => {
   }
 });
 
+
+
 app.delete("/:id", async (req, res) => {
+  try {
 
-  const id = req.params.id
-  await UserModel.findByIdAndDelete({ _id: id })
-  res.status(200).send("Deleted succesfully")
-  // try {
-  //   let exists = await productModel.findOneAndDeslete({
-  //     _id: req.params.id,
-  //   });
+    const id = req.params.id
+    const user = await UserModel.findById(id);
+    user.active = !user.active;
+    await user.save()
 
-  //   console.log(exists, req.params.id);
+    res.status(200).json({ success: true, message: "Updated", user })
+  } catch (error) {
 
-  //   res.status(200).send("Product deleted successfully");
-  // } catch (e) {
-  //   res.send(e.massage);
-  // }
+  }
+
 });
 
 

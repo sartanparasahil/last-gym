@@ -53,7 +53,7 @@ const AddProduct = () => {
 
     //   //setarea("");
     // };
-    if(loadling){
+    if (loadling) {
         return <Loading />
     }
 
@@ -79,17 +79,20 @@ const AddProduct = () => {
                         isClosable: true,
                     })
                 }
-                // else {
-                //     toast({
-                //         title: r.data,
-                //         status: "error",
-                //         duration: 3000,
-                //         isClosable: true,
-                //     })
-                // }
-                console.log(r.data)
+                
+
+                // console.log(r.data)
             })
-            .catch((err) => { setLoading(false) })
+            .catch((err) => {
+                setLoading(false)
+                console.log(err)
+                toast({
+                    title: err.response.data.message,
+                    status: "error",
+                    duration: 2000,
+                    isClosable: true,
+                })
+            })
     };
 
     return (

@@ -45,7 +45,7 @@ app.post("/create-order", async (req, res) => {
 
 app.post("/pay-order", async (req, res) => {
   try {
-    const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature, cart } =
+    const { amount, razorpayPaymentId, razorpayOrderId, razorpaySignature, cart,user } =
       req.body;
 
     // console.log("CART", cart)
@@ -53,6 +53,7 @@ app.post("/pay-order", async (req, res) => {
       isPaid: true,
       amount: amount,
       orderItems:cart,
+      user,
       razorpay: {
         orderId: razorpayOrderId,
         paymentId: razorpayPaymentId,

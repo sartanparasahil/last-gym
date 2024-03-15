@@ -27,6 +27,10 @@ bodyType: {
     type: String ,
     enum:["Lean","Bulky","Muscular"]
   },
+  active:{
+    type:Boolean,
+    default:true
+  },
 role: { 
     type: String ,
     enum:["Admin","User"],

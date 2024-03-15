@@ -28,28 +28,35 @@ const { upload } = require("../coach/coach.router");
 // });
 
 app.post("/", upload.single('image') , async (req, res) => {
-  const { pname, desc, price, qty } = req.body;
-  console.log(req.body);
-  if (!req.file) {
-    return res.status(400).json({ message: "Please Upload Image" });
-  }
-  if (pname && desc && price && qty) {
-    const prod = await productModel.findOne({ productName: pname })
-    if (prod) {
-      res.status(202).send("Product Already Exist ")
+  try {
+    const { pname, desc, price, qty } = req.body;
+    // console.log(req.body);
+    if (pname && desc && price && qty) {
+      if (!req.file) {
+        return res.status(400).json({ message: "Please Upload Image" });
+      }
+      if(price == 0){
+        return res.status(400).json({ message: "Price can't be 0" });
+      }
+      if(qty == 0){
+        return res.status(400).json({ message: "Quantity can't be 0" });
+      }
+      const prod = await productModel.findOne({ productName: pname })
+      if (prod) {
+       return res.status(400).json("Product Already Exist ")
+      }
+      else {
+        const doc = new productModel({ productName: pname, desc: desc, price: price, qty: qty , image:req.file.fieldname })
+        doc.save()
+       return res.status(200).json({message:"Product Added SuccessFully.....",data: doc});
+      }  
     }
     else {
-      const doc = new productModel({ productName: pname, desc: desc, price: price, qty: qty , image:req.file.fieldname })
-      doc.save()
-      res.status(200).send("Added succesfully")
+     return res.status(400).json({ message: "All Fields are required" });
     }
-
-
+  } catch (error) {
+    return res.status(500).json({message:"Server Failed!"});
   }
-  else {
-    res.status(202).send("All Fields are required")
-  }
-
 })
 
 app.get("/", async (req, res) => {

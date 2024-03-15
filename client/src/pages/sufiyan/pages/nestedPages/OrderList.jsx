@@ -32,14 +32,16 @@ const OrderList = () => {
             .then((r) => {
                 setLoading(false)
                 setData(r.data.data)
-                console.log("contact", r.data)
+                // console.log("new data",r.data.data)
+                // setUser(r.data.data.user)
             })
     }, [reload])
+    // console.log("data is", user)
 
     // const handleDelete = (id) => {
     //     try {
     //         axios.delete(`http://localhost:8080/removecontact/${id}`)
-    //             .then((r) => {
+    //             .then((r) => {   
     //                 if (r.status == 200) {
     //                     toast({
     //                         status: "success",
@@ -54,7 +56,7 @@ const OrderList = () => {
     //         console.log(error)
     //     }
     // }
-    if(loadling){
+    if (loadling) {
         return <Loading />
     }
 
@@ -85,15 +87,16 @@ const OrderList = () => {
                         borderRadius={5}
                         justifyContent={"space-between"}
                     >
-                        <Text textAlign="center" w="24%">name </Text>
+                        <Text textAlign="center" w="24%">UserName </Text>
+                        <Text textAlign="center" w="28%">Products </Text>
                         <Text textAlign="center" w="28%">Photo</Text>
-                        <Text textAlign="center" w="34%">Qty</Text>
+                        <Text textAlign="center" w="14%">Qty</Text>
                         <Text textAlign="center" w="14%">Amount</Text>
 
                     </HStack>
                     <Scrollbars style={{ width: 800, height: "65vh" }}>
                         <VStack spacing={5}>
-
+        
                             {
                                 Array.isArray(data) && data?.map((el) => (
                                     <HStack
@@ -104,8 +107,11 @@ const OrderList = () => {
                                         justifyContent={"space-between"}
                                         key={el.id}
                                     >
-
                                         <Text textAlign="center" flexWrap='wrap' w="24%">
+                                            {el.user.username}
+                                           </Text>
+
+                                        <Text textAlign="center" flexWrap='wrap' w="28%">
                                             {
                                                 el.orderItems.map((item) => {
                                                     return (
@@ -123,16 +129,14 @@ const OrderList = () => {
                                             {
                                                 el.orderItems.map((item) => {
                                                     return (
-                                                      
-                                                            <img src={`http://localhost:8080/${item.image}`} width='50px' height='50px' alt="" />
-
+                                                        <img src={`http://localhost:8080/${item.image}`} width='70px' height='70px' alt="" style={{ borderRadius: '5px' }} />
                                                     )
                                                 })
 
                                             }
                                         </Stack>
 
-                                        <Text textAlign="center" flexWrap='wrap' w="34%">
+                                        <Text textAlign="center" flexWrap='wrap' w="14%">
                                             {
                                                 el.orderItems.map((item) => {
                                                     return (
@@ -164,8 +168,6 @@ const OrderList = () => {
                         </VStack> </Scrollbars>
                 </VStack>
             </HStack>
-
-
 
         </VStack>
     );

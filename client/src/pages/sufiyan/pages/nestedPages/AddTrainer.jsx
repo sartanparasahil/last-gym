@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
     Spacer,
     Text,
@@ -26,9 +26,10 @@ const AddTrainer = () => {
     let [data, setData] = useState({ name: '', email: '', experiance: '' })
 
     const [loadling, setLoading] = useState(false)
-    let [file, setFile] = useState()
+    let [file, setFile] = useState([])
 
     const dispatch = useDispatch();
+    const ref = useRef()
 
     const toast = useToast()
     const handleChange = (e) => {
@@ -39,7 +40,8 @@ const AddTrainer = () => {
 
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0])
+        setFile([...file, ...e.target.files]);
+
     }
 
     if (loadling) {
@@ -47,14 +49,15 @@ const AddTrainer = () => {
     }
 
     const AddToDatabase = (e) => {
-
+        console.log("TUSHA", file)
         e.preventDefault();
 
         let formData = new FormData();
         formData.append('name', data.name);
         formData.append('email', data.email);
         formData.append('experiance', data.experiance);
-        formData.append('image', file);
+        formData.append('image', file[0]);
+        formData.append('image', file[1]);
         setLoading(true)
         // Log the entries of the FormData object
 
@@ -75,14 +78,18 @@ const AddTrainer = () => {
                 }
                 else {
                     setLoading(false)
-                    toast({
-                        title: r.data,
-                        status: "error",
-                        duration: 3000,
-                        isClosable: true,
-                    })
                 }
             })
+            .catch((err) => {
+                setLoading(false)
+                toast({
+                    title: err.response.data.message,
+                    status: "error",
+                    duration: 2000,
+                    isClosable: true,
+                })
+            })
+
 
     };
 
@@ -144,10 +151,27 @@ const AddTrainer = () => {
                             resize={resize}
                         />
                     </VStack>
-                    <VStack>
+                    <VStack style={{ position: 'relative' }}>
+                        <Text position={"absolute"} top={"30%"} left={"15px"} color={"gray"}>Trainer img:</Text>
                         <Input
+                            style={{ paddingLeft: '62%' }}
                             type="file"
                             placeholder="Enter Img URL"
+                            // height={"200px"} 
+                            width="650px"
+                            paddingTop={"7px"}
+                            color="white"
+                            name="image"
+                            onChange={handleFileChange}
+                            resize={resize}
+                        />
+                    </VStack>
+                    <VStack style={{ position: 'relative' }}>
+                        <Text position={"absolute"} top={"30%"} left={"15px"} color={"gray"}>Trainer Id Proof:</Text>
+                        <Input
+                            type="file"
+                            placeholder="Enter Id Proof"
+                            style={{ paddingLeft: '62%' }}
                             // height={"200px"}
                             width="650px"
                             paddingTop={"7px"}
@@ -158,12 +182,7 @@ const AddTrainer = () => {
                         />
                     </VStack>
                     <RadioGroup color="white" colorScheme='orange' >
-                        {/* <HStack spacing="24px" align="left">
-              <Radio value="products">Products</Radio>
 
-              <Radio value="plans">Plans</Radio>
-
-            </HStack> */}
 
                         <Spacer />
 

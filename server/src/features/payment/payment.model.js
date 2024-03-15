@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const file = {
   isPaid: Boolean,
   amount: Number,
-  orderItems:Array,
+  orderItems: Array,
+  user: Object,
   razorpay: {
     orderId: String,
     paymentId: String,
@@ -11,6 +12,6 @@ const file = {
   },
 };
 
-const orderScheam = new mongoose.Schema(file,{ timestamps:true });
+const orderScheam = new mongoose.Schema(file, { timestamps: true });
 const orderModel = mongoose.model("order", orderScheam);
 module.exports = orderModel;

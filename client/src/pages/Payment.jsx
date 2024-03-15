@@ -10,8 +10,9 @@ import { getUserData } from "../redux/auth/auth.actions";
 function RazorPay() {
 
   const { userData, token, isAuth } = useSelector((store) => store.auth);
-  const { cart } = userData;
-  console.log("userdatasss",cart)
+  const { cart,details } = userData;
+  // console.log("uiu",userData)
+  // console.log("userdatasss",details);
 
   const navigate = useNavigate()
   const toast = useToast()
@@ -95,7 +96,8 @@ function RazorPay() {
               razorpayPaymentId: response.razorpay_payment_id,
               razorpay0rderId: response.razorpay_order_id,
               razorpaysighature: response.razorpay_signature,
-              cart
+              cart,
+              user:details
 
             });
 
