@@ -64,6 +64,7 @@ export default function ProductCarousel() {
       .then(res => {
         console.log("trainer", res.data)
         setTrainer(res.data)
+        // console.log(res.data);
       })
   }, [])
   return (
@@ -74,34 +75,25 @@ export default function ProductCarousel() {
 
         {
           trainer.map((item) => {
-            console.log("item", item.image[0].filename)
             return (
               <div key={item.email}>
                 <div className="lisa">
-
-                  <img src={`http://localhost:8080/${item.image[0].filename}`} alt='trainer img' />
+                  <img src={`http://localhost:8080/${item.file[0].filename}`} alt='trainer img' />
                   <Box className="overlay2" >
-                    <div style={{display:'flex',alignItems:'center',gap:'4px',paddingLeft:'30px'}}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', paddingLeft: '30px' }}>
                       <Heading color="#fff" fontWeight={"600"} fontSize={["17", "17", "18", "18", "20"]}>Name:</Heading>
                       <Text color="#777" fontWeight={"500"} marginTop={"5px"}>{item.name}</Text>
                     </div>
-                    <div style={{display:'flex',alignItems:'center',gap:'4px',paddingLeft:'30px'}}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', paddingLeft: '30px' }}>
                       <Heading color="#fff" fontWeight={"600"} fontSize={["17", "17", "18", "18", "20"]}>Experience:</Heading>
                       <Text color="#777" fontWeight={"500"} marginTop={"5px"}>{item.experiance}</Text>
                     </div>
-                    <div style={{display:'flex',alignItems:'center',gap:'4px',paddingLeft:'30px'}}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', paddingLeft: '30px' }}>
                       <Heading color="#fff" fontWeight={"600"} fontSize={["17", "17", "18", "18", "20"]}>Email:</Heading>
                       <Text color="#777" fontWeight={"500"} marginTop={"5px"}>{item.email}</Text>
                     </div>
-                   
                   </Box>
-                  <Box className="social">
-                    <HStack spacing={"7"}>
-                      <Text className="sumo"><BsFacebook /></Text>
-                      <Text className="sumo"><BsTwitter /></Text>
-                      <Text className="sumo"><AiFillInstagram /></Text>
-                    </HStack>
-                  </Box>
+
                 </div>
               </div>
             )

@@ -17,6 +17,8 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import img1 from "../../assets/img1.png"
 import axios from "axios";
 import Loading from "../../../Loading";
+import { TbLockOpen } from "react-icons/tb";
+import { TbLock } from "react-icons/tb";
 
 //import {ImageD} from "../../../public/preview";
 
@@ -99,7 +101,7 @@ const AllUsers = () => {
             <Text textAlign="center" w="35%">Email</Text>
             <Text textAlign="center" w="20%">Age</Text>
             <Text textAlign="center" w="20%">Gender</Text>
-            <Text textAlign="center" w="20%">active</Text>
+            <Text textAlign="center" w="20%">Status</Text>
             <Text textAlign="center" w="7%">Action</Text>
 
           </HStack>
@@ -131,7 +133,7 @@ const AllUsers = () => {
                     variant="link"
                     //onClick={toggleColorMode}
                     onClick={() => handleDelete(el._id)}
-                    icon={<IoTrashBinSharp />}
+                    icon={el.active ? <TbLockOpen /> : <TbLock />}
                   />
                 </HStack>
               ))}

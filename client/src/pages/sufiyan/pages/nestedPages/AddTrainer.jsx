@@ -154,7 +154,7 @@ const AddTrainer = () => {
                     <VStack style={{ position: 'relative' }}>
                         <Text position={"absolute"} top={"30%"} left={"15px"} color={"gray"}>Trainer img:</Text>
                         <Input
-                            style={{ paddingLeft: '62%' }}
+                        style={{ paddingLeft: '85%' }}
                             type="file"
                             placeholder="Enter Img URL"
                             // height={"200px"} 
@@ -171,7 +171,7 @@ const AddTrainer = () => {
                         <Input
                             type="file"
                             placeholder="Enter Id Proof"
-                            style={{ paddingLeft: '62%' }}
+                            style={{ paddingLeft: '85%' }}
                             // height={"200px"}
                             width="650px"
                             paddingTop={"7px"}

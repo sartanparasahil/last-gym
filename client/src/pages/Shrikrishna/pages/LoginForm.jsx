@@ -205,7 +205,7 @@ export default function LoginForm({ handleForgot }) {
                   </button>
 
                 </Stack>
-                  <Text color='white'>{errorMessage}</Text>
+                  <Text color='white'>{errorMessage && errorMessage}</Text>
                 <Button
                   onClick={handleClick}
                   bg={"#f45f02"}

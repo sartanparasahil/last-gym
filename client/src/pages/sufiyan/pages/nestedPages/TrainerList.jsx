@@ -86,7 +86,7 @@ const TrainerList = () => {
 
                     // justifyContent={"space-between"}
                     >
-                        <Text textAlign="center" w="10%">TrainerName </Text>
+                        <Text textAlign="center" w="20%">TrainerName </Text>
                         <Text textAlign="center" w="35%">Email</Text>
                         <Text textAlign="center" w="10%">Id Proof</Text>
                         <Text textAlign="center" w="15%">Experiance</Text>
@@ -106,7 +106,7 @@ const TrainerList = () => {
                                     justifyContent={"space-between"}
                                     key={el.id}
                                 >
-                                    <Text textAlign="center" w="10%" >
+                                    <Text textAlign="center" w="20%" >
                                         {el.name}
                                     </Text>
                                     <Text textAlign="center" w="35%">{el.email}</Text>
@@ -119,7 +119,7 @@ const TrainerList = () => {
                                             textAlign="center"
                                             mt={0}
                                             // src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=320&q=80"
-                                            src={`http://localhost:8080/${el.image[1].filename}`}
+                                            src={`http://localhost:8080/${el.image[0].filename}`}
                                             alt="Plan Img"
                                         />
                                     </Box>
