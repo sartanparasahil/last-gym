@@ -1,13 +1,13 @@
 const adminmodel = require("./admin.model");
 
-const GetAdmin = async (req, res) => {
-    try {
-        const Data = await adminmodel.find();
-        return res.status(200).json(Data);
-    } catch (error) {
-        return res.status(500).json({ message: "Server Failed!" });
-    }
-}
+// const GetAdmin = async (req, res) => {
+//     try {
+//         const Data = await adminmodel.find();
+//         return res.status(200).json(Data);
+//     } catch (error) {
+//         return res.status(500).json({ message: "Server Failed!" });
+//     }
+// }
 
 const login = async(req,res)=>{
     const {email,password} = req.body;
@@ -29,4 +29,4 @@ const login = async(req,res)=>{
     }
 }
 
-module.exports = { GetAdmin , login };
+module.exports = {   login };

@@ -78,7 +78,7 @@ export default function ProductCarousel() {
             return (
               <div key={item.email}>
                 <div className="lisa">
-                  <img src={`http://localhost:8080/${item.file[0].filename}`} alt='trainer img' />
+                  <img src={`http://localhost:8080/${item.image[0].filename}`} alt='trainer img' />
                   <Box className="overlay2" >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', paddingLeft: '30px' }}>
                       <Heading color="#fff" fontWeight={"600"} fontSize={["17", "17", "18", "18", "20"]}>Name:</Heading>

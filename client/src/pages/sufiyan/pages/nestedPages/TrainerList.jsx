@@ -119,7 +119,7 @@ const TrainerList = () => {
                                             textAlign="center"
                                             mt={0}
                                             // src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=320&q=80"
-                                            src={`http://localhost:8080/${el.image[0].filename}`}
+                                            src={`http://localhost:8080/${el.image[1].filename}`}
                                             alt="Plan Img"
                                         />
                                     </Box>
