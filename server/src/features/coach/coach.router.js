@@ -1,5 +1,5 @@
 
-const { trainer, GetTrainer, DeleteTrainer } = require("./coach.control");
+const { trainer, GetTrainer, DeleteTrainer, UpdteStatus } = require("./coach.control");
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
@@ -17,8 +17,6 @@ const storage = multer.diskStorage({
 
   const trainerrouter = express.Router();
   
-  
-
     trainerrouter.get('/trainer/:id', async (req, res) => {
 
       try {
@@ -43,5 +41,6 @@ const storage = multer.diskStorage({
 trainerrouter.get("/trainer", GetTrainer);
 trainerrouter.post("/addtrainer",upload.array('image',3), trainer);
 trainerrouter.delete("/remove/:id", DeleteTrainer);
+trainerrouter.delete("/status/:id", UpdteStatus);
 
 module.exports = { trainerrouter , upload };

@@ -21,6 +21,8 @@ import { EditIcon } from '@chakra-ui/icons'
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading";
 
+import { TbLockOpen } from "react-icons/tb";
+import { TbLock } from "react-icons/tb";
 //import {ImageD} from "../../../public/preview";
 
 const TrainerList = () => {
@@ -48,6 +50,7 @@ const TrainerList = () => {
 
     const handleDelete = (id) => {
         // console.log("id", id)
+        setLoading(true)
         axios.delete(`http://localhost:8080/remove/${id}`)
             .then((r) => {
                 setLoading(false)
@@ -58,6 +61,19 @@ const TrainerList = () => {
                     isClosable: true
                 })
                 setReload(!reload)
+            })
+    }
+    const handlestatus = (sid) => {
+        setLoading(true)
+        axios.delete(`http://localhost:8080/status/${sid}`)
+            .then((r) => {
+                setLoading(false)
+                toast({
+                    status: "success",
+                    title: "Updated successfully",
+                    duration: 1500,
+                    isClosable: true
+                })
             })
     }
 
@@ -86,11 +102,12 @@ const TrainerList = () => {
 
                     // justifyContent={"space-between"}
                     >
-                        <Text textAlign="center" w="20%">TrainerName </Text>
+                        <Text textAlign="center" w="15%">TrainerName </Text>
                         <Text textAlign="center" w="35%">Email</Text>
-                        <Text textAlign="center" w="10%">Id Proof</Text>
+                        <Text textAlign="center" w="12%">Id Proof</Text>
                         <Text textAlign="center" w="15%">Experiance</Text>
-                        <Text textAlign="center" w="20%">Action</Text>
+                        <Text textAlign="center" w="20%">Status</Text>
+                        <Text textAlign="center" w="12%">Action</Text>
 
                     </HStack>
                     <Scrollbars style={{ width: 800, height: "65vh" }}>
@@ -98,7 +115,8 @@ const TrainerList = () => {
 
                             {data?.map((el) => (
                                 <HStack
-                                    p={5}
+                                    px={4}
+                                    py={5}
 
                                     w="full"
                                     bg="#eee"
@@ -106,11 +124,11 @@ const TrainerList = () => {
                                     justifyContent={"space-between"}
                                     key={el.id}
                                 >
-                                    <Text textAlign="center" w="20%" >
+                                    <Text textAlign="center" w="15%" >
                                         {el.name}
                                     </Text>
                                     <Text textAlign="center" w="35%">{el.email}</Text>
-                                    <Box w="10%" h="70px" m="auto" display="flex" justifyContent="center">
+                                    <Box w="12%" h="70px" m="auto" display="flex" justifyContent="center">
                                         <Image
                                             h="100%"
                                             w="100px"
@@ -119,17 +137,25 @@ const TrainerList = () => {
                                             textAlign="center"
                                             mt={0}
                                             // src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=320&q=80"
-                                            src={`http://localhost:8080/${el.image[0].filename}`}
+                                            src={`http://localhost:8080/${el.image[1].filename}`}
                                             alt="Plan Img"
                                         />
                                     </Box>
                                     <Text textAlign="center" w="15%">{el.experiance}</Text>
+                                    <Text textAlign="center" w="20%">{el.active ? "Approved":"Disapproved"}</Text>
                                     {/* <Text>{el.password.substring(0,20)}....</Text> */}
 
-                                    <HStack textAlign="center" display="flex" justifyContent="center" w="20%">
+                                    <HStack textAlign="center" display="flex" justifyContent="center" w="12%">
 
                                         <IconButton
-                                            fontSize="25px"
+                                            fontSize="22px"
+                                            borderRadius={50}
+                                            variant="link"
+                                            onClick={() => handlestatus(el._id)}
+                                            icon={el.active ? <TbLockOpen /> : <TbLock />}
+                                        />
+                                        <IconButton
+                                            fontSize="22px"
                                             borderRadius={50}
                                             variant="link"
                                             onClick={() => handleDelete(el._id)}
@@ -137,7 +163,7 @@ const TrainerList = () => {
 
                                         />
                                         <IconButton
-                                            fontSize="25px"
+                                            fontSize="22px"
                                             borderRadius={50}
                                             variant="link"
                                             icon={<EditIcon />}

@@ -30,6 +30,7 @@ import Editproduct from "../pages/sufiyan/pages/nestedPages/Editproduct";
 import Editcoach from "../pages/sufiyan/pages/nestedPages/Editcoach";
 import Adminlogin from "../pages/Shrikrishna/pages/Adminlogin";
 import OrderList from "../pages/sufiyan/pages/nestedPages/OrderList";
+import TrainerEnroll from "../pages/nayan/pages/TrainerEnroll";
 
 const AllRoutes = () => {
   return (
@@ -82,6 +83,7 @@ const AllRoutes = () => {
 
         <Route path="/about" element={<AboutUS />} />
         <Route path="/contact" element={<Contect />} />
+        <Route path="/trainer-enroll" element={<TrainerEnroll />} />
 
         {/*////////////////////////////////////////////////////*/}
 
@@ -128,15 +130,6 @@ const AllRoutes = () => {
               <AdminPrivateAuth>
                 <AddPlan />{" "}
               </AdminPrivateAuth>
-            }
-          />
-          <Route
-            exact
-            path="add-trainer"
-            element={
-              <AdminPrivateAuth>
-                <AddTrainer />{" "}
-              </AdminPrivateAuth> 
             }
           />
           {/* edit */}

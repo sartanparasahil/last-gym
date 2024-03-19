@@ -153,7 +153,6 @@ function SideBarLeft() {
             </motion.h3>
             <Link to="/admins/add-product" >   <Item icon={<AiFillEdit />} name="Add Products" /> </Link>
             <Link to="/admins/add-plan" style={{ marginTop: "7px" }}>   <Item icon={<AiFillEdit />} name="Add Plan" /> </Link>
-            <Link to="/admins/add-trainer" style={{ marginTop: "7px" }}>   <Item icon={<AiFillEdit />} name="Add Trainer" /> </Link>
 
           </div>
         </motion.div>

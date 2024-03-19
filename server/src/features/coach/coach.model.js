@@ -16,7 +16,11 @@ const trainerSchema = mongoose.Schema({
     experiance:{
         type:String,
         required:true
-    }
+    },
+    active: {
+        type: Boolean,
+        default: false
+      },
     // gender:{
     //     type:String,
     //     required:true,

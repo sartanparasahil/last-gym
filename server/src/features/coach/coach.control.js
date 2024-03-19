@@ -3,13 +3,18 @@ const trainermodel = require("./coach.model");
 const trainer = async (req, res) => {
     try {
         const { name, email, experiance } = req.body;
-        console.log("FILE", req.files)
+        console.log("run body");
         // console.log(req.file);
         // console.log(req.body)
         const emailchk = await trainermodel.findOne({ email });
+        let regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
         if (!(name && email && experiance)) {
             return res.status(400).json({ message: "All Fileds Are Required" });
+        }
+        if(!email.match(regex))
+        {
+            return res.status(400).json({ message: "Invalid Email!" });
         }
         if (!req.files) {
             return res.status(400).json({ message: "Please Upload Image" });
@@ -50,4 +55,17 @@ const DeleteTrainer = async (req, res) => {
     }
 }
 
-module.exports = { trainer, GetTrainer, DeleteTrainer };
+const UpdteStatus = async (req, res) => {
+    try {
+        const id = req.params.id
+        const user = await trainermodel.findById(id);
+        user.active = !user.active;
+        await user.save()
+
+        res.status(200).json({ success: true, message: "Updated", user })
+    } catch (error) {
+        return res.status(500).json({ message: "Server Failed!" });
+    }
+
+};
+module.exports = { trainer, GetTrainer, DeleteTrainer,UpdteStatus };
