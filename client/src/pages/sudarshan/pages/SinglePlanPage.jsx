@@ -102,7 +102,7 @@ const SinglePlanPage = () => {
 
                         z-index={2}
                       >
-                        {item.type}
+                        {item.type ? item.type : "Transform"}
                       </chakra.p>
                       <chakra.p
                         width={"90%"}

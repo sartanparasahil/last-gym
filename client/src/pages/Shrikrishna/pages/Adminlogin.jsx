@@ -17,27 +17,31 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import { getUserData, login } from "../../../redux/auth/auth.actions";
+// import { getUserData, login } from "../../../redux/auth/auth.actions";
 import Loading from "../../Loading";
 import axios from "axios";
 
-export default function LoginForm({ handleForgot }) {
+export default function Adminlogin() {
 
 
-    const [user, setUser] = useState({ email: "", password: "" });
+    const [admin, setAdmin] = useState({ email: "", password: "" });
+    const [loading,setLoading]=useState(false)
 
     const dispatch = useDispatch();
     const toast = useToast();
-const navigate = useNavigate()
+    const navigate = useNavigate()
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUser({ ...user, [name]: value });
+        setAdmin({ ...admin, [name]: value });
     };
+
+    if(loading){
+        return <Loading />
+    }
 
     const handleClick = () => {
 
-
-        if (!user.email || !user.password) {
+        if (!admin.email || !admin.password) {
             toast({
                 title: "All fields are mandatory",
                 description: "Please fill all the details",
@@ -47,15 +51,25 @@ const navigate = useNavigate()
             });
 
         } else {
-            axios.post("http://localhost:8080/admin/login", user)
+            setLoading(true)
+            axios.post("http://localhost:8080/admin/login", admin)
                 .then((res) => {
-                    console.log(res.data)
-                    if(res.status == 200){
-
+                    // console.log("admin data", res.data)
+                    if (res.status == 200) {
+                        setAdmin({ email: "", password: "" })
+                        setLoading(false)
+                        toast({
+                            title: "Login Successfully",
+                            description: "",
+                            status: "success",
+                            duration: 2000,
+                            isClosable: true,
+                        });
                         navigate('/admins')
                     }
                 })
                 .catch((err) => {
+                    setLoading(false)
                     toast({
                         title: err.response.data.message,
                         description: "",
@@ -63,11 +77,9 @@ const navigate = useNavigate()
                         duration: 2000,
                         isClosable: true,
                     });
-        
-                    
                 }
-                    
-                    )
+
+                )
         }
 
     };
@@ -127,7 +139,7 @@ const navigate = useNavigate()
                             <FormControl id="email">
                                 <FormLabel color={"#f45f02"}>Email address</FormLabel>
                                 <Input
-                                    value={user.user}
+                                    value={admin.email}
                                     color={"white"}
                                     onChange={handleChange}
                                     type="email"
@@ -137,7 +149,7 @@ const navigate = useNavigate()
                             <FormControl id="password">
                                 <FormLabel color={"#f45f02"}>Password</FormLabel>
                                 <Input
-                                    value={user.setUser}
+                                    value={admin.password}
                                     color={"white"}
                                     onChange={handleChange}
                                     type="password"
@@ -146,7 +158,7 @@ const navigate = useNavigate()
                             </FormControl>
                             <Stack spacing={10}>
                                 <Button
-                                type="submit"
+                                    type="submit"
                                     onClick={handleClick}
                                     bg={"#f45f02"}
                                     color={"white"}

@@ -7,9 +7,9 @@ function PrivateRoute({ children }) {
 
   const { isAuth } = useSelector((store) => store.auth);
   
-  if (!isAuth) {
-    return alert("You Need To Login First"), (<Navigate to="/login" />);
-  }
+  // if (!isAuth) {
+  //   return alert("You Need To Login First"), (<Navigate to="/login" />);
+  // }
 
   return children;
 }
